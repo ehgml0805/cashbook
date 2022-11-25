@@ -67,9 +67,17 @@ ArrayList<HashMap<String,Object>> list = cashDao.selectCashListByMonth(loginMemb
 	<div>
 		<!-- 로그인 정보(loginMember 변수 출력) 출력 -->
 		<%=loginMember.getMemberName()%>님 반갑습니다.
+		
 	</div>
 	<a href="<%=request.getContextPath()%>/memberOne.jsp">마이 페이지</a>
 	<a href="<%=request.getContextPath()%>/logOut.jsp"> 로그아웃</a>
+	<%
+		if(loginMember.getMemberLevel()>0){
+	%>		
+			<a href="<%= request.getContextPath()%>/admin/admin.jsp">관리자 페이지</a>
+	<%		
+		}
+	%>
 	<div>
 		<%=year%>년<%=month + 1%>월
 	</div>

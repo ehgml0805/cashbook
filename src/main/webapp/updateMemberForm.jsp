@@ -9,17 +9,19 @@ if(session.getAttribute("loginMember")==null){
 }
 
 String msg=request.getParameter("msg");
+String msg1=request.getParameter("msg1");
 
 Member loginMember=(Member)session.getAttribute("loginMember");
 String memberId=loginMember.getMemberId();
 String memberName=loginMember.getMemberName();
+/*
 Member paramMember=new Member();
 paramMember.setMemberId(memberId);
 paramMember.setMemberName(memberName);
 
 MemberDao memberDao= new MemberDao();
 Member resultMember=memberDao.login(paramMember);
-
+*/
 %>
 <!DOCTYPE html>
 <html>
@@ -28,11 +30,18 @@ Member resultMember=memberDao.login(paramMember);
 <title>개인정보 수정</title>
 </head>
 <body>
+<%
+	if(msg1!=null){
+%>		
+	<div><%=msg1 %></div>
+<%		
+	}
+%>
 	<form action="<%=request.getContextPath()%>/updateMemberAction.jsp" method="post">
 		<table>
 			<tr>
 				<td>아이디</td>
-				<td><%=memberId %></td>
+				<td><input type="text" value="<%=memberId %>" name="memberId" readonly="readonly" ></td>
 			</tr>
 			<tr>
 				<td>이름</td>

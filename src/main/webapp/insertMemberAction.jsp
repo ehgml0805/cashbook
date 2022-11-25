@@ -10,9 +10,8 @@ if(request.getParameter("memberName")==null
 	||request.getParameter("memberName").equals("")
 	||request.getParameter("memberId").equals("")
 	||request.getParameter("memberPw").equals("")){
-response.sendRedirect(request.getContextPath()+"/insertMemberForm.jsp");
-return;
-	
+	response.sendRedirect(request.getContextPath()+"/insertMemberForm.jsp");
+	return;
 }
 //회원 가입 폼에서 이름 받아오기
 String memberName=request.getParameter("memberName");

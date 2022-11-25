@@ -86,6 +86,7 @@ public class CashDao {
 		conn.close();
 		return in;
 	}
+	//데이터 삭제
 	public Cash delete(int cashNo) throws Exception{
 		Cash de=null;
 		DBUtil dbUtil=new DBUtil();

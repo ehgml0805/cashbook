@@ -21,10 +21,10 @@ String memberName=loginMember.getMemberName();
 <body>
 	<table>
 		<tr>
-			<td>이름: <%=memberId %></td>
+			<td>아이디: <%=memberId %></td>
 		</tr>
 		<tr>
-			<td>아이디: <%=memberName %> </td>
+			<td>이름: <%=memberName %> </td>
 		</tr>
 		<tr>
 			<td>비밀번호:

@@ -5,16 +5,14 @@
 
 <%
 request.setCharacterEncoding("utf-8");
-/*
-if(request.getParameter("memberName")==null
-	||request.getParameter("memberPw")==null
-	||request.getParameter("memberName").equals("")
+if(request.getParameter("memberName").equals("")
 	||request.getParameter("memberPw").equals("")){
-	
+	String msg1=URLEncoder.encode("이름과 비밀번호를 확인하세요.","utf-8");
+	response.sendRedirect(request.getContextPath()+"/updateMemberForm.jsp?msg1="+msg1);
+	return;
 }
-*/
-Member loginMember=(Member)session.getAttribute("loginMember");
-String memberId=loginMember.getMemberId();
+//개인정보 수정 폼에서 아이디 받아오기
+String memberId=request.getParameter("memberId");
 System.out.println(memberId+"<--아이디");
 String memberName=request.getParameter("memberName");
 System.out.println(memberName+"<--변경할 이름");
@@ -23,16 +21,19 @@ System.out.println(memberPw+"<--비밀번호");
 
 Member paramMember=new Member();
 paramMember.setMemberId(memberId);
+paramMember.setMemberPw(memberPw);
 paramMember.setMemberName(memberName);
 
 MemberDao memberDao=new MemberDao();
 Member updateMember=memberDao.update(paramMember);
 
-if(updateMember!=null){//비밀번호가 맞다면 수정이 되고 마이페이지로 돌아갈거
+if(updateMember!=null){
 	response.sendRedirect(request.getContextPath()+"/memberOne.jsp");
 }else{
 	String msg=URLEncoder.encode("비밀번호를 확인하세요.","utf-8");
 	response.sendRedirect(request.getContextPath()+"/updateMemberForm.jsp?msg="+msg);
 }
+
+//음? 되는데 로그아웃하고 다시 들어와야 확인이 가능,,,뭐가 문젤까,,,
 
 %>
