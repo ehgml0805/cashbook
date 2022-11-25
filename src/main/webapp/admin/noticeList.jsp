@@ -40,6 +40,7 @@ int lastPage= noticeCount/rowPerPage;
 </ul>
 <!--뭐 원하는 대로 자유롭게 수정하기 -->
 	<table>
+	<!-- 공지 입력 만들기 -->
 		<tr>
 			<td>공지내용</td>
 			<td>공지날짜</td>

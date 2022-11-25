@@ -29,5 +29,17 @@ MemberDao memberDao =new MemberDao();
 	<li><a href="<%=request.getContextPath()%>/admin/memberList.jsp">회원 관리(목록, level수정, 강제탈퇴)</a></li>
 </ul>
 <!-- 멤버 목록 -->
+<table>
+	<tr>
+		<td></td>
+		<td>아이디</td>
+		<td>레벨</td>
+		<td>이름</td>
+		<td>마지막 수정일자</td>
+		<td>가입일자</td>
+		<td>레벨수정</td>
+		<td>강제탈퇴</td>
+	</tr>
+</table>
 </body>
 </html>
