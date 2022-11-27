@@ -12,7 +12,6 @@ String msg=request.getParameter("msg");
 Member loginMember=(Member)(session.getAttribute("loginMember"));
 String loginMemberId=loginMember.getMemberId();
 String loginMemberName=loginMember.getMemberName();
-
 %>
 
 <!DOCTYPE html>

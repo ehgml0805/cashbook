@@ -62,49 +62,61 @@ public class CashDao {
 	}
 
 	//데이터 삽입
-	public Cash insert(String memberId ,int cashNo, long cash_price, int category_no, String category_kind, String cash_memo) throws Exception{
-		Cash in=null;
+	public int insert(String memberId ,String cashDate , long cashPrice, int categoryNo, String cashMemo) throws Exception{
 		DBUtil dbUtil= new DBUtil();
 		Connection conn=dbUtil.getConnection();
-		String sql="INSERT INTO cash (cash_price cashPrice, category_no categortNo, cash_date cashDate, cash_price, cash_memo) VALUE(?,?,?,?);";
+		String sql="INSERT INTO cash (member_id, cash_date, cash_price, category_no, cash_memo, updatedate, createdate) VALUE(?,?,?,?,?,CURDATE(),CURDATE());";
 		PreparedStatement stmt=conn.prepareStatement(sql);
 		stmt.setString(1, memberId);
-		stmt.setInt(2, cashNo);
-		stmt.setLong(3,cash_price );
-		stmt.setInt(4, category_no);
-		stmt.setString(5, category_kind);
-		stmt.setString(6, cash_memo);
+		stmt.setString(2, cashDate);
+		stmt.setLong(3,cashPrice );
+		stmt.setInt(4, categoryNo);
+		stmt.setString(5, cashMemo);
 		int row= stmt.executeUpdate();
-		
 		if(row==1) {
-			System.out.println(true);
+			System.out.println("추가 성공");
+			return 1;
 		}else {
-			System.out.println(false);
+			System.out.println("추가 실패");
+			return 0;
 		}
-		
-		stmt.close();
-		conn.close();
-		return in;
 	}
 	//데이터 삭제
-	public Cash delete(int cashNo) throws Exception{
-		Cash de=null;
+	public int delete(int cashNo) throws Exception{
 		DBUtil dbUtil=new DBUtil();
 		Connection conn=dbUtil.getConnection();
 		String sql="DELETE FROM cash WHERE cash_no=?;";
 		PreparedStatement stmt=conn.prepareStatement(sql);
 		stmt.setInt(1, cashNo);
-		int row= stmt.executeUpdate();
-		
+		int row=stmt.executeUpdate();
 		if(row==1) {
-			System.out.println(true);
+			System.out.println("삭제 성공");
+			return 1;
 		}else {
-			System.out.println(false);
+			System.out.println("삭제 실패");
+			return 0;
 		}
-		
-		stmt.close();
-		conn.close();
-		return de;
+	}
+	//cash 데이터 수정
+	public int update(int cashNo, String cashDate, Long cashPrice, int categoryNo, String cashMemo, String memberId) throws Exception{
+		DBUtil dbUtil= new DBUtil();
+		Connection conn=dbUtil.getConnection();
+		String sql="UPDATE cash SET member_id=?, cash_date=?, cash_price=?, category_no=?, cash_memo=? WHERE cash_no=? AND member_id=?;";
+		PreparedStatement stmt=conn.prepareStatement(sql);
+		stmt.setInt(1, cashNo);
+		stmt.setString(2, cashDate);
+		stmt.setLong(3, cashPrice);
+		stmt.setInt(4, categoryNo);
+		stmt.setString(5, cashMemo );
+		stmt.setString(6, memberId );
+		int row=stmt.executeUpdate();
+		if(row==1) {
+			System.out.println("수정 성공");
+			return 1;
+		}else {
+			System.out.println("수정 실패");
+			return 0;
+		}
 	}
 }
 

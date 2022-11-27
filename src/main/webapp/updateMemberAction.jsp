@@ -26,14 +26,4 @@ paramMember.setMemberName(memberName);
 
 MemberDao memberDao=new MemberDao();
 Member updateMember=memberDao.update(paramMember);
-
-if(updateMember!=null){
-	response.sendRedirect(request.getContextPath()+"/memberOne.jsp");
-}else{
-	String msg=URLEncoder.encode("비밀번호를 확인하세요.","utf-8");
-	response.sendRedirect(request.getContextPath()+"/updateMemberForm.jsp?msg="+msg);
-}
-
-//음? 되는데 로그아웃하고 다시 들어와야 확인이 가능,,,뭐가 문젤까,,,
-
 %>

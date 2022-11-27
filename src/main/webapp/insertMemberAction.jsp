@@ -24,17 +24,17 @@ Member paramMember=new Member();
 paramMember.setMemberId(memberId);
 paramMember.setMemberPw(memberPw);
 paramMember.setMemberName(memberName);
-
+//model 호출
 MemberDao memberDao=new MemberDao();
-Member insertMember=memberDao.insert(paramMember);
-
-
-if(insertMember!=null){//중복 아이디가 아니면 회원가입 되고 로그인 폼으로 넘어감
-	response.sendRedirect(request.getContextPath()+"/loginForm.jsp");
-}else{//중복된 아이디라면 회원가입폼으로 다시 돌아가고 중복된 아이디라고 띄울거
+if(memberDao.memberIdCh(memberId)){
+	System.out.println("중복된 아이디 입니다");
 	String msg=URLEncoder.encode("중복된 아이디입니다.","utf-8");
 	response.sendRedirect(request.getContextPath()+"/insertMemberForm.jsp?msg="+msg);
-
+	return;
 }
+int row=memberDao.insertMember(paramMember);
+System.out.println("회원가입 성공");
+response.sendRedirect(request.getContextPath()+"/loginForm.jsp");
+
 
 %>

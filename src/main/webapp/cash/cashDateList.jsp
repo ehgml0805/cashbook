@@ -5,14 +5,18 @@
 <%@ page import="java.sql.* "%>
 
 <%
+request.setCharacterEncoding("utf-8");
 Member loginMember=(Member)session.getAttribute("loginMember");
 if(session.getAttribute("loginMember")==null){
 	response.sendRedirect(request.getContextPath()+"/loginForm.jsp");
 	return;
 }
 //
+String loginMemberId=loginMember.getMemberId();
 int year = Integer.parseInt(request.getParameter("year"));
+System.out.println(year+"년도");
 int month = Integer.parseInt(request.getParameter("month"));
+System.out.println(month+"월");
 int date = Integer.parseInt(request.getParameter("date"));
 System.out.println(date+"<-날짜");
 
@@ -40,6 +44,9 @@ ArrayList<HashMap<String, Object>> list=cashDao.selectCashListByDate(loginMember
 	</div>
 	<form action="<%=request.getContextPath()%>/cash/insertCashAction.jsp?year=<%=year%>&month=<%=month%>&date=<%=date%>" method="post">
 		<input type="hidden" name="memberId" value="<%=loginMember.getMemberId()%>">
+		<input type="hidden" name="year" value="<%=year %>">
+		<input type="hidden" name="month" value="<%=month %>">
+		<input type="hidden" name="date" value="<%=date %>">
 		<table>
 			<tr>
 				<td>사용일자</td>
@@ -55,7 +62,7 @@ ArrayList<HashMap<String, Object>> list=cashDao.selectCashListByDate(loginMember
 						for(Category c: categoryList){
 					%>		
 							<option value="<%=c.getCategoryNo()%>">
-							<%=c.getCategoryKind() %> <%=c.getCategoryName() %>
+							<%=c.getCategoryNo() %>  <%=c.getCategoryKind() %> <%=c.getCategoryName() %>
 							</option>
 					<%		
 						}
@@ -99,8 +106,8 @@ ArrayList<HashMap<String, Object>> list=cashDao.selectCashListByDate(loginMember
 			<td><%=m.get("categoryName") %></td>
 			<td><%=m.get("cashDate")%></td>
 			<td><%=m.get("cashMemo")%></td>
-			<td><a href="<%=request.getContextPath()%>/cash/updateCashForm.jsp?cashNo=<%=m.get("cashNo")%>">수정</a></td>
-			<td><a href="<%=request.getContextPath()%>/cash/deleteCash.jsp?cashNo=<%=m.get("cashNo")%>">삭제</a></td>
+			<td><a href="<%=request.getContextPath()%>/cash/updateCashForm.jsp?cashNo=<%=m.get("cashNo")%>&year=<%=year%>&month=<%=month%>&date=<%=date%>">수정</a></td>
+			<td><a href="<%=request.getContextPath()%>/cash/deleteCashAction.jsp?cashNo=<%=m.get("cashNo")%>&year=<%=year%>&month=<%=month%>&date=<%=date%>">삭제</a></td>
 		</tr>
 	<%		
 			}

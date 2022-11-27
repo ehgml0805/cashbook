@@ -9,18 +9,15 @@ if(loginMember==null){
 	response.sendRedirect(request.getContextPath()+"/loginForm.jsp");
 	return;
 }
-int cashNo=Integer.parseInt(request.getParameter("cashNo"));
-String cashPrice=request.getParameter("cashPrice");
-String categoryKind=request.getParameter("categoryKind");
-String categoryName=request.getParameter("categoryName");
-String cashDate=request.getParameter("cashDate");
+String loginMemberId=loginMember.getMemberId();
 int year = Integer.parseInt(request.getParameter("year"));
 int month = Integer.parseInt(request.getParameter("month"));
 int date = Integer.parseInt(request.getParameter("date"));
-
 CashDao cashDao= new CashDao();
-ArrayList<HashMap<String, Object>> list=cashDao.selectCashListByDate(loginMember.getMemberId() , year, month, date);
-
+//카테고리 항목
+CategoryDao categoryDao= new CategoryDao();
+ArrayList<Category> categoryList=categoryDao.selectCategoryList();
+//캐시 항목
 
 
 %>
@@ -31,23 +28,40 @@ ArrayList<HashMap<String, Object>> list=cashDao.selectCashListByDate(loginMember
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="<%=request.getContextPath()%>/updateCashAction.jsp" method="post">
+	<form action="<%=request.getContextPath()%>/cash/updateCashAction.jsp" method="post">
+		<input type="hidden" name="memberId" value="<%=loginMember.getMemberId()%>">
+		<input type="hidden" name="year" value="<%=year %>">
+		<input type="hidden" name="month" value="<%=month %>">
+		<input type="hidden" name="date" value="<%=date %>">
+		<input type="hidden" name="date" value="<%= %>">
 		<table border="1">
 		<tr>
-			<td>가격</td>
-			<td><input type="text" name="cashPrice" value="<%=%>"></td>
-		</tr>
-		<tr>
-			<td>수입/지출</td>
-			<td><input type="text" > </td>
+			<td>사용 날짜</td>
+			<td><input type="text" name="cashDate" value="<%=year%>-<%=month%>-<%=date%>" readonly="readonly"></td>
 		</tr>
 		<tr>	
 			<td>항목</td>
-			<td><input type="text" name="categoryName"></td>
+				<td>
+					<select name="categoryNo">
+					<%
+						for(Category c: categoryList){
+					%>		
+							<option value="<%=c.getCategoryNo()%>">
+							<%=c.getCategoryNo() %>  <%=c.getCategoryKind() %> <%=c.getCategoryName() %>
+							</option>
+					<%		
+						}
+					%>
+					</select>
+				</td>
 		</tr>
 		<tr>
-			<td>사용 날짜</td>
-			<td><input type="text" name="cashDate" value=""></td>
+			<td>가격</td>
+			<td><input type="text" name="cashPrice"></td>
+		</tr>
+		<tr>
+			<td>메모</td>
+			<td><textarea name="cashMemo"></textarea></td>
 		</tr>
 		</table>
 	<button type="submit">수정하기 </button>
