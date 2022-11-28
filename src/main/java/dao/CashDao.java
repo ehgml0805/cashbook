@@ -120,14 +120,11 @@ public class CashDao {
 		int row=0;
 		DBUtil dbUtil= new DBUtil();
 		Connection conn=dbUtil.getConnection();
-		String sql="UPDATE cash SET member_id=?, cash_date=?, cash_price=?, category_no=?, cash_memo=? WHERE cash_no=? AND member_id=?;";
+		String sql="UPDATE cash SET cash_price=?, cash_memo=? WHERE cash_no=?;";
 		PreparedStatement stmt=conn.prepareStatement(sql);
-		stmt.setInt(1, cash.getCashNo());
-		stmt.setString(2, cash.getCashDate());
-		stmt.setLong(3, cash.getCashPrice());
-		stmt.setString(4, cash.getCategoryNo());
-		stmt.setString(5, cash.getCashMemo());
-		stmt.setString(6, cash.getMemberId() );
+		stmt.setLong(1, cash.getCashPrice());
+		stmt.setString(2, cash.getCashMemo());
+		stmt.setInt(3, cash.getCashNo());
 		row=stmt.executeUpdate();
 		if(row==1) {
 			System.out.println("수정 성공");

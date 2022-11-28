@@ -13,12 +13,13 @@ String loginMemberId=loginMember.getMemberId();
 int year = Integer.parseInt(request.getParameter("year"));
 int month = Integer.parseInt(request.getParameter("month"));
 int date = Integer.parseInt(request.getParameter("date"));
-CashDao cashDao= new CashDao();
+int cashNo=Integer.parseInt(request.getParameter("cashNo"));
+System.out.println(cashNo+"<==캐시 넘버");
 //카테고리 항목
 CategoryDao categoryDao= new CategoryDao();
-ArrayList<Category> categoryList=categoryDao.selectCategoryList();
 //캐시 항목
-
+CashDao cashDao= new CashDao();
+Cash cash=cashDao.selectCashOne(cashNo);
 
 %>
 <!DOCTYPE html>
@@ -33,27 +34,11 @@ ArrayList<Category> categoryList=categoryDao.selectCategoryList();
 		<input type="hidden" name="year" value="<%=year %>">
 		<input type="hidden" name="month" value="<%=month %>">
 		<input type="hidden" name="date" value="<%=date %>">
-		<input type="hidden" name="date" value="<%= %>">
+		<input type="hidden" name="cashNo" value="<%=cashNo%>">
 		<table border="1">
 		<tr>
 			<td>사용 날짜</td>
 			<td><input type="text" name="cashDate" value="<%=year%>-<%=month%>-<%=date%>" readonly="readonly"></td>
-		</tr>
-		<tr>	
-			<td>항목</td>
-				<td>
-					<select name="categoryNo">
-					<%
-						for(Category c: categoryList){
-					%>		
-							<option value="<%=c.getCategoryNo()%>">
-							<%=c.getCategoryNo() %>  <%=c.getCategoryKind() %> <%=c.getCategoryName() %>
-							</option>
-					<%		
-						}
-					%>
-					</select>
-				</td>
 		</tr>
 		<tr>
 			<td>가격</td>
