@@ -55,17 +55,20 @@ public class CategoryDao {
 
 	// admin->insertCategory
 	public int insertCategory(Category category) throws Exception {
-		int row = 0;
 		DBUtil dbUtil = new DBUtil();
 		Connection conn = dbUtil.getConnection();
 		String sql = "INSERT INTO category (category_kind , category_Name , updatedate, createdate) VALUES (?,?,CURDATE(),CURDATE());";
 		PreparedStatement stmt = conn.prepareStatement(sql);
 		stmt.setString(1, category.getCategoryKind());
 		stmt.setString(2, category.getCategoryName());
-		row = stmt.executeUpdate();
-
-		dbUtil.close(null, stmt, conn);
-		return row;
+		int row = stmt.executeUpdate();
+		if (row == 1) {
+			System.out.println("추가 성공");
+			return 1;
+		} else {
+			System.out.println("추가 실패");
+			return 0;
+		}
 	}
 
 	// admin->카테고리 관리->카테고리 목록

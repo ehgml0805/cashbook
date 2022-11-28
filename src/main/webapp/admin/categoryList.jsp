@@ -41,8 +41,7 @@ ArrayList<Category> categoryList = categoryDao.selectCategoryListByAdmin();
 	<!-- 카테고리 리스트 출력하기 -->
 	<h1>카테고리 리스트</h1>
 	<div>
-		<a href=<%=request.getContextPath()%>
-			/admin/category/insertCategoryForm.jsp>카테고리 추가</a>
+		<a href="<%=request.getContextPath()%>/admin/category/insertCategoryForm.jsp">카테고리 추가</a>
 	</div>
 	<table>
 		<tr>

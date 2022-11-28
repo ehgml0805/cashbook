@@ -16,6 +16,11 @@ public class MemberDao {
 
 	// 관리자 페이지에서 멤버 리스트
 	public ArrayList<Member> selectMemberListByPage(int beginRow, int rowPerPage) throws Exception {
+		ArrayList<Member> list=new ArrayList<Member>();
+		DBUtil dbUtil=new DBUtil();
+		Connection conn=dbUtil.getConnection();
+		String sql="SELECT member_id, member_level, member_name, updatedate, createdate FROM member WHERE ";
+		
 		return null;
 	}
 

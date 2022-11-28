@@ -3,7 +3,6 @@
 <%@ page import="dao.*" %>
 
 <%
-request.setCharacterEncoding("utf-8");
 Member loginMember=(Member)session.getAttribute("loginMember");
 //방어코드
 if(loginMember==null||loginMember.getMemberLevel()<1||request.getParameter("noticeMemo").equals("")){

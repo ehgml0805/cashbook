@@ -18,10 +18,10 @@ int beginRow=(currentPage-1)*rowPerPage;
 NoticeDao noticeDao= new NoticeDao();
 ArrayList<Notice> list= noticeDao.selectNoticeListByPage(beginRow, rowPerPage);
 int selectNoticeCount=noticeDao.selectNoticeCount();//전체 행의 개수 가져오기
-System.out.println(selectNoticeCount);
+//System.out.println(selectNoticeCount);
 //last page 구하기
 int lastPage=selectNoticeCount/rowPerPage;
-System.out.println(lastPage);
+//System.out.println(lastPage);
 %>
 <!DOCTYPE html>
 <html>

@@ -10,13 +10,15 @@ if (loginMember == null || loginMember.getMemberLevel() < 1||request.getParamete
 	response.sendRedirect(request.getContextPath() +"/admin/category/insertCategoryForm.jsp");
 	return;
 }
+int memberLevel = loginMember.getMemberLevel();
+System.out.println(memberLevel + "<-멤버레벨");
+
 request.setCharacterEncoding("utf-8");
 String categoryKind = request.getParameter("categoryKind");
 String categoryName = request.getParameter("categoryName");
 System.out.println(categoryKind + "<--수입/지출");
 System.out.println(categoryName + "<--항목");
-int memberLevel = loginMember.getMemberLevel();
-System.out.println(memberLevel + "<-멤버레벨");
+
 
 Category category = new Category();
 category.setCategoryKind(categoryKind);

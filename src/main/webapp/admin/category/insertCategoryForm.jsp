@@ -5,6 +5,7 @@
 <%@ page import="dao.*"%>
 <%
 //controller
+request.setCharacterEncoding("utf-8");
 Member loginMember = (Member) session.getAttribute("loginMember");
 //방어코드
 if (loginMember == null || loginMember.getMemberLevel() < 1) {
