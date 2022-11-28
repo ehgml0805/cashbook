@@ -4,22 +4,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-
 <%
 //controller
 Member loginMember = (Member) session.getAttribute("loginMember");
+//방어코드
 if (loginMember == null || loginMember.getMemberLevel() < 1) {
 	response.sendRedirect(request.getContextPath() + "/loginForm.jsp");
 	return;
 }
-int memberLevel=loginMember.getMemberLevel();
+int memberLevel = loginMember.getMemberLevel();
 //System.out.println(memberLevel+"<-멤버레벨");
 //model 호출
 CategoryDao categoryDao = new CategoryDao();
 ArrayList<Category> categoryList = categoryDao.selectCategoryListByAdmin();
-
-
-
 
 //view
 %>
@@ -27,11 +24,12 @@ ArrayList<Category> categoryList = categoryDao.selectCategoryListByAdmin();
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>카테고리 관리</title>
 </head>
 <body>
 	<!-- 페이징 놉 -->
 	<ul>
+		<li><a href="<%=request.getContextPath()%>/admin/adminMain.jsp">메인으로</a></li>
 		<li><a href="<%=request.getContextPath()%>/admin/noticeList.jsp">공지
 				관리</a></li>
 		<li><a
@@ -43,7 +41,8 @@ ArrayList<Category> categoryList = categoryDao.selectCategoryListByAdmin();
 	<!-- 카테고리 리스트 출력하기 -->
 	<h1>카테고리 리스트</h1>
 	<div>
-		<a href=<%=request.getContextPath()%>/admin/category/insertCategoryForm.jsp>카테고리 추가</a>
+		<a href=<%=request.getContextPath()%>
+			/admin/category/insertCategoryForm.jsp>카테고리 추가</a>
 	</div>
 	<table>
 		<tr>
@@ -65,8 +64,10 @@ ArrayList<Category> categoryList = categoryDao.selectCategoryListByAdmin();
 			<td><%=c.getCategoryName()%></td>
 			<td><%=c.getUpdatedate()%></td>
 			<td><%=c.getCreatedate()%></td>
-			<td><a href="<%=request.getContextPath()%>/admin/category/updateCategoryForm.jsp?categoryNo=<%=c.getCategoryNo()%>">수정</a></td>
-			<td><a href="<%=request.getContextPath()%>/admin/category/deleteCategoryAction.jsp?categoryNo=<%=c.getCategoryNo()%>">삭제</a></td>
+			<td><a
+				href="<%=request.getContextPath()%>/admin/category/updateCategoryForm.jsp?categoryNo=<%=c.getCategoryNo()%>">수정</a></td>
+			<td><a
+				href="<%=request.getContextPath()%>/admin/category/deleteCategoryAction.jsp?categoryNo=<%=c.getCategoryNo()%>">삭제</a></td>
 		</tr>
 		<%
 		}

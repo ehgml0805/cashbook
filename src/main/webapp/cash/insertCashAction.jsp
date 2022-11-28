@@ -1,14 +1,18 @@
 <%@page import="vo.Cash"%>
 <%@page import="dao.CashDao"%>
 <%@page import="vo.Member"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
-<%@ page import="java.util.*" %>
-<%@ page import="java.sql.*" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ page import="java.util.*"%>
+<%@ page import="java.sql.*"%>
 
 <%
 request.setCharacterEncoding("utf-8");
-if(session.getAttribute("loginMember") ==null){
-	response.sendRedirect(request.getContextPath()+"/loginForm.jsp");
+//방어코드
+if(session.getAttribute("loginMember") ==null||request.getParameter("cashPrice").equals("")
+	||request.getParameter("cashMemo").equals("")
+	||request.getParameter("categoryNo").equals("")||request.getParameter("categoryNo")==null){
+	response.sendRedirect(request.getContextPath()+"/cash/cashDateList.jsp");
 	return;
 }
 //insertForm에서 받아오기

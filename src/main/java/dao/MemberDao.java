@@ -98,6 +98,7 @@ public class MemberDao {
 		}
 		return result;
 	}
+
 	public Member update(Member paramMember) throws Exception {
 		Member updateMember = null;
 		DBUtil dbUtil = new DBUtil();
@@ -131,6 +132,7 @@ public class MemberDao {
 		}
 		return result;
 	}
+
 	public Member delete(Member paramMember) throws Exception {
 		Member deleteMember = null;
 		DBUtil dbUtil = new DBUtil();
