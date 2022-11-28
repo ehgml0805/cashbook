@@ -31,7 +31,7 @@ public class Member {
 	public int getMemberLevel() {
 		return memberLevel;
 	}
-	public void setMemberLivel(int memberLevel) {
+	public void setMemberLevel(int memberLevel) {
 		this.memberLevel = memberLevel;
 	}
 	public String getMemberName() {

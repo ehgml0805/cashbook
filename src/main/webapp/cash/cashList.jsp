@@ -6,11 +6,12 @@
 //로그인이 안된 상태면 현재 페이지에 접근 못하게
 request.setCharacterEncoding("utf-8");
 Member loginMember=(Member)session.getAttribute("loginMember");
-if(session.getAttribute("loginMember")==null){
+if(session.getAttribute("loginMember")==null&&loginMember.getMemberLevel()<1){
 	response.sendRedirect(request.getContextPath()+"/loginForm.jsp");
 	return;
 }
-
+int memberLevel=loginMember.getMemberLevel();
+System.out.println(memberLevel+"<-멤버레벨");
 //request 년,월이 넘어와야함,  아무것도 안넘어오면 이번달
 int year = 0;
 int month = 0;
@@ -53,6 +54,8 @@ int totalTd = beginBlank + lastDate + endBlank;
 CashDao cashDao= new CashDao();
 ArrayList<HashMap<String,Object>> list = cashDao.selectCashListByMonth(loginMember.getMemberId() , year, month+1);
 
+
+
 //
 %>
 
@@ -74,7 +77,7 @@ ArrayList<HashMap<String,Object>> list = cashDao.selectCashListByMonth(loginMemb
 	<%
 		if(loginMember.getMemberLevel()>0){
 	%>		
-			<a href="<%= request.getContextPath()%>/admin/admin.jsp">관리자 페이지</a>
+			<a href="<%= request.getContextPath()%>/admin/adminMain.jsp">관리자 페이지</a>
 	<%		
 		}
 	%>

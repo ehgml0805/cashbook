@@ -8,6 +8,8 @@ if(loginMember==null||loginMember.getMemberLevel()<1){
 	response.sendRedirect(request.getContextPath()+"/loginForm.jsp");
 	return;
 }
+int memberLevel=loginMember.getMemberLevel();
+System.out.println(memberLevel+"<-멤버레벨");
 //model 호출
 
 //최근 공지 5개, 신규 멤버 5명

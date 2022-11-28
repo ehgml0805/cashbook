@@ -12,14 +12,14 @@ if(loginMember==null||loginMember.getMemberLevel()<1){
 	return;
 }
 //model 호출:notice의 리스트 
-int beginRow=0;//시작 0
+int currentPage=1;//1페이지부터 보여줄거고
 int rowPerPage=10;//10개씩 보여줄거
-
+int beginRow=(currentPage-1)*rowPerPage;//0부터 뽑을게
+//lastPage
 NoticeDao noticeDao=new NoticeDao();
 ArrayList<Notice> list=noticeDao.selectNoticeListByPage(beginRow, rowPerPage);
-int noticeCount=noticeDao.selectNoticeCount();
-
-int lastPage= noticeCount/rowPerPage;
+int selectNoticeCount=noticeDao.selectNoticeCount();
+int lastPage= selectNoticeCount/rowPerPage;
 
 //view
 %>
@@ -51,15 +51,36 @@ int lastPage= noticeCount/rowPerPage;
 			for(Notice n: list){
 		%>
 			<tr>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
+				<td><%=n.getNoticeMemo() %></td>
+				<td><%=n.getCreatedate() %></td>
+				<td><a href="<%=request.getContextPath()%>/admin/updateNoticeForm.jsp">수정</a></td>
+				<td><a href="<%=request.getContextPath()%>/admin/deleteNoticeAction.jsp">삭제</a></td>
 			</tr>	
 		<%		
 			}
 		%>
-		
 	</table>
+	
+	<a href="<%=request.getContextPath()%>/admin/noticeList.jsp?currentPage=1">처음</a>
+	<%
+		if(currentPage>1){
+	%>
+			<a href="<%=request.getContextPath()%>/admin/noticeList.jsp?currentPage=<%=currentPage-1 %>">이전</a>	
+	<%		
+		}
+	%>
+		<span><%=currentPage %></span>
+	<%	
+		if(currentPage<lastPage){
+	%>
+			<a href="<%=request.getContextPath()%>/admin/noticeList.jsp?currentPage=<%=currentPage+1 %>">다음</a>	
+	<%		
+			
+		}
+	%>
+
+	<a href="<%=request.getContextPath()%>/admin/noticeList?currentPage=<%=lastPage%>">마지막</a>	
+	
+	
 </body>
 </html>
