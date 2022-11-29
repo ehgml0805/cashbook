@@ -8,7 +8,7 @@ if(session.getAttribute("loginMember")==null){
 	return;
 }
 
-String msg=request.getParameter("msg");
+String msg2=request.getParameter("msg");
 String msg1=request.getParameter("msg1");
 
 Member loginMember=(Member)session.getAttribute("loginMember");
@@ -44,7 +44,11 @@ Member resultMember=memberDao.login(paramMember);
 				<td><input type="text" value="<%=memberId %>" name="memberId" readonly="readonly" ></td>
 			</tr>
 			<tr>
-				<td>이름</td>
+				<td>변경 전 이름</td>
+				<td><input type="text" name="bememberName" value="<%=memberName%>" readonly="readonly"> </td>
+			</tr>
+			<tr>
+				<td>변경 할 이름</td>
 				<td><input type="text" name="memberName"></td>
 			</tr>
 			<tr>
@@ -52,9 +56,9 @@ Member resultMember=memberDao.login(paramMember);
 				<td><input type="password" name="memberPw"></td>
 				<td>
 					<%
-						if(msg!=null){
+						if(msg2!=null){
 					%>		
-						<div> <%=msg %> </div>
+						<div> <%=msg2 %> </div>
 					<%		
 						}
 					%>

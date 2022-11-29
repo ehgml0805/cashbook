@@ -9,21 +9,61 @@ import vo.Member;
 public class MemberDao {
 	// 관리자 레벨 수정
 	public int updateLevel(Member member) {
+		
 		return 0;
 	}
 
 	// 관리자 멤버 강퇴 시킬때
-
+	public Member deleteMemberByAdmin(Member member) throws Exception{
+		Member resultMember=null;
+		DBUtil dbUtil=new DBUtil();
+		Connection conn=dbUtil.getConnection();
+		String sql="DELETE FROM member WHERE member_id=?;";
+		PreparedStatement stmt=conn.prepareStatement(sql);
+		stmt.setString(1, member.getMemberId());
+		int row=stmt.executeUpdate();
+		if(row==1) {
+			System.out.println("멤버 강퇴 성공");
+			resultMember=member;
+		}
+		return resultMember;
+	}
+	
 	// 관리자 페이지에서 멤버 리스트
 	public ArrayList<Member> selectMemberListByPage(int beginRow, int rowPerPage) throws Exception {
 		ArrayList<Member> list=new ArrayList<Member>();
 		DBUtil dbUtil=new DBUtil();
 		Connection conn=dbUtil.getConnection();
-		String sql="SELECT member_id, member_level, member_name, updatedate, createdate FROM member WHERE ";
-		
-		return null;
+		String sql="SELECT member_id memberId, member_level memberLevel, member_name memberName, updatedate, createdate FROM member ORDER BY createdate DESC; ";
+		PreparedStatement stmt=conn.prepareStatement(sql);
+		stmt.setInt(1, beginRow);
+		stmt.setInt(2, rowPerPage);
+		ResultSet rs=stmt.executeQuery();
+		while(rs.next()) {
+			Member m=new Member();
+			m.setMemberId(rs.getString("memberId"));
+			m.setMemberLevel(rs.getInt("memberLevel"));
+			m.setMemberName(rs.getNString("memberName"));
+			m.setUpdatedate(rs.getString("updatedate"));
+			m.setCreatedate(rs.getString("createdate"));
+			list.add(m);
+		}
+		dbUtil.close(rs, stmt, conn);
+		return list;
 	}
-
+	//관리자페이지 페이징 전체 행 구하기
+	public int selectMemberAdminCount() throws Exception{
+		int count=1;
+		DBUtil dbUtil=new DBUtil();
+		Connection conn=dbUtil.getConnection();
+		String sql="SELECT COUNT(*) FROM member;";
+		PreparedStatement stmt=conn.prepareStatement(sql);
+		ResultSet rs=stmt.executeQuery();
+		if(rs.next()) {
+			count=rs.getInt(count);
+		}
+		return count;
+	}
 	// 로그인
 	public Member login(Member paramMember) throws Exception {
 		Member resultMember = null;
@@ -87,9 +127,10 @@ public class MemberDao {
 		return row;
 	}
 
-	// update id랑 비밀번호가 서로 맞는지 확인
-	public String idPwCh(String memberId, String memberPw) throws Exception {
-		String result = null;
+	/* update id랑 비밀번호가 서로 맞는지 확인
+	 * 나눠서 할 필요가 없음.....
+	public Member idPwCh(String memberId, String memberPw) throws Exception {
+		Member result = null;
 		DBUtil dbUtil = new DBUtil();
 		Connection conn = dbUtil.getConnection();
 		// 데이터 베이스 안에 있는 로그인 한 비밀번호 가져오기 및 비교
@@ -101,58 +142,49 @@ public class MemberDao {
 		if (!pwRs.next()) {// id랑 pw가
 			System.out.println("비밀번호가 다릅니다.");
 		}
+		pwRs.close();
+		pwStmt.close();
+		conn.close();
 		return result;
 	}
-
+	*/
 	public Member update(Member paramMember) throws Exception {
-		Member updateMember = null;
+		Member resultMember=null;
 		DBUtil dbUtil = new DBUtil();
 		Connection conn = dbUtil.getConnection();
-		String sql = "UPDATE member SET member_name=?, updatedate=CURDATE() WHERE member_id=?;";
+		String sql = "UPDATE member SET member_name=?, updatedate=CURDATE() WHERE member_id=? AND member_pw=PASSWORD(?);";
 		PreparedStatement stmt = conn.prepareStatement(sql);
 		stmt.setString(1, paramMember.getMemberName());
 		stmt.setString(2, paramMember.getMemberId());
+		stmt.setString(3, paramMember.getMemberPw());
 		stmt.executeUpdate();
-		dbUtil.close(null, stmt, conn);
-		return updateMember;
+		int row = stmt.executeUpdate();
+		if (row == 1) {
+			System.out.println("수정 성공");
+			resultMember=paramMember;
+		} 
+		stmt.close();
+		conn.close();
+		return resultMember;
 	}
-
-	// delete 아이디랑 비번이 일치하는지 빠져 있음..
-	public boolean idCh(String memberId, String memberPw) throws Exception {
-		boolean result = true;// return 받아서 이리 온거니까 아이디랑 비번이 일치함
-		DBUtil dbUtil = new DBUtil();
-		Connection conn = dbUtil.getConnection();
-		// id 중복검사
-		String idSql = "SELECT * FROM member WHERE member_id=? ANd member_pw=PASSWORD(?);";
-		PreparedStatement idStmt = conn.prepareStatement(idSql);
-		idStmt.setString(1, memberId);
-		System.out.println(memberId);
-		idStmt.setNString(2, memberPw);
-		System.out.println(memberPw);
-		ResultSet idRs = idStmt.executeQuery();
-		if (idRs.next()) {//
-			System.out.println("비밀번호 일치");
-		} else {
-			System.out.println("비밀번호가 다릅");
-		}
-		return result;
-	}
-
+	//delete
 	public Member delete(Member paramMember) throws Exception {
-		Member deleteMember = null;
+		Member resultMember = null;
 		DBUtil dbUtil = new DBUtil();
 		Connection conn = dbUtil.getConnection();
-		String sql = "DELETE FROM member WHERE member_id?;";
+		String sql = "DELETE FROM member WHERE member_id=? AND member_pw=PASSWORD(?);";
 		PreparedStatement stmt = conn.prepareStatement(sql);
 		stmt.setString(1, paramMember.getMemberId());
+		stmt.setString(2, paramMember.getMemberPw());
 		int row = stmt.executeUpdate();
 		if (row == 1) {
 			System.out.print("성공");
-		} else {
-			System.out.print("실패");
-		}
-		return deleteMember;
-
+			resultMember=paramMember;
+		} 
+		stmt.close();
+		conn.close();
+		return resultMember;
 	}
 
+	//비밀번호 수정 
 }

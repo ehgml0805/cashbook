@@ -1,3 +1,4 @@
+<%@page import="java.util.ArrayList"%>
 <%@page import="dao.MemberDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
 <%@page import="vo.Member"%>
@@ -9,17 +10,24 @@ if(loginMember==null||loginMember.getMemberLevel()<1){
 	response.sendRedirect(request.getContextPath()+"/loginForm.jsp");
 	return;
 }
+String msg=request.getParameter("msg");
 //model 호출
+int currentPage=1;//시작페이지가 1
+int rowPerPage=10;//10개씩 보여줄거
+int beginRow=(currentPage-1)*rowPerPage;//0번부터 보여줄거
+//lastpage 구하기
 MemberDao memberDao =new MemberDao();
+ArrayList<Member> list=memberDao.selectMemberListByPage(beginRow, rowPerPage);
+int selectMemberAdminCount=memberDao.selectMemberAdminCount();
+int lastPage=selectMemberAdminCount/rowPerPage;
 
-//view
 %>
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>멤버 관리</title>
 </head>
 <body>
 <!--  -->
@@ -31,7 +39,6 @@ MemberDao memberDao =new MemberDao();
 <!-- 멤버 목록 -->
 <table>
 	<tr>
-		<td></td>
 		<td>아이디</td>
 		<td>레벨</td>
 		<td>이름</td>
@@ -39,7 +46,30 @@ MemberDao memberDao =new MemberDao();
 		<td>가입일자</td>
 		<td>레벨수정</td>
 		<td>강제탈퇴</td>
+		<%
+			if(msg!=null){
+		%>		
+			<%=msg %>
+		<%		
+			}
+		%>
 	</tr>
+	<%
+		for(Member m: list){
+	%>		
+		<tr>
+			<td><%=m.getMemberId() %> </td>
+			<td><%=m.getMemberLevel() %></td>
+			<td><%=m.getMemberName() %></td>
+			<td><%=m.getUpdatedate() %></td>
+			<td><%=m.getCreatedate() %></td>
+			<td><a href="<%=request.getContextPath()%>/admin/member/updateMemberLevelForm.jsp">수정</a></td>
+			<td><a href="<%=request.getContextPath()%>/admin/member/deleteMemberAction.jsp?memberId=<%=m.getMemberId()%>">강제탈퇴</a></td>
+		</tr>
+	<%		
+		}
+	%>
+	
 </table>
 </body>
 </html>

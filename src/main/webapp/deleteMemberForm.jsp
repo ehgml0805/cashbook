@@ -8,7 +8,7 @@ if(session.getAttribute("loginMember")==null){
 }
 request.setCharacterEncoding("utf-8");
 String msg=request.getParameter("msg");
-
+String msg2=request.getParameter("msg2");
 Member loginMember=(Member)(session.getAttribute("loginMember"));
 String loginMemberId=loginMember.getMemberId();
 String loginMemberName=loginMember.getMemberName();
@@ -21,6 +21,13 @@ String loginMemberName=loginMember.getMemberName();
 <title>Insert title here</title>
 </head>
 <body>
+<%
+	if(msg!=null){
+%>		
+	<%=msg %>
+<%
+}
+%>
 	<form action="<%=request.getContextPath()%>/deleteMemberAction.jsp" method="post">
 		<table>
 			<tr>
@@ -36,9 +43,9 @@ String loginMemberName=loginMember.getMemberName();
 				<td><input type="password" name="memberPw"></td>
 				<td>
 					<%
-						if(msg!=null){
+						if(msg2!=null){
 					%>		
-						<div> <%=msg %> </div>
+						<div> <%=msg2 %> </div>
 					<%		
 						}
 					%>
