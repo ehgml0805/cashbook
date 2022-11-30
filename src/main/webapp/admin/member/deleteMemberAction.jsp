@@ -16,10 +16,10 @@ System.out.println(memberId+"<==강퇴할 아이디");
 
 //model 호출
 Member member=new Member();
-member.getMemberId();
+member.setMemberId(memberId);
 MemberDao memberDao=new MemberDao();
-Member resultMember =memberDao.deleteMemberByAdmin(member);
-if(resultMember!=null){
+int row =memberDao.deleteMemberByAdmin(member);
+if(row==1){
 	System.out.println("회원 강퇴 성공");
 	response.sendRedirect(request.getContextPath()+"/admin/memberList.jsp");
 }else{

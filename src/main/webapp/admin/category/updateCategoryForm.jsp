@@ -27,8 +27,7 @@ Category category = categoryDao.selectCategoryOne(categoryNo);
 </head>
 <body>
 	<form
-		action="<%=request.getContextPath()%>/admin/category/updateCategoryAction.jsp"
-		method="post">
+		action="<%=request.getContextPath()%>/admin/category/updateCategoryAction.jsp" method="post">
 		<input type="hidden" name="categoryNo"
 			value="<%=category.getCategoryNo()%>">
 		<table>

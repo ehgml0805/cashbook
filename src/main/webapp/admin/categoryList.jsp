@@ -30,13 +30,9 @@ ArrayList<Category> categoryList = categoryDao.selectCategoryListByAdmin();
 	<!-- 페이징 놉 -->
 	<ul>
 		<li><a href="<%=request.getContextPath()%>/admin/adminMain.jsp">메인으로</a></li>
-		<li><a href="<%=request.getContextPath()%>/admin/noticeList.jsp">공지
-				관리</a></li>
-		<li><a
-			href="<%=request.getContextPath()%>/admin/categoryList.jsp">카테고리
-				관리</a></li>
-		<li><a href="<%=request.getContextPath()%>/admin/memberList.jsp">회원
-				관리(목록, level수정, 강제탈퇴)</a></li>
+		<li><a href="<%=request.getContextPath()%>/admin/noticeList.jsp">공지 관리</a></li>
+		<li><a href="<%=request.getContextPath()%>/admin/categoryList.jsp">카테고리 관리</a></li>
+		<li><a href="<%=request.getContextPath()%>/admin/memberList.jsp">회원 관리(목록, level수정, 강제탈퇴)</a></li>
 	</ul>
 	<!-- 카테고리 리스트 출력하기 -->
 	<h1>카테고리 리스트</h1>

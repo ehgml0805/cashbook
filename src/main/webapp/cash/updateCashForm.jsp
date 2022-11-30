@@ -11,6 +11,7 @@ if (loginMember == null) {
 	response.sendRedirect(request.getContextPath() + "/loginForm.jsp");
 	return;
 }
+String msg1=request.getParameter("msg1");
 String loginMemberId = loginMember.getMemberId();
 int year = Integer.parseInt(request.getParameter("year"));
 int month = Integer.parseInt(request.getParameter("month"));
@@ -30,8 +31,14 @@ Cash cash = cashDao.selectCashOne(cashNo);
 <title>캐시 수정하기</title>
 </head>
 <body>
-	<form action="<%=request.getContextPath()%>/cash/updateCashAction.jsp"
-		method="post">
+	<%
+		if(msg1!=null){
+	%>		
+			<%=msg1 %>	
+	<%		
+		}
+	%>
+	<form action="<%=request.getContextPath()%>/cash/updateCashAction.jsp" method="post">
 		<input type="hidden" name="memberId" value="<%=loginMember.getMemberId()%>"> 
 		<input type="hidden" name="year" value="<%=year%>"> 
 		<input type="hidden" name="month" value="<%=month%>">

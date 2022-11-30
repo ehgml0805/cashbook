@@ -7,26 +7,38 @@ import util.DBUtil;
 import vo.Member;
 
 public class MemberDao {
-	// 관리자 레벨 수정
-	public int updateLevel(Member member) {
-		
+	
+	// 관리자 레벨 수정 Action
+	public int updateLevel(Member member) throws Exception {
+		int row=0;
+		DBUtil dbutil=new DBUtil();
+		Connection conn=dbutil.getConnection();
+		String sql="UPDATE member SET member_level=?, updatedate=CURDATE() WHERE member_id=?";
+		PreparedStatement stmt=conn.prepareStatement(sql);
+		stmt.setInt(1, member.getMemberLevel());
+		stmt.setString(2, member.getMemberId());
+		row=stmt.executeUpdate();
+		if(row==1) {
+			System.out.println("레벨 수정 성공");
+			return 1;
+		}
 		return 0;
 	}
 
 	// 관리자 멤버 강퇴 시킬때
-	public Member deleteMemberByAdmin(Member member) throws Exception{
-		Member resultMember=null;
+	public int deleteMemberByAdmin(Member member) throws Exception{
+		int row=0;
 		DBUtil dbUtil=new DBUtil();
 		Connection conn=dbUtil.getConnection();
 		String sql="DELETE FROM member WHERE member_id=?;";
 		PreparedStatement stmt=conn.prepareStatement(sql);
 		stmt.setString(1, member.getMemberId());
-		int row=stmt.executeUpdate();
+		row=stmt.executeUpdate();
 		if(row==1) {
 			System.out.println("멤버 강퇴 성공");
-			resultMember=member;
+			return 1;
 		}
-		return resultMember;
+		return row;
 	}
 	
 	// 관리자 페이지에서 멤버 리스트
@@ -148,6 +160,7 @@ public class MemberDao {
 		return result;
 	}
 	*/
+	//update 개인정보
 	public Member update(Member paramMember) throws Exception {
 		Member resultMember=null;
 		DBUtil dbUtil = new DBUtil();
@@ -167,6 +180,41 @@ public class MemberDao {
 		conn.close();
 		return resultMember;
 	}
+	//update 비밀번호
+	public Member updatePw(Member paramMember) throws Exception{
+		Member resultMember=null;
+		DBUtil dbUtil=new DBUtil();
+		Connection conn=dbUtil.getConnection();
+		String sql="UPDATE member SET member_pw=PASSWORD(?), updatedate=CURDATE() WHERE member_id=? ; ";
+		PreparedStatement stmt=conn.prepareStatement(sql);
+		stmt.setString(1, paramMember.getMemberPw());
+		stmt.setString(2, paramMember.getMemberId());
+		int row=stmt.executeUpdate();
+		if(row==1) {
+			System.out.println("비밀번호 변경 성공");
+			resultMember=paramMember;
+		}
+		return resultMember;
+	}
+	//update 비밀번호랑 아이디가 서로 맞는지
+	public int Pwch(String memberId ,String memberPw) throws Exception{
+		int row=0;
+		DBUtil dbUtil=new DBUtil();
+		Connection conn=dbUtil.getConnection();
+		String sql="SELECT * FROM member WHERE member_id=? AND member_pw=PASSWORD(?);";
+		PreparedStatement stmt=conn.prepareStatement(sql);
+		stmt.setString(1, memberId);
+		stmt.setString(2, memberPw);
+		ResultSet rs=stmt.executeQuery();
+		if(rs.next()) {//일치한다면
+			row=1;
+		}else {
+			System.out.println("비밀번호가 다름!");
+		}
+		return row;
+	}
+	
+	
 	//delete
 	public Member delete(Member paramMember) throws Exception {
 		Member resultMember = null;

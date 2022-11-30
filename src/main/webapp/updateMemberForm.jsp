@@ -8,7 +8,7 @@ if(session.getAttribute("loginMember")==null){
 	return;
 }
 
-String msg2=request.getParameter("msg");
+String msg2=request.getParameter("msg2");
 String msg1=request.getParameter("msg1");
 
 Member loginMember=(Member)session.getAttribute("loginMember");

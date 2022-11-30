@@ -30,7 +30,8 @@ int lastPage=selectNoticeCount/rowPerPage;
 <title>LOGIN Form</title>
 </head>
 <body>
-	<form action="<%=request.getContextPath()%>/loginAction.jsp">
+
+	<form action="<%=request.getContextPath()%>/loginAction.jsp"  method="post">
 		<%
 			if(msg!=null){
 		%>		

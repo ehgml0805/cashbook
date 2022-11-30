@@ -22,11 +22,9 @@ int row = cashDao.delete(cashNo);
 
 if (row == 1) {
 	System.out.println("cash 삭제 성공");
-	response.sendRedirect(
-	request.getContextPath() + "/cash/cashDateList.jsp?year=" + year + "&month=" + month + "&date=" + date);
+	response.sendRedirect(request.getContextPath() + "/cash/cashDateList.jsp?year=" + year + "&month=" + month + "&date=" + date);
 } else {
 	System.out.println("cash 삭제 실패");
-	response.sendRedirect(
-	request.getContextPath() + "/cash/cashDateList.jsp?year=" + year + "&month=" + month + "&date=" + date);
+	response.sendRedirect(request.getContextPath() + "/cash/cashDateList.jsp?year=" + year + "&month=" + month + "&date=" + date);
 }
 %>

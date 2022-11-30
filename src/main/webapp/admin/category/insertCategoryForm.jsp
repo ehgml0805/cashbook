@@ -24,8 +24,7 @@ System.out.println(memberLevel + "<-멤버레벨");
 </head>
 <body>
 	<form
-		action="<%=request.getContextPath()%>/admin/category/insertCategoryAction.jsp"
-		method="post">
+		action="<%=request.getContextPath()%>/admin/category/insertCategoryAction.jsp" method="post">
 		<table>
 			<tr>
 				<td>수입/지출</td>

@@ -8,7 +8,7 @@
 request.setCharacterEncoding("utf-8");
 Member loginMember = (Member) session.getAttribute("loginMember");
 //방어코드
-if (session.getAttribute("loginMember") == null && loginMember.getMemberLevel() < 1) {
+if (session.getAttribute("loginMember") == null ) {
 	response.sendRedirect(request.getContextPath() + "/loginForm.jsp");
 	return;
 }

@@ -31,5 +31,6 @@ System.out.println(memberLevel + "<-멤버레벨");
 			href="<%=request.getContextPath()%>/admin/categoryList.jsp">카테고리 관리</a></li>
 		<li><a href="<%=request.getContextPath()%>/admin/memberList.jsp">회원 관리(목록, level수정, 강제탈퇴)</a></li>
 	</ul>
+	<a href="<%=request.getContextPath()%>/logOut.jsp"> 로그아웃</a>
 </body>
 </html>

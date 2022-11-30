@@ -10,7 +10,8 @@ if(request.getParameter("memberName")==null
 	||request.getParameter("memberName").equals("")
 	||request.getParameter("memberId").equals("")
 	||request.getParameter("memberPw").equals("")){
-	response.sendRedirect(request.getContextPath()+"/insertMemberForm.jsp");
+	String msg1=URLEncoder.encode("✔아이디, 이름, 비밀번호를 입력하세요!","utf-8");
+	response.sendRedirect(request.getContextPath()+"/insertMemberForm.jsp?msg1="+msg1);
 	return;
 }
 //회원 가입 폼에서 이름 받아오기
@@ -28,7 +29,7 @@ paramMember.setMemberName(memberName);
 MemberDao memberDao=new MemberDao();
 if(memberDao.memberIdCh(memberId)){
 	System.out.println("중복된 아이디 입니다");
-	String msg=URLEncoder.encode("중복된 아이디입니다.","utf-8");
+	String msg=URLEncoder.encode("✔중복된 아이디입니다.","utf-8");
 	response.sendRedirect(request.getContextPath()+"/insertMemberForm.jsp?msg="+msg);
 	return;
 }

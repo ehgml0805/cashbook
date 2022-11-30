@@ -3,6 +3,7 @@
 <%
 request.setCharacterEncoding("utf-8");
 String msg=request.getParameter("msg");
+String msg1=request.getParameter("msg1");
 %>
 
 <!DOCTYPE html>
@@ -12,7 +13,14 @@ String msg=request.getParameter("msg");
 <title>회원가입</title>
 </head>
 <body>
-	<form action="<%=request.getContextPath()%>/insertMemberAction.jsp">
+<%
+	if(msg1!=null){
+%>		
+	<div><%=msg1 %></div>
+<%		
+	}
+%>
+	<form action="<%=request.getContextPath()%>/insertMemberAction.jsp"  method="post">
 		<table>
 			<tr>
 				<td>이름</td>

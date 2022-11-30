@@ -5,13 +5,15 @@
 	pageEncoding="UTF-8"%>
 <%@ page import="java.util.*"%>
 <%@ page import="java.sql.*"%>
+<%@ page import="java.net.URLEncoder"%>
 
 <%
 request.setCharacterEncoding("utf-8");
 Member loginMember = (Member) session.getAttribute("loginMember");
 //방어코드
 if (loginMember == null||request.getParameter("cashPrice").equals("")||request.getParameter("cashMemo").equals("")) {
-	response.sendRedirect(request.getContextPath() + "/cash/updateCashForm.jsp");
+	String msg1=URLEncoder.encode("✔금액과 메모를 입력하세요!","utf-8");
+	response.sendRedirect(request.getContextPath() + "/cash/updateCashForm.jsp?msg1="+msg1);
 	return;
 }
 
