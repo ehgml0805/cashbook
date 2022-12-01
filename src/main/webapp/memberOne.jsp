@@ -22,6 +22,8 @@ String memberName=loginMember.getMemberName();
 <title>마이페이지</title>
 </head>
 <body>
+	<a href="<%=request.getContextPath()%>/cash/cashList.jsp">가계부</a>
+	<a href="<%=request.getContextPath()%>/help/helpList.jsp">문의하기</a>
 	<table>
 		<tr>
 			<td>아이디: <%=memberId %> <a href="<%=request.getContextPath()%>/logOut.jsp"> 로그아웃</a> </td>
@@ -36,7 +38,6 @@ String memberName=loginMember.getMemberName();
 			 </td>
 		</tr>
 	</table>
-	<a href="<%=request.getContextPath()%>/cash/cashList.jsp">가계부</a>
 	<a href="<%=request.getContextPath()%>/updateMemberForm.jsp">개인정보 수정</a>
 	<a href="<%=request.getContextPath()%>/deleteMemberForm.jsp">회원 탈퇴</a>
 </body>

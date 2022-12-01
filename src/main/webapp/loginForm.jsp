@@ -26,7 +26,8 @@ int lastPage=selectNoticeCount/rowPerPage;
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+  <head>
+  </head>
 <title>LOGIN Form</title>
 </head>
 <body>
