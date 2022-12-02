@@ -10,7 +10,7 @@ if(loginMember==null){
 }
 //아이디 받아오기
 String loginMemberId=loginMember.getMemberId();
-
+String msg1=request.getParameter("msg1");
 %>
 
 <!DOCTYPE html>
@@ -20,6 +20,13 @@ String loginMemberId=loginMember.getMemberId();
 <title>Insert title here</title>
 </head>
 <body>
+<%
+	if(msg1!=null){
+%>		
+		<%=msg1 %>	
+<%		
+	}
+%>
 	<form action="<%=request.getContextPath()%>/help/insertHelpAction.jsp" method="post">
 		<table>
 			<tr>

@@ -85,37 +85,66 @@ public class CashDao {
 	}
 
 	// 데이터 삭제
-	public int delete(int cashNo) throws Exception {
-		DBUtil dbUtil = new DBUtil();
-		Connection conn = dbUtil.getConnection();
-		String sql = "DELETE FROM cash WHERE cash_no=?;";
-		PreparedStatement stmt = conn.prepareStatement(sql);
-		stmt.setInt(1, cashNo);
-		int row = stmt.executeUpdate();
-		if (row == 1) {
-			System.out.println("삭제 성공");
-			return 1;
-		} else {
-			System.out.println("삭제 실패");
-			return 0;
-		}
+	public int delete(int cashNo) {
+		int row=0;
+		PreparedStatement stmt=null;
+		Connection conn = null;
+		try {
+			DBUtil dbUtil = new DBUtil();
+			conn = dbUtil.getConnection();
+			String sql = "DELETE FROM cash WHERE cash_no=?;";
+			stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, cashNo);
+			row = stmt.executeUpdate();
+			if (row == 1) {
+				System.out.println("삭제 성공");
+				return 1;
+			} else {
+				System.out.println("삭제 실패");
+				return 0;
+			}
+		}catch(Exception e) {//예외가 발생한다면 에러메시지 표시할 것?
+			e.printStackTrace();
+		}finally {// 예외가 발생해도 무조건 실행해라
+			try {
+				stmt.close();
+				conn.close();
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		}return row;//finally 안에 적어주면 노란 줄 생김 에러는 아니고 일종의 경고?
 	}
-
+	
 	// cash 데이터 수정 Form
-	public Cash selectCashOne(int cashNo) throws Exception {
+	public Cash selectCashOne(int cashNo){
 		Cash cash = null;
-		DBUtil dbUtil = new DBUtil();
-		Connection conn = dbUtil.getConnection();
-		String sql = "SELECT cash_no cashNo, category_no categoryNo, cash_price cashPrice, cash_memo cashMemo FROM cash WHERE cash_no=?;";
-		PreparedStatement stmt = conn.prepareStatement(sql);
-		stmt.setInt(1, cashNo);
-		ResultSet rs = stmt.executeQuery();
-		if (rs.next()) {
-			cash = new Cash();
-			cash.setCashNo(rs.getInt("cashNo"));
-			cash.setCategoryNo(rs.getString("categoryNo"));
-			cash.setCashPrice(rs.getLong("cashPrice"));
-			cash.setCashMemo(rs.getString("cashMemo"));
+		Connection conn =null;
+		PreparedStatement stmt =null;
+		ResultSet rs =null;
+		try {
+			DBUtil dbUtil = new DBUtil();
+			conn = dbUtil.getConnection();
+			String sql = "SELECT cash_no cashNo, category_no categoryNo, cash_price cashPrice, cash_memo cashMemo FROM cash WHERE cash_no=?;";
+			stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, cashNo);
+			rs = stmt.executeQuery();
+			if (rs.next()) {
+				cash = new Cash();
+				cash.setCashNo(rs.getInt("cashNo"));
+				cash.setCategoryNo(rs.getString("categoryNo"));
+				cash.setCashPrice(rs.getLong("cashPrice"));
+				cash.setCashMemo(rs.getString("cashMemo"));
+		}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				stmt.close();
+				conn.close();
+				rs.close();
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
 		}
 		return cash;
 	}

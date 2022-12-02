@@ -19,12 +19,12 @@ if(session.getAttribute("loginMember") ==null||request.getParameter("cashPrice")
 Member loginMember=(Member)(session.getAttribute("loginMember"));
 String loginMemberId=loginMember.getMemberId();
 int categoryNo = Integer.parseInt(request.getParameter("categoryNo"));
-System.out.println(categoryNo+"<-카테고리");
+//System.out.println(categoryNo+"<-카테고리");
 String cashDate=request.getParameter("cashDate");
-System.out.println(cashDate+"<-사용일자");
+//System.out.println(cashDate+"<-사용일자");
 String cashMemo=request.getParameter("cashMemo");
 Long cashPrice=Long.parseLong(request.getParameter("cashPrice"));
-System.out.println(cashPrice+"<-금액");
+//System.out.println(cashPrice+"<-금액");
 int year = Integer.parseInt(request.getParameter("year"));
 int month = Integer.parseInt(request.getParameter("month"));
 int date = Integer.parseInt(request.getParameter("date"));

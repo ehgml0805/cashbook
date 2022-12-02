@@ -12,6 +12,7 @@ if(loginMember==null){
 }
 String memberId=loginMember.getMemberId();
 System.out.println(memberId+"<==로그인한 아이디");
+String msg2=request.getParameter("msg2");
 //model호출
 HelpDao helpDao=new HelpDao();
 ArrayList<HashMap<String,Object>> list=helpDao.selectHelpList(memberId);
@@ -28,6 +29,13 @@ ArrayList<HashMap<String,Object>> list=helpDao.selectHelpList(memberId);
 <a href="<%=request.getContextPath()%>/memberOne.jsp">마이페이지</a>
 <a href="<%=request.getContextPath()%>/logOut.jsp"> 로그아웃</a>
 	<div><a href="<%=request.getContextPath()%>/help/insertHelpForm.jsp">문의 글쓰기 </a> </div>
+<%
+	if(msg2!=null){
+%>		
+	<%=msg2 %>	
+<%		
+	}
+%>
 	<table>
 		<tr>
 			<td>번호</td>
@@ -43,7 +51,7 @@ ArrayList<HashMap<String,Object>> list=helpDao.selectHelpList(memberId);
 		%>
 			<tr>
 				<td><%=m.get("helpNo") %></td>
-				<td><%=m.get("helpmemo") %></td>
+				<td><%=m.get("helpMemo") %></td>
 				<td><%=m.get("helpCreatedate") %></td>
 				<td>
 					<%
@@ -75,7 +83,7 @@ ArrayList<HashMap<String,Object>> list=helpDao.selectHelpList(memberId);
 					<%
 						if(m.get("commentMemo")==null){
 					%>
-						<a href="">수정</a>		
+						<a href="<%=request.getContextPath()%>/help/updateHelpForm.jsp?helpNo=<%=m.get("helpNo")%>&helpMemo=<%=m.get("helpMemo")%>">수정</a>		
 					<%		
 						}else{
 					%>
@@ -88,7 +96,7 @@ ArrayList<HashMap<String,Object>> list=helpDao.selectHelpList(memberId);
 					<%
 						if(m.get("commentMemo")==null){
 					%>
-						<a href="">삭제</a>		
+						<a href="<%=request.getContextPath()%>/help/deleteHelpAction.jsp?helpNo=<%=m.get("helpNo")%>">삭제</a>		
 					<%		
 						}else{
 					%>

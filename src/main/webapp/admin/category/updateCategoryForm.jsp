@@ -16,8 +16,9 @@ int memberLevel = loginMember.getMemberLevel();
 int categoryNo = Integer.parseInt(request.getParameter("categoryNo"));
 System.out.println(categoryNo + "<==카테고리 넘버");
 //model 호출
+Category category=new Category();
 CategoryDao categoryDao = new CategoryDao();
-Category category = categoryDao.selectCategoryOne(categoryNo);
+category = categoryDao.selectCategoryOne(categoryNo);
 %>
 <!DOCTYPE html>
 <html>

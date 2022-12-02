@@ -10,10 +10,15 @@
 <%
 request.setCharacterEncoding("utf-8");
 Member loginMember = (Member) session.getAttribute("loginMember");
+int year = Integer.parseInt(request.getParameter("year"));
+int month = Integer.parseInt(request.getParameter("month"));
+int date = Integer.parseInt(request.getParameter("date"));
+
 //방어코드
-if (loginMember == null||request.getParameter("cashPrice").equals("")||request.getParameter("cashMemo").equals("")) {
+if (loginMember == null||request.getParameter("cashPrice").equals("")||request.getParameter("cashPrice")==null
+||request.getParameter("cashMemo").equals("")||request.getParameter("cashMemo")==null) {
 	String msg1=URLEncoder.encode("✔금액과 메모를 입력하세요!","utf-8");
-	response.sendRedirect(request.getContextPath() + "/cash/updateCashForm.jsp?msg1="+msg1);
+	response.sendRedirect(request.getContextPath() + "/cash/updateCashForm.jsp?msg1="+msg1+"&year=" + year + "&month=" + month + "&date=" + date);
 	return;
 }
 
@@ -23,9 +28,6 @@ String loginMemberId = loginMember.getMemberId();
 int cashNo = Integer.parseInt(request.getParameter("cashNo"));
 Long cashPrice = Long.parseLong(request.getParameter("cashPrice"));
 String cashMemo = request.getParameter("cashMemo");
-int year = Integer.parseInt(request.getParameter("year"));
-int month = Integer.parseInt(request.getParameter("month"));
-int date = Integer.parseInt(request.getParameter("date"));
 
 Cash cash = new Cash();//cashDao에 쓰거랑 똑같이 넣어야함
 cash.setCashNo(cashNo);

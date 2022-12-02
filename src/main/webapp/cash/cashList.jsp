@@ -56,6 +56,11 @@ int totalTd = beginBlank + lastDate + endBlank;
 CashDao cashDao = new CashDao();
 ArrayList<HashMap<String, Object>> list = cashDao.selectCashListByMonth(loginMember.getMemberId(), year, month + 1);
 
+Cash cash=new Cash();
+cash.getCashNo();
+
+cashDao.selectCashOne(cashNo);
+
 //
 %>
 
@@ -91,7 +96,7 @@ ArrayList<HashMap<String, Object>> list = cashDao.selectCashListByMonth(loginMem
 		href="<%=request.getContextPath()%>/cash/cashList.jsp?year=<%=year%>&month=<%=month + 1%>">다음달
 	</a> </span>
 	<div>
-		<table>
+		<table border="1">
 			<tr>
 				<th>일</th>
 				<th>월</th>
