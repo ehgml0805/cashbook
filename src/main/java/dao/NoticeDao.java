@@ -78,36 +78,63 @@ public class NoticeDao {
 	}
 
 	// 마지막페이지 구하려면 전체 개수만 구하면 댐
-	public int selectNoticeCount() throws Exception {
+	public int selectNoticeCount() {
 		int count = 1;// 0으로 쓰니까 오류남
 		DBUtil dbUtil = new DBUtil();
-		Connection conn = dbUtil.getConnection();
-		String countSql = "SELECT COUNT(*) FROM notice;";
-		PreparedStatement countStmt = conn.prepareStatement(countSql);
-		ResultSet countRs = countStmt.executeQuery();
-		if (countRs.next()) {
-			count = countRs.getInt(count);
+		PreparedStatement countStmt=null;
+		Connection conn = null;
+		ResultSet countRs = null;
+		
+		try {
+			conn = dbUtil.getConnection();
+			String countSql = "SELECT COUNT(*) FROM notice;";
+			countStmt = conn.prepareStatement(countSql);
+			countRs = countStmt.executeQuery();
+			if (countRs.next()) {
+				count = countRs.getInt(count);
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			try{
+				dbUtil.close(countRs, countStmt, conn);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
 		}
-		// 구해야함
 		return count;
 	}
 
 	// 공지목록 loginForm.jsp에 나올 begin==몇번 부터 뽑을 지
-	public ArrayList<Notice> selectNoticeListByPage(int beginRow, int rowPerPage) throws Exception {
+	public ArrayList<Notice> selectNoticeListByPage(int beginRow, int rowPerPage) {
 		ArrayList<Notice> list = new ArrayList<Notice>();
 		DBUtil dbUtil = new DBUtil();
-		Connection conn = dbUtil.getConnection();
-		String sql = "SELECT notice_no noticeNo,notice_memo noticeMemo, updatedate, createdate FROM notice ORDER BY createdate DESC LIMIT ?,?; ";
-		PreparedStatement stmt = conn.prepareStatement(sql);
-		stmt.setInt(1, beginRow);
-		stmt.setInt(2, rowPerPage);
-		ResultSet rs = stmt.executeQuery();
-		while (rs.next()) {
-			Notice n = new Notice();
-			n.setNoticeNo(rs.getInt("noticeNo"));
-			n.setNoticeMemo(rs.getString("noticeMemo"));
-			n.setCreatedate(rs.getString("createdate"));
-			list.add(n);
+		PreparedStatement stmt=null;
+		Connection conn = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = dbUtil.getConnection();
+			String sql = "SELECT notice_no noticeNo,notice_memo noticeMemo, updatedate, createdate FROM notice ORDER BY createdate DESC LIMIT ?,?; ";
+			stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, beginRow);
+			stmt.setInt(2, rowPerPage);
+			rs = stmt.executeQuery();
+			while (rs.next()) {
+				Notice n = new Notice();
+				n.setNoticeNo(rs.getInt("noticeNo"));
+				n.setNoticeMemo(rs.getString("noticeMemo"));
+				n.setCreatedate(rs.getString("createdate"));
+				list.add(n);
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				dbUtil.close(rs, stmt, conn);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
 		}
 		return list;
 	}

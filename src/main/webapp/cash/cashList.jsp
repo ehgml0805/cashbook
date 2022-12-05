@@ -59,7 +59,6 @@ ArrayList<HashMap<String, Object>> list = cashDao.selectCashListByMonth(loginMem
 Cash cash=new Cash();
 cash.getCashNo();
 
-cashDao.selectCashOne(cashNo);
 
 //
 %>

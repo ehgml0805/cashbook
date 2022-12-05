@@ -4,6 +4,7 @@
 	pageEncoding="UTF-8"%>
 <%@ page import="java.util.* "%>
 <%@ page import="java.sql.* "%>
+<%@ page import="java.net.URLEncoder"%>
 
 <%
 request.setCharacterEncoding("utf-8");
@@ -14,6 +15,8 @@ if (session.getAttribute("loginMember") == null) {
 	return;
 }
 //
+String msg1=request.getParameter("msg1");
+System.out.println(msg1 + "메시지");
 String loginMemberId = loginMember.getMemberId();
 int year = Integer.parseInt(request.getParameter("year"));
 System.out.println(year + "년도");
@@ -79,6 +82,13 @@ ArrayList<HashMap<String, Object>> list = cashDao.selectCashListByDate(loginMemb
 		</table>
 		<button type="submit">추가</button>
 	</form>
+	<%
+	if(msg1!=null){
+	%>		
+		<%=msg1%>	
+	<%		
+		}
+	%>
 	<table border="1">
 		<tr>
 			<td>가격</td>

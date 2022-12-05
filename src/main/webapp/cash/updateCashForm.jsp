@@ -11,7 +11,6 @@ if (loginMember == null) {
 	response.sendRedirect(request.getContextPath() + "/loginForm.jsp");
 	return;
 }
-String msg1=request.getParameter("msg1");
 String loginMemberId = loginMember.getMemberId();
 int year = Integer.parseInt(request.getParameter("year"));
 int month = Integer.parseInt(request.getParameter("month"));
@@ -31,19 +30,12 @@ Cash cash = cashDao.selectCashOne(cashNo);
 <title>캐시 수정하기</title>
 </head>
 <body>
-	<%
-		if(msg1!=null){
-	%>		
-			<%=msg1 %>	
-	<%		
-		}
-	%>
 	<form action="<%=request.getContextPath()%>/cash/updateCashAction.jsp" method="post">
 		<input type="hidden" name="memberId" value="<%=loginMember.getMemberId()%>"> 
 		<input type="hidden" name="year" value="<%=year%>"> 
 		<input type="hidden" name="month" value="<%=month%>">
 		<input type="hidden" name="date" value="<%=date%>"> 
-		<input type="hidden" name="cashNo" value="<%=cashNo%>">
+		<input type="hidden" name="cashNo" value="<%=cash.getCashNo()%>">
 		<table border="1">
 			<tr>
 				<td>사용 날짜</td>
@@ -52,11 +44,11 @@ Cash cash = cashDao.selectCashOne(cashNo);
 			</tr>
 			<tr>
 				<td>가격</td>
-				<td><input type="text" name="cashPrice"></td>
+				<td><input type="text" name="cashPrice" value="<%=cash.getCashPrice()%>"></td>
 			</tr>
 			<tr>
 				<td>메모</td>
-				<td><textarea name="cashMemo"></textarea></td>
+				<td><textarea cols="30" rows="10" name="cashMemo"><%=cash.getCashMemo() %></textarea></td>
 			</tr>
 		</table>
 		<button type="submit">수정하기</button>

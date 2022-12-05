@@ -9,10 +9,17 @@
 <%
 request.setCharacterEncoding("utf-8");
 //방어코드
-if(session.getAttribute("loginMember") ==null||request.getParameter("cashPrice").equals("")
+if(session.getAttribute("loginMember") ==null){
+	response.sendRedirect(request.getContextPath()+"/loginForm.jsp");
+	return;
+}
+int year = Integer.parseInt(request.getParameter("year"));
+int month = Integer.parseInt(request.getParameter("month"));
+int date = Integer.parseInt(request.getParameter("date"));
+if(request.getParameter("cashPrice").equals("")
 	||request.getParameter("cashMemo").equals("")
 	||request.getParameter("categoryNo").equals("")||request.getParameter("categoryNo")==null){
-	response.sendRedirect(request.getContextPath()+"/cash/cashDateList.jsp");
+	response.sendRedirect(request.getContextPath()+"/cash/cashDateList.jsp?year="+year+"&month="+month+"&date="+date);
 	return;
 }
 //insertForm에서 받아오기
@@ -25,9 +32,7 @@ String cashDate=request.getParameter("cashDate");
 String cashMemo=request.getParameter("cashMemo");
 Long cashPrice=Long.parseLong(request.getParameter("cashPrice"));
 //System.out.println(cashPrice+"<-금액");
-int year = Integer.parseInt(request.getParameter("year"));
-int month = Integer.parseInt(request.getParameter("month"));
-int date = Integer.parseInt(request.getParameter("date"));
+
 
 //model 호출
 CashDao cashDao=new CashDao();

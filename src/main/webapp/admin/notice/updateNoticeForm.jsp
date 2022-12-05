@@ -12,10 +12,9 @@ if(loginMember==null||loginMember.getMemberLevel()<1){
 }
 String msg1=request.getParameter("msg1");
 int noticeNo=Integer.parseInt(request.getParameter("noticeNo"));
-//System.out.println(noticeNo+"공지 번호");
-//model 호출
-//공지 목록
+System.out.println(noticeNo+"공지 번호");
 String noticeMemo=request.getParameter("noticeMemo");
+//model 호출
 NoticeDao noticeDao=new NoticeDao();
 Notice notice= noticeDao.selectNotice(noticeMemo);
 
