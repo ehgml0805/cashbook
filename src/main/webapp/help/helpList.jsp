@@ -43,8 +43,8 @@ ArrayList<HashMap<String,Object>> list=helpDao.selectHelpList(memberId);
 			<td>작성 날짜</td>
 			<td>답변 내용</td>
 			<td>답변 날짜</td>
-			<td>수정</td>
-			<td>삭제</td>
+			<td>문의 수정</td>
+			<td>문의 삭제</td>
 		</tr>
 		<%
 		for(HashMap<String,Object> m: list){

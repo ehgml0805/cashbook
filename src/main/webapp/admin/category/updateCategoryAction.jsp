@@ -2,13 +2,18 @@
 	pageEncoding="UTF-8"%>
 <%@ page import="vo.*"%>
 <%@ page import="dao.*"%>
-
+<%@ page import="java.net.URLEncoder"%>
 <%
 request.setCharacterEncoding("utf-8");
 Member loginMember = (Member) session.getAttribute("loginMember");
+if (loginMember == null || loginMember.getMemberLevel() < 1){
+	response.sendRedirect(request.getContextPath() + "loginForm.jsp");
+	return;
+}
 //방어코드
-if (loginMember == null || loginMember.getMemberLevel() < 1||request.getParameter("categoryName").equals("")) {
-	response.sendRedirect(request.getContextPath() + "/admin/category/updateCategoryForm.jsp");
+if (request.getParameter("categoryName").equals("")) {
+	String msg1=URLEncoder.encode("✔카테고리 이름을 입력하세요!","utf-8");
+	response.sendRedirect(request.getContextPath() + "/admin/categoryList.jsp?msg1="+msg1);
 	return;
 }
 int memberLevel = loginMember.getMemberLevel();

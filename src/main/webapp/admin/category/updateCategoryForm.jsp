@@ -11,6 +11,7 @@ if (loginMember == null || loginMember.getMemberLevel() < 1) {
 	response.sendRedirect(request.getContextPath() + "/loginForm.jsp");
 	return;
 }
+String msg1=request.getParameter("msg1");
 int memberLevel = loginMember.getMemberLevel();
 //System.out.println(memberLevel+"<==멤버 레벨");
 int categoryNo = Integer.parseInt(request.getParameter("categoryNo"));
@@ -27,10 +28,16 @@ category = categoryDao.selectCategoryOne(categoryNo);
 <title>카테고리 수정하기</title>
 </head>
 <body>
+	<%
+		if(msg1!=null){
+	%>		
+		<div><%=msg1 %></div>
+	<%		
+		}
+	%>
 	<form
 		action="<%=request.getContextPath()%>/admin/category/updateCategoryAction.jsp" method="post">
-		<input type="hidden" name="categoryNo"
-			value="<%=category.getCategoryNo()%>">
+		<input type="hidden" name="categoryNo" value="<%=category.getCategoryNo()%>">
 		<table>
 			<tr>
 				<td>변경 전 항목</td>

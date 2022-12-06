@@ -4,16 +4,19 @@
 <%@ page import="java.net.URLEncoder"%>
 
 <%
+request.setCharacterEncoding("utf-8");
 Member loginMember=(Member)session.getAttribute("loginMember");
-//방어코드
-if(loginMember == null || loginMember.getMemberLevel() < 1
-||request.getParameter("noticeMemo").equals("")
-||request.getParameter("noticeNo")==null || request.getParameter("noticeNo").equals("")){
-	String msg1=URLEncoder.encode("✔공지사항을 입력하세요!","utf-8");
-	response.sendRedirect(request.getContextPath()+"/admin/notice/updateNoticeForm.jsp?msg1="+msg1);
+if(loginMember == null || loginMember.getMemberLevel() < 1){
+	response.sendRedirect(request.getContextPath()+"/loginForm.jsp");
 	return;
 }
-request.setCharacterEncoding("utf-8");
+//방어코드
+if(request.getParameter("noticeMemo").equals("")
+||request.getParameter("noticeNo")==null || request.getParameter("noticeNo").equals("")){
+	String msg1=URLEncoder.encode("✔공지사항을 입력하세요!","utf-8");
+	response.sendRedirect(request.getContextPath()+"/admin/noticeList.jsp?msg1="+msg1);
+	return;
+}
 int noticeNo=Integer.parseInt(request.getParameter("noticeNo"));
 String noticeMemo=request.getParameter("noticeMemo");
 //model 호출

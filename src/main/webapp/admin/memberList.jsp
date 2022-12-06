@@ -35,6 +35,7 @@ int lastPage=selectMemberAdminCount/rowPerPage;
 	<li><a href="<%=request.getContextPath()%>/admin/adminMain.jsp">메인으로</a></li>
 	<li><a href="<%=request.getContextPath()%>/admin/noticeList.jsp">공지 관리</a> </li>
 	<li><a href="<%=request.getContextPath()%>/admin/categoryList.jsp">카테고리 관리</a> </li>
+	<li><a href="<%=request.getContextPath()%>/admin/helpListAll.jsp">문의 관리</a></li>
 	<li><a href="<%=request.getContextPath()%>/admin/memberList.jsp">회원 관리(목록, level수정, 강제탈퇴)</a></li>
 </ul>
 <!-- 멤버 목록 -->

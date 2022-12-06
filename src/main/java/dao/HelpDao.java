@@ -6,6 +6,75 @@ import util.DBUtil;
 import vo.Help;
 
 public class HelpDao {
+	
+	public HashMap<String, Object> selectHelpComment(int helpNo) throws Exception{
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		String sql = "SELECT help_memo helpMemo\r\n"
+				+ "	,member_id memberId\r\n"
+				+ "	,createdate\r\n"
+				+ "FROM help\r\n"
+				+ "WHERE help_no = ?";
+		
+		DBUtil dbUtil = new DBUtil();
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		
+		conn = dbUtil.getConnection();
+		stmt = conn.prepareStatement(sql);
+		stmt.setInt(1, helpNo);
+		rs = stmt.executeQuery();
+		
+		if(rs.next()) {
+			map.put("helpMemo", rs.getString("helpMemo"));
+			map.put("memberId", rs.getString("memberId"));
+			map.put("createdate", rs.getString("createdate"));
+		}
+		
+		dbUtil.close(rs, stmt, conn);
+		return map;
+	}
+
+	
+	
+	//관리자
+	//selectHelpList
+	public ArrayList<HashMap<String, Object>> selectHelpList(int beginRow, int rowPerPage){
+		ArrayList<HashMap<String, Object>> list= new ArrayList<HashMap<String,Object>>();
+		DBUtil dbUtil=new DBUtil();
+		Connection conn=null;
+		PreparedStatement stmt=null;
+		ResultSet rs=null;
+		try {
+			conn=dbUtil.getConnection();
+			String sql="SELECT h.help_no helpNo, h.help_memo helpMemo, h.member_id memberId, h.createdate helpCreatedate, c.comment_no commentNo, c.comment_memo commentMemo, c.createdate commentCreatedate FROM help h LEFT JOIN comment c ON h.help_no=c.help_no ORDER BY h.help_no DESC LIMIT ?,?";
+			stmt=conn.prepareStatement(sql);
+			stmt.setInt(1, beginRow);
+			stmt.setInt(2, rowPerPage);
+			rs=stmt.executeQuery();
+			while(rs.next()) {
+				HashMap<String, Object> m = new HashMap<String, Object>();
+				m.put("helpNo", rs.getInt("helpNo"));
+				m.put("helpMemo", rs.getString("helpMemo"));
+				m.put("memberId", rs.getString("memberId"));
+				m.put("helpCreatedate", rs.getString("helpCreatedate"));
+				m.put("commentNo", rs.getString("commentNo"));
+				m.put("commentMemo", rs.getString("commentMemo"));
+				m.put("commentCreatedate", rs.getString("commentCreatedate"));
+				list.add(m);
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+			dbUtil.close(rs, stmt, conn);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}return list;
+	}
+	
+	//사용자
 	//문의 수정하기 Action
 	public int updateHelp (Help help) {
 		int row=0;

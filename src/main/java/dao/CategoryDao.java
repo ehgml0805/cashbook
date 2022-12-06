@@ -34,7 +34,7 @@ public class CategoryDao {
 	}
 
 	// admin->updatecategoryForm.jsp
-	public Category selectCategoryOne(int categoryNo) throws Exception {
+	public Category selectCategoryOne(int categoryNo) {
 		Category category = null;// null 아예 암것도 없음 new Category하면 빈데이터라도 넘기는 것
 		DBUtil dbUtil = new DBUtil();
 		Connection conn =null;

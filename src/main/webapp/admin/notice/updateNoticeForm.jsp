@@ -10,7 +10,7 @@ if(loginMember==null||loginMember.getMemberLevel()<1){
 	response.sendRedirect(request.getContextPath()+"/loginForm.jsp");
 	return;
 }
-String msg1=request.getParameter("msg1");
+
 int noticeNo=Integer.parseInt(request.getParameter("noticeNo"));
 System.out.println(noticeNo+"공지 번호");
 String noticeMemo=request.getParameter("noticeMemo");
@@ -26,13 +26,6 @@ Notice notice= noticeDao.selectNotice(noticeMemo);
 <title>Insert title here</title>
 </head>
 <body>
-	<%
-		if(msg1!=null){
-	%>		
-		<div><%=msg1 %></div>
-	<%		
-		}
-	%>
 	<form action="<%=request.getContextPath()%>/admin/notice/updateNoticeAction.jsp" method="post">
 		<input type="text" name="noticeNo" value="<%=noticeNo%>">
 		<div>공지내용</div>

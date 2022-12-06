@@ -12,6 +12,7 @@ if (loginMember == null || loginMember.getMemberLevel() < 1) {
 	response.sendRedirect(request.getContextPath() + "/loginForm.jsp");
 	return;
 }
+String msg1=request.getParameter("msg1");
 int memberLevel = loginMember.getMemberLevel();
 System.out.println(memberLevel + "<-멤버레벨");
 //model 호출
@@ -23,6 +24,13 @@ System.out.println(memberLevel + "<-멤버레벨");
 <title>카테고리 추가하기</title>
 </head>
 <body>
+	<%
+		if(msg1!=null){
+	%>		
+		<div><%=msg1 %></div>
+	<%		
+		}
+	%>
 	<form
 		action="<%=request.getContextPath()%>/admin/category/insertCategoryAction.jsp" method="post">
 		<table>
