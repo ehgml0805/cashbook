@@ -14,16 +14,24 @@ if(loginMember==null||loginMember.getMemberLevel()<1){
 	response.sendRedirect(request.getContextPath()+"/loginForm.jsp");
 	return;
 }
-String msg1=request.getParameter("msg1");
 //model 호출:notice의 리스트 
 int currentPage=1;//1페이지부터 보여줄거고
-int rowPerPage=10;//10개씩 보여줄거
-int beginRow=(currentPage-1)*rowPerPage;//0부터 뽑을게
-//lastPage
-NoticeDao noticeDao=new NoticeDao();
-ArrayList<Notice> list=noticeDao.selectNoticeListByPage(beginRow, rowPerPage);
-int selectNoticeCount=noticeDao.selectNoticeCount();
-int lastPage= selectNoticeCount/rowPerPage;
+if(request.getParameter("currentPage")!=null){
+	currentPage=Integer.parseInt(request.getParameter("currentPage"));
+}
+int rowPerPage=10;
+int beginRow=(currentPage-1)*rowPerPage;
+//lastPage 구해야함 
+NoticeDao noticeDao= new NoticeDao();
+ArrayList<Notice> list= noticeDao.selectNoticeListByPage(beginRow, rowPerPage);
+int selectNoticeCount=noticeDao.selectNoticeCount();//전체 행의 개수 가져오기
+//System.out.println(selectNoticeCount);
+//last page 구하기
+int lastPage=selectNoticeCount/rowPerPage;
+//System.out.println(lastPage);
+if(selectNoticeCount/rowPerPage!=0){
+	lastPage=lastPage+1;
+}
 
 //view
 %>
@@ -47,17 +55,11 @@ int lastPage= selectNoticeCount/rowPerPage;
 <!--뭐 원하는 대로 자유롭게 수정하기 -->
 <!-- 공지 입력 만들기 -->
 	<a href="<%=request.getContextPath()%>/admin/notice/insertNoticeForm.jsp">공지 추가</a>
-	<%
-		if(msg1!=null){
-	%>		
-		<div><%=msg1 %></div>
-	<%		
-		}
-	%>	
 	<table>
 		<tr>
-			<td>공지내용</td>
-			<td>공지날짜</td>
+			<td>번호</td>
+			<td>내용</td>
+			<td>날짜</td>
 			<td>수정</td>
 			<td>삭제</td>
 		</tr>
@@ -65,8 +67,9 @@ int lastPage= selectNoticeCount/rowPerPage;
 			for(Notice n: list){
 		%>
 			<tr>
+				<td><%=n.getNoticeNo() %></td>
 				<td><%=n.getNoticeMemo() %></td>
-				<td><%=n.getCreatedate() %></td>
+				<td><%=n.getUpdatedate() %></td>
 				<td><a href="<%=request.getContextPath()%>/admin/notice/updateNoticeForm.jsp?noticeNo=<%=n.getNoticeNo()%>&noticeMemo=<%=n.getNoticeMemo()%>">수정</a></td>
 				<td><a href="<%=request.getContextPath()%>/admin/notice/deleteNoticeAction.jsp?noticeNo=<%=n.getNoticeNo()%>">삭제</a></td>
 			</tr>	
@@ -74,7 +77,6 @@ int lastPage= selectNoticeCount/rowPerPage;
 			}
 		%>
 	</table>
-	
 	<a href="<%=request.getContextPath()%>/admin/noticeList.jsp?currentPage=1">처음</a>
 	<%
 		if(currentPage>1){
@@ -92,8 +94,7 @@ int lastPage= selectNoticeCount/rowPerPage;
 			
 		}
 	%>
-
-	<a href="<%=request.getContextPath()%>/admin/noticeList?currentPage=<%=lastPage%>">마지막</a>	
+	<a href="<%=request.getContextPath()%>/admin/noticeList.jsp?currentPage=<%=lastPage%>">마지막</a>	
 	
 	
 </body>

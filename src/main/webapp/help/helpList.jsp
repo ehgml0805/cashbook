@@ -70,7 +70,7 @@ ArrayList<HashMap<String,Object>> list=helpDao.selectHelpList(memberId);
 					<%
 						if(m.get("commentCreatedate")==null){
 					%>		
-						답변 전	
+						&nbsp;	
 					<%		
 						}else{
 					%>		

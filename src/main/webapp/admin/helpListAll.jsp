@@ -10,13 +10,20 @@
 		return;
 	}
 	
-	int currentPage = 1;
-	// request.getParameter("currentPage")
-	int rowPerPage = 10;
-	int beginRow = (1-currentPage) * rowPerPage;
+	int currentPage = 1;//1페이지부터 보여줄거
+	if(request.getParameter("currentPage")!=null){
+		currentPage=Integer.parseInt(request.getParameter("currentPage"));
+	}
+	int rowPerPage = 7;//10개씩 볼거
+	int beginRow = (currentPage-1) * rowPerPage;//0번부터 뽑을거
 	HelpDao helpDao = new HelpDao();
 	ArrayList<HashMap<String,Object>> list = helpDao.selectHelpList(beginRow, rowPerPage);
-	String msg1=request.getParameter("msg1");
+	int selectHelpCount=helpDao.selectHelpCount();
+	
+	int lastPage=selectHelpCount/rowPerPage;
+	if(selectHelpCount/rowPerPage!=0){
+		lastPage=lastPage+1;
+	}
 %>
 <!DOCTYPE html>
 <html>
@@ -25,13 +32,6 @@
 <title>helpListAll.jsp</title>
 </head>
 <body>
-	<%
-		if(msg1!=null){
-	%>		
-		<div><%=msg1 %></div>
-	<%		
-		}
-	%>
 	<!-- header include -->
 	<ul>
 		<li><a href="<%=request.getContextPath()%>/admin/adminMain.jsp">메인으로</a></li>
@@ -76,7 +76,7 @@
 						<%
 							if(m.get("commentCreatedate")==null){
 						%>		
-							답변 대기중
+							&nbsp;
 						<%		
 							}else{
 						%>
@@ -95,7 +95,7 @@
 						<%		
 							} else {
 						%>
-								<a href="<%=request.getContextPath()%>/admin/comment/updateCommentForm.jsp?commentNo=<%=m.get("commentNo")%>&commentMemo=<%=m.get("commentMemo")%>">답변수정</a>
+								<a href="<%=request.getContextPath()%>/admin/comment/updateCommentForm.jsp?commentNo=<%=m.get("commentNo")%>">답변수정</a>
 								<a href="<%=request.getContextPath()%>/admin/comment/deleteCommentAction.jsp?commentNo=<%=m.get("commentNo")%>">답변삭제</a>
 						<%		
 							}
@@ -107,5 +107,23 @@
 		%>
 	</table>
 	<!-- footer include -->
+	<a href="<%=request.getContextPath()%>/admin/helpListAll.jsp?currentPage=1">처음</a>
+	<%
+		if(currentPage>1){
+	%>
+			<a href="<%=request.getContextPath()%>/admin/helpListAll.jsp?currentPage=<%=currentPage-1 %>">이전</a>	
+	<%		
+		}
+	%>
+		<span><%=currentPage %></span>
+	<%	
+		if(currentPage<lastPage){
+	%>
+			<a href="<%=request.getContextPath()%>/admin/helpListAll.jsp?currentPage=<%=currentPage+1 %>">다음</a>	
+	<%		
+			
+		}
+	%>
+	<a href="<%=request.getContextPath()%>/admin/helpListAll.jsp?currentPage=<%=lastPage%>">마지막</a>		
 </body>
 </html>

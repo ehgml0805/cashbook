@@ -15,12 +15,12 @@ public class CategoryDao {
 		PreparedStatement stmt =null;
 		try {
 			conn = dbUtil.getConnection();
-			String sql = "UPDATE category SET category_name=?, updatedate=CURDATE() WHERE category_no=? ;";
+			String sql = "UPDATE category SET category_kind=?, category_name=?, updatedate=CURDATE() WHERE category_no=? ;";
 			stmt = conn.prepareStatement(sql);
-			stmt.setString(1, category.getCategoryName());
-			stmt.setInt(2, category.getCategoryNo());
+			stmt.setString(1, category.getCategoryKind());
+			stmt.setString(2, category.getCategoryName());
+			stmt.setInt(3, category.getCategoryNo());
 			row = stmt.executeUpdate();
-			dbUtil.close(null, stmt, conn);
 		}catch(Exception e) {
 			e.printStackTrace();
 		}finally {
@@ -42,14 +42,15 @@ public class CategoryDao {
 		ResultSet rs = null;
 		try {
 			conn = dbUtil.getConnection();
-			String sql = "SELECT category_no categoryNo, category_name categoryName FROM category WHERE category_no=?;";
+			String sql = "SELECT category_name categoryName, category_kind categoryKind FROM category WHERE category_no=?;";
 			stmt = conn.prepareStatement(sql);
 			stmt.setInt(1, categoryNo);
 			rs = stmt.executeQuery();
 			if (rs.next()) {
 				category = new Category();
-				category.setCategoryNo(rs.getInt("categoryNo"));
+				//category.setCategoryNo(rs.getInt("categoryNo")); 이거는 가져오기만 할거야,,노 필요
 				category.setCategoryName(rs.getString("categoryName"));
+				category.setCategoryKind(rs.getString("categoryKind"));
 			}
 		}catch(Exception e) {
 			e.printStackTrace();

@@ -71,7 +71,7 @@ public class NoticeDao {
 	}
 	
 	//수정 Form에서 메모 내용이랑 번호 가져오기
-	public Notice selectNotice(String noticeMemo){
+	public Notice selectNotice(int noticeNo){
 		Notice notice=null;
 		DBUtil dbUtil=new DBUtil();
 		Connection conn= null;
@@ -82,11 +82,10 @@ public class NoticeDao {
 			conn=dbUtil.getConnection();
 			String sql="SELECT notice_memo noticeMemo FROM notice WHERE notice_no=? ;";
 			stmt=conn.prepareStatement(sql);
-			stmt.setString(1, noticeMemo);
+			stmt.setInt(1, noticeNo);
 			rs=stmt.executeQuery();
 			if(rs.next()) {
 				notice=new Notice();
-				notice.setNoticeNo(rs.getInt("noticeNo"));
 				notice.setNoticeMemo(rs.getString("noticeMemo"));
 			}
 		}catch (Exception e){
@@ -180,6 +179,7 @@ public class NoticeDao {
 				Notice n = new Notice();
 				n.setNoticeNo(rs.getInt("noticeNo"));
 				n.setNoticeMemo(rs.getString("noticeMemo"));
+				n.setUpdatedate(rs.getString("updatedate"));
 				n.setCreatedate(rs.getString("createdate"));
 				list.add(n);
 			}

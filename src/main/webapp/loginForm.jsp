@@ -1,4 +1,3 @@
-<%@page import="vo.Notice"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
 <%@page import="dao.*" %>
 <%@page import="java.util.*" %>
@@ -14,7 +13,7 @@ if(request.getParameter("currentPage")!=null){
 }
 int rowPerPage=5;
 int beginRow=(currentPage-1)*rowPerPage;
-//lastPage 구해야함 
+
 NoticeDao noticeDao= new NoticeDao();
 ArrayList<Notice> list= noticeDao.selectNoticeListByPage(beginRow, rowPerPage);
 int selectNoticeCount=noticeDao.selectNoticeCount();//전체 행의 개수 가져오기
@@ -70,27 +69,5 @@ int lastPage=selectNoticeCount/rowPerPage;
 			}
 		%>
 	</table>
-	
-	<a href="<%=request.getContextPath()%>/loginForm.jsp?currentPage=1">처음</a>
-	<%
-		if(currentPage>1){
-	%>
-			<a href="<%=request.getContextPath()%>/loginForm.jsp?currentPage=<%=currentPage-1 %>">이전</a>	
-	<%		
-		}
-	%>
-		<span><%=currentPage %></span>
-	<%	
-		if(currentPage<lastPage){
-	%>
-			<a href="<%=request.getContextPath()%>/loginForm.jsp?currentPage=<%=currentPage+1 %>">다음</a>	
-	<%		
-			
-		}
-	%>
-
-	<a href="<%=request.getContextPath()%>/loginForm.jsp?currentPage=<%=lastPage%>">마지막</a>	
-	
-
 </body>
 </html>

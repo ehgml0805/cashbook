@@ -15,11 +15,11 @@ String msg1=request.getParameter("msg1");
 int memberLevel = loginMember.getMemberLevel();
 //System.out.println(memberLevel+"<==멤버 레벨");
 int categoryNo = Integer.parseInt(request.getParameter("categoryNo"));
-System.out.println(categoryNo + "<==카테고리 넘버");
+//System.out.println(categoryNo + "<==카테고리 넘버");
+
 //model 호출
-Category category=new Category();
 CategoryDao categoryDao = new CategoryDao();
-category = categoryDao.selectCategoryOne(categoryNo);
+Category category = categoryDao.selectCategoryOne(categoryNo);
 %>
 <!DOCTYPE html>
 <html>
@@ -37,12 +37,29 @@ category = categoryDao.selectCategoryOne(categoryNo);
 	%>
 	<form
 		action="<%=request.getContextPath()%>/admin/category/updateCategoryAction.jsp" method="post">
-		<input type="hidden" name="categoryNo" value="<%=category.getCategoryNo()%>">
+		<input type="hidden" name="categoryNo" value="<%=categoryNo%>">
 		<table>
 			<tr>
+				<td>변경 후 수입/지출</td>
+				<td>
+				<%
+					if(category.getCategoryKind().equals("수입")){
+				%>		
+					<input type="radio" name="categoryKind" value="수입" checked="checked">수입
+					<input type="radio" name="categoryKind" value="지출">지출
+				<%		
+					}else if(category.getCategoryKind().equals("지출")){
+				%>
+					<input type="radio" name="categoryKind" value="수입" >수입
+					<input type="radio" name="categoryKind" value="지출" checked="checked">지출
+				<%
+					}
+				%>
+				</td>
+			</tr>
+			<tr>
 				<td>변경 전 항목</td>
-				<td><input type="text" value="<%=category.getCategoryName()%>"
-					readonly="readonly"></td>
+				<td><input type="text" value="<%=category.getCategoryName()%>" readonly="readonly"></td>
 			</tr>
 			<tr>
 				<td>변경 후 항목</td>

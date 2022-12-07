@@ -14,16 +14,14 @@ if (session.getAttribute("loginMember") == null) {
 	response.sendRedirect(request.getContextPath() + "/loginForm.jsp");
 	return;
 }
-//
-String msg1=request.getParameter("msg1");
-System.out.println(msg1 + "메시지");
+//System.out.println(msg1 + "메시지");
 String loginMemberId = loginMember.getMemberId();
 int year = Integer.parseInt(request.getParameter("year"));
-System.out.println(year + "년도");
+//System.out.println(year + "년도");
 int month = Integer.parseInt(request.getParameter("month"));
-System.out.println(month + "월");
+//System.out.println(month + "월");
 int date = Integer.parseInt(request.getParameter("date"));
-System.out.println(date + "<-날짜");
+//System.out.println(date + "<-날짜");
 //model 가져오기
 //카테고리 목록
 CategoryDao categoryDao = new CategoryDao();
@@ -82,13 +80,6 @@ ArrayList<HashMap<String, Object>> list = cashDao.selectCashListByDate(loginMemb
 		</table>
 		<button type="submit">추가</button>
 	</form>
-	<%
-	if(msg1!=null){
-	%>		
-		<%=msg1%>	
-	<%		
-		}
-	%>
 	<table border="1">
 		<tr>
 			<td>가격</td>

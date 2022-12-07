@@ -160,16 +160,19 @@ public class CashDao {
 		ResultSet rs =null;
 		try {
 			conn = dbUtil.getConnection();
-			String sql = "SELECT cash_no cashNo, category_no categoryNo, cash_price cashPrice, cash_memo cashMemo FROM cash WHERE cash_no=?;";
+			String sql = "SELECT category_no categoryNo, member_id memberId, cash_date cashDate, cash_price cashPrice, cash_memo cashMemo FROM cash WHERE cash_no=?;";
 			stmt = conn.prepareStatement(sql);
 			stmt.setInt(1, cashNo);
 			rs = stmt.executeQuery();
 			if (rs.next()) {
 				cash = new Cash();
-				cash.setCashNo(rs.getInt("cashNo"));
+				//cash.setCashNo(rs.getInt("cashNo"));이거 적어버리니까 안나옴  no가 같을 때 가져올 값이라서 no 없어도 되는 듯?
 				cash.setCategoryNo(rs.getString("categoryNo"));
+				cash.setMemberId(rs.getString("memberId"));
+				cash.setCashDate(rs.getString("cashDate"));
 				cash.setCashPrice(rs.getLong("cashPrice"));
 				cash.setCashMemo(rs.getString("cashMemo"));
+				
 			}
 		}catch(Exception e) {
 			e.printStackTrace();

@@ -6,15 +6,10 @@ import util.DBUtil;
 import vo.Help;
 
 public class HelpDao {
-	
+	//관리자 답변 입력시 문의글 보면서 쓰려고
 	public HashMap<String, Object> selectHelpComment(int helpNo) throws Exception{
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		String sql = "SELECT help_memo helpMemo\r\n"
-				+ "	,member_id memberId\r\n"
-				+ "	,createdate\r\n"
-				+ "FROM help\r\n"
-				+ "WHERE help_no = ?";
-		
+		String sql = "SELECT help_memo helpMemo,member_id memberId,createdate FROM help WHERE help_no = ?";
 		DBUtil dbUtil = new DBUtil();
 		Connection conn = null;
 		PreparedStatement stmt = null;
@@ -35,7 +30,33 @@ public class HelpDao {
 		return map;
 	}
 
-	
+	//총페이지 
+	public int selectHelpCount() {
+		int count = 1;// 0으로 쓰니까 오류남
+		DBUtil dbUtil = new DBUtil();
+		PreparedStatement countStmt=null;
+		Connection conn = null;
+		ResultSet countRs = null;
+		
+		try {
+			conn = dbUtil.getConnection();
+			String countSql = "SELECT COUNT(*) FROM help;";
+			countStmt = conn.prepareStatement(countSql);
+			countRs = countStmt.executeQuery();
+			if (countRs.next()) {
+				count = countRs.getInt(count);
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			try{
+				dbUtil.close(countRs, countStmt, conn);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return count;
+	}
 	
 	//관리자
 	//selectHelpList

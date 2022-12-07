@@ -1,3 +1,4 @@
+<%@page import="dao.MemberDao"%>
 <%@page import="vo.Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -8,14 +9,14 @@ if(loginMember == null || loginMember.getMemberLevel() < 1){
 	response.sendRedirect(request.getContextPath()+"/admin/memberList.jsp");
 	return;
 }
-String memberId=request.getParameter("memberId");
-System.out.println(memberId+"<== 멤버 아이디");
-String memberLevel=request.getParameter("memberLevel");
-System.out.println(memberLevel+"<==수정할 멤버 레벨");
-String memberName=request.getParameter("memberName");
-System.out.println(memberName+"<== 멤버 이름");
-//model 불러오기
+String loginMemberId = loginMember.getMemberId();// 로그인 한 사람 아이디
+//System.out.println(loginMemberId+"로그인한 아이디");
 
+String msg1=request.getParameter("msg1");
+int memberNo=Integer.parseInt(request.getParameter("memberNo"));
+//model 불러오기
+MemberDao memberDao=new MemberDao();
+Member member=memberDao.selectMemberOne(memberNo);
 
 %>
 
@@ -26,19 +27,41 @@ System.out.println(memberName+"<== 멤버 이름");
 <title>회원 레벨 수정(관리자)</title>
 </head>
 <body>
+	<%
+		if(msg1!=null){
+	%>		
+		<div><%=msg1 %></div>
+	<%		
+		}
+	%>
 	<form action="<%=request.getContextPath()%>/admin/member/updateMemberLevelAction.jsp"  method="post">
+		<input type="hidden" name="memberNo" value="<%=memberNo%>">
 		<table>
 			<tr>
 				<td>회원 아이디</td>
-				<td><input type="text" name="memberId" value="<%=memberId%>" readonly="readonly"> </td>
+				<td><input type="text" name="memberId" value="<%=member.getMemberId()%>" readonly="readonly"> </td>
 			</tr>
 			<tr>
 				<td>회원 이름</td>
-				<td><input type="text" name="memberName" value="<%=memberName %>" readonly="readonly"></td>
+				<td><input type="text" name="memberName" value="<%=member.getMemberName() %>" readonly="readonly"></td>
 			</tr>
 			<tr>
 				<td>회원 기존 레벨</td>
-				<td><input type="text" name="memberBeLevel" value="<%=memberLevel%>" readonly="readonly"></td>
+				<td>
+				<%
+					if(member.getMemberLevel()==0){
+				%>
+						<input type="radio" value="0" checked onclick="return(false);">0 일반
+						<input type="radio" value="1" onclick="return(false);" >1 관리자
+				<%		
+					}else{
+				%>	
+						<input type="radio" value="0" onclick="return(false);">0 일반
+						<input type="radio" value="1" checked onclick="return(false);">1 관리자
+				<%		
+					}
+				%>
+				</td>
 			</tr>
 			<tr>
 				<td>회원 변경 레벨</td>

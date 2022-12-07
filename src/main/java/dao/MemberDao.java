@@ -17,10 +17,10 @@ public class MemberDao {
 		
 		try {
 			conn=dbutil.getConnection();
-			String sql="UPDATE member SET member_level=?, updatedate=CURDATE() WHERE member_id=?";
+			String sql="UPDATE member SET member_level=?, updatedate=CURDATE() WHERE member_no=?";
 			stmt=conn.prepareStatement(sql);
 			stmt.setInt(1, member.getMemberLevel());
-			stmt.setString(2, member.getMemberId());
+			stmt.setInt(2, member.getMemberNo());
 			row=stmt.executeUpdate();
 			if(row==1) {
 				System.out.println("레벨 수정 성공");
@@ -37,6 +37,39 @@ public class MemberDao {
 			}
 		}return row;
 	}
+	//memberLevelform 
+	public Member selectMemberOne (int memberNo) {
+		Member member=null;
+		DBUtil dbutil=new DBUtil();
+		PreparedStatement stmt=null;
+		Connection conn = null;
+		ResultSet rs = null;
+		
+		try {
+			conn=dbutil.getConnection();
+			String sql="SELECT member_id memberId, member_name memberName, updatedate, createdate, member_level memberLevel FROM member WHERE member_no=?;";
+			stmt=conn.prepareStatement(sql);
+			stmt.setInt(1, memberNo);
+			rs=stmt.executeQuery();
+			if(rs.next()) {
+				member=new Member();
+				member.setMemberId(rs.getString("memberId"));
+				member.setMemberName(rs.getString("memberName"));
+				member.setUpdatedate(rs.getString("updatedate"));
+				member.setCreatedate(rs.getString("createdate"));
+				member.setMemberLevel(rs.getInt("memberLevel"));
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				dbutil.close(null, stmt, conn);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}return member;
+	}
+	
 
 	// 관리자 멤버 강퇴 시킬때
 	public int deleteMemberByAdmin(Member member) throws Exception{
@@ -77,13 +110,14 @@ public class MemberDao {
 		
 		try {
 			conn=dbUtil.getConnection();
-			String sql="SELECT member_id memberId, member_level memberLevel, member_name memberName, updatedate, createdate FROM member ORDER BY createdate DESC; ";
+			String sql="SELECT member_no memberNo ,member_id memberId, member_level memberLevel, member_name memberName, updatedate, createdate FROM member ORDER BY createdate DESC; ";
 			stmt=conn.prepareStatement(sql);
 			stmt.setInt(1, beginRow);
 			stmt.setInt(2, rowPerPage);
 			rs=stmt.executeQuery();
 			while(rs.next()) {
 				Member m=new Member();
+				m.setMemberNo(rs.getInt("memberNo"));
 				m.setMemberId(rs.getString("memberId"));
 				m.setMemberLevel(rs.getInt("memberLevel"));
 				m.setMemberName(rs.getNString("memberName"));
