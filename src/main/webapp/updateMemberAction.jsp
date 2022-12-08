@@ -36,8 +36,8 @@ if(resultMember!=null){
 }else{
 	System.out.println("비밀번호가 다름!");
 	System.out.println("개인정보 수정 실패!");
-	String msg2=URLEncoder.encode("✔비밀번호가 다릅니다!","utf-8");
-	response.sendRedirect(request.getContextPath()+"/updateMemberForm.jsp?msg2="+msg2);
+	String msg1=URLEncoder.encode("✔비밀번호가 다릅니다!","utf-8");
+	response.sendRedirect(request.getContextPath()+"/updateMemberForm.jsp?msg1="+msg1);
 }
 
 %>

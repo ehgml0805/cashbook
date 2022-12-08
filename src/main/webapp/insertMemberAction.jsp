@@ -29,8 +29,8 @@ paramMember.setMemberName(memberName);
 MemberDao memberDao=new MemberDao();
 if(memberDao.memberIdCh(memberId)){
 	System.out.println("중복된 아이디 입니다");
-	String msg=URLEncoder.encode("✔중복된 아이디입니다.","utf-8");
-	response.sendRedirect(request.getContextPath()+"/insertMemberForm.jsp?msg="+msg);
+	String msg1=URLEncoder.encode("✔중복된 아이디입니다.","utf-8");
+	response.sendRedirect(request.getContextPath()+"/insertMemberForm.jsp?msg1="+msg1);
 	return;
 }
 int row=memberDao.insertMember(paramMember);
