@@ -157,7 +157,7 @@ String memberName = loginMember.getMemberName();
 								<span class="font-weight-light"><%=memberName%></span>
 							</h3>
 							<div class="h4 font-weight-300">
-								<i class="ni location_pin mr-2"></i>아이디
+								<i class="ni location_pin mr-2"></i>ID 
 								<%=memberId%></div>
 							<div class="h4 mt-4">
 								<i class="ni business_briefcase-24 mr-2"></i>Solution Manager -

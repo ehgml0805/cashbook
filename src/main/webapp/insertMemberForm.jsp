@@ -2,12 +2,11 @@
 	pageEncoding="UTF-8"%>
 <%
 request.setCharacterEncoding("utf-8");
-String msg=request.getParameter("msg");
 String msg1=request.getParameter("msg1");
 %>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">

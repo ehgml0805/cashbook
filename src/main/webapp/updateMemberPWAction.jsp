@@ -32,8 +32,8 @@ MemberDao memberDao=new MemberDao();
 int row=memberDao.Pwch(memberId, bememberPw);
 if(row==0){//일치 하지 않음
 	System.out.println("비밀번호가 다름!");
-	String msg2=URLEncoder.encode("✔기존 비밀번호가 다릅니다!","utf-8");
-	response.sendRedirect(request.getContextPath()+"/updateMemberPWForm.jsp?msg2="+msg2);
+	String msg1=URLEncoder.encode("✔기존 비밀번호가 다릅니다!","utf-8");
+	response.sendRedirect(request.getContextPath()+"/updateMemberPWForm.jsp?msg1="+msg1);
 	return;
 }	
 //나눠서 하니까 또 되네,,?
@@ -46,8 +46,8 @@ if(resultMember!=null){
 		return;
 }else{
 	System.out.println("비밀번호 수정 실패!");
-	String msg2=URLEncoder.encode("✔기존 비밀번호가 다릅니다!","utf-8");
-	response.sendRedirect(request.getContextPath()+"/updateMemberPWForm.jsp?msg2="+msg2);
+	String msg1=URLEncoder.encode("✔기존 비밀번호가 다릅니다!","utf-8");
+	response.sendRedirect(request.getContextPath()+"/updateMemberPWForm.jsp?msg1="+msg1);
 	return;
 }
 

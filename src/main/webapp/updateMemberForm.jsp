@@ -4,6 +4,7 @@
 	pageEncoding="UTF-8"%>
 
 <%
+//방어코드
 if (session.getAttribute("loginMember") == null) {
 	response.sendRedirect(request.getContextPath() + "/loginForm.jsp");
 	return;
@@ -23,7 +24,7 @@ Member resultMember=memberDao.login(paramMember);
 */
 %>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport"
@@ -122,16 +123,20 @@ Member resultMember=memberDao.login(paramMember);
 								<div class="text-center">
 									<button type="submit" class="btn btn-primary mt-4">UPDATE</button>
 								</div>
-
 							</form>
 						</div>
 					</div>
 					<div class="row mt-3">
 						<div class="col-6">
 							<a href="<%=request.getContextPath()%>/updateMemberPWForm.jsp"
-								class="text-light">비밀번호 변경</a>
+								class="text-light"><small>비밀번호 변경</small></a>
+						</div>
+						<div class="col-6 text-right">
+							<a href="<%=request.getContextPath()%>/logOut.jsp"
+								class="text-light"><small>LOG OUT</small></a>
 						</div>
 					</div>
+
 				</div>
 			</div>
 		</div>

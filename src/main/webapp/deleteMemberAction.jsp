@@ -6,8 +6,8 @@
 request.setCharacterEncoding("utf-8");
 //방어코드
 if(session.getAttribute("loginMember")==null ||request.getParameter("memberPw").equals("")||request.getParameter("memberPw")==null){
-	String msg=URLEncoder.encode("✔비밀번호를 입력하세요!","utf-8");
-	response.sendRedirect(request.getContextPath()+"/deleteMemberForm.jsp?msg="+msg);
+	String msg1=URLEncoder.encode("✔비밀번호를 입력하세요!","utf-8");
+	response.sendRedirect(request.getContextPath()+"/deleteMemberForm.jsp?msg1="+msg1);
 	return;
 }
 
@@ -29,7 +29,7 @@ if(resulMembser!=null){
 	response.sendRedirect(request.getContextPath()+"/memberOne.jsp");
 	return;
 }
-String msg2=URLEncoder.encode("✔비밀번호를 확인하세요!","utf-8");
-response.sendRedirect(request.getContextPath()+"/deleteMemberForm.jsp?msg2="+msg2);
+String msg1=URLEncoder.encode("✔비밀번호를 확인하세요!","utf-8");
+response.sendRedirect(request.getContextPath()+"/deleteMemberForm.jsp?msg1="+msg1);
 return;
 %>
