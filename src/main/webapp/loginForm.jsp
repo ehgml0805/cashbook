@@ -86,10 +86,16 @@ int lastPage = selectNoticeCount / rowPerPage;
 							</div>
 							<form action="<%=request.getContextPath()%>/loginAction.jsp"
 								method="post" role="form">
+
 								<%
 								if (msg != null) {
 								%>
-								<div><%=msg%></div>
+
+								<div>
+									<div class="alert alert-danger" role="alert">
+										<%=msg%>
+									</div>
+								</div>
 								<%
 								}
 								%>
@@ -147,9 +153,9 @@ int lastPage = selectNoticeCount / rowPerPage;
 			<div class="row row-grid align-items-center mb-5">
 				<!--하단 넓이로 추정 -->
 				<table>
-					<tr>
-						<td>공지사항</td>
-						<td>날짜</td>
+					<tr class="text-center">
+						<th>공지사항</th>
+						<th>날짜</th>
 					</tr>
 					<%
 					for (Notice n : list) {
@@ -166,9 +172,7 @@ int lastPage = selectNoticeCount / rowPerPage;
 			<hr>
 			<div class="row align-items-center justify-content-md-between">
 				<div class="col-md-6">
-					<div class="copyright">
-						&copy; 2022 <a href="" target="_blank">Creative Tim</a>.
-					</div>
+					<div class="copyright">&copy; 2022 Creative Tim</div>
 				</div>
 				<div class="col-md-6">
 					<ul class="nav nav-footer justify-content-end">

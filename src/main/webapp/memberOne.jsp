@@ -46,13 +46,34 @@ String memberName = loginMember.getMemberName();
 	<nav id="navbar-main"
 		class="navbar navbar-main navbar-expand-lg navbar-transparent navbar-light py-2">
 		<div class="container">
-			<a class="navbar-brand mr-lg-5"
-				href="<%=request.getContextPath()%>/memberOne.jsp"> <img
+			<a class="navbar-brand mr-lg-5" href="../index.html"> <img
 				src="resource/assets/img/brand/white.png">
 			</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#navbar_global" aria-controls="navbar_global"
+				aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
 			<div class="navbar-collapse collapse" id="navbar_global">
-				<ul class="navbar-nav navbar-nav-hover align-items-lg-center">
+				<div class="navbar-collapse-header">
+					<div class="row">
+						<div class="col-6 collapse-brand">
+							<a href="../../../index.html"> <img
+								src="resource/assets/img/brand/blue.png">
+							</a>
+						</div>
+						<div class="col-6 collapse-close">
+							<button type="button" class="navbar-toggler"
+								data-toggle="collapse" data-target="#navbar_global"
+								aria-controls="navbar_global" aria-expanded="false"
+								aria-label="Toggle navigation">
+								<span></span> <span></span>
+							</button>
+						</div>
+					</div>
+				</div>
 
+				<ul class="navbar-nav navbar-nav-hover align-items-lg-center">
 					<li class="nav-item dropdown"><a href="#" class="nav-link"
 						data-toggle="dropdown" href="#" role="button"> <i
 							class="ni ni-collection d-lg-none"></i> <span
@@ -63,8 +84,9 @@ String memberName = loginMember.getMemberName();
 								class="dropdown-item">가계부</a> <a
 								href="<%=request.getContextPath()%>/help/helpList.jsp"
 								class="dropdown-item">문의하기</a> <a
-								href="resource/examples/login.html" class="dropdown-item">Login</a>
-							<a href="resource/examples/register.html" class="dropdown-item">Register</a>
+								href="../resource/examples/login.html" class="dropdown-item">Login</a>
+							<a href="../resource/examples/register.html"
+								class="dropdown-item">Register</a>
 						</div></li>
 				</ul>
 				<ul class="navbar-nav align-items-lg-center ml-lg-auto">
@@ -93,8 +115,8 @@ String memberName = loginMember.getMemberName();
 							class="nav-link-inner--text d-lg-none">Github</span>
 					</a></li>
 					<li class="nav-item"><a class="btn btn-neutral"
-						href="<%=request.getContextPath()%>/logOut.jsp" target="_blank">
-							<span class="nav-link-inner--text">LOG OUT</span>
+						href="<%=request.getContextPath()%>/logOut.jsp"> <span
+							class="nav-link-inner--text">LOG OUT</span>
 					</a></li>
 				</ul>
 			</div>
@@ -157,7 +179,7 @@ String memberName = loginMember.getMemberName();
 								<span class="font-weight-light"><%=memberName%></span>
 							</h3>
 							<div class="h4 font-weight-300">
-								<i class="ni location_pin mr-2"></i>ID 
+								<i class="ni location_pin mr-2"></i>ID
 								<%=memberId%></div>
 							<div class="h4 mt-4">
 								<i class="ni business_briefcase-24 mr-2"></i>Solution Manager -
