@@ -85,7 +85,7 @@ if (selectMemberAdminCount / rowPerPage != 0) {
 				<div class="navbar-collapse-header">
 					<div class="row">
 						<div class="col-6 collapse-brand">
-							<a href="../../../index.html"> <img
+							<a href="<%=request.getContextPath()%>/memberOne.jsp"> <img
 								src="../resource/assets/img/brand/blue.png">
 							</a>
 						</div>
@@ -103,17 +103,19 @@ if (selectMemberAdminCount / rowPerPage != 0) {
 					<li class="nav-item dropdown"><a href="#" class="nav-link"
 						data-toggle="dropdown" href="#" role="button"> <i
 							class="ni ni-collection d-lg-none"></i> <span
-							class="nav-link-inner--text">바로가기</span>
+							class="nav-link-inner--text">MENU</span>
 					</a>
 						<div class="dropdown-menu">
+						<a href="<%=request.getContextPath()%>/memberOne.jsp"
+								class="dropdown-item"> My Page</a>
 							<a href="<%=request.getContextPath()%>/admin/noticeList.jsp"
-								class="dropdown-item">공지 관리</a> <a
+								class="dropdown-item">Notice</a> <a
 								href="<%=request.getContextPath()%>/admin/helpListAll.jsp"
-								class="dropdown-item">문의 관리</a> <a
+								class="dropdown-item">Help List</a> <a
 								href="<%=request.getContextPath()%>/admin/memberList.jsp"
-								class="dropdown-item">회원 관리</a> <a
+								class="dropdown-item">Member List</a> <a
 								href="<%=request.getContextPath()%>/admin/categoryList.jsp"
-								class="dropdown-item">카테고리 관리</a>
+								class="dropdown-item">Ctegory </a>
 						</div></li>
 
 				</ul>
@@ -181,19 +183,19 @@ if (selectMemberAdminCount / rowPerPage != 0) {
         </svg>
 			</div>
 		</div>
-		<div class="section features-6">
+		<div class="section features-4">
 			<div class="container">
-				<div class="row align-items-center">
+				<div class="row ">
 					<div class="col-lg-6 ">
 						<div class="info info-horizontal info-hover-primary">
 							<div class="col-lg-6 col-16 mx-md-auto">
-								<h3 class="title">신규 회원 리스트</h3>
+								<h3 class="title">New Member</h3>
 								<!-- 신규 멤버 5명 페이징 -->
-								<table>
-									<tr class="text-center">
-										<td>아이디</td>
+								<table class="text-center">
+									<tr>
+										<td>ID</td>
 										<td>이름</td>
-										<td>가입일</td>
+										<td>가입 날짜</td>
 									</tr>
 									<%
 									for (Member m : Melist) {
@@ -207,15 +209,13 @@ if (selectMemberAdminCount / rowPerPage != 0) {
 									}
 									%>
 								</table>
-
 								<a href="<%=request.getContextPath()%>/admin/memberList.jsp"
 									class="text-info">More</a>
 							</div>
 						</div>
 					</div>
 					<div class="col-lg-6 col-16 mx-md-auto">
-						<h3 class="display-3">최신 공지 목록</h3>
-
+						<h3 class="title">Notice</h3>
 						<!-- 신규 공지 5개 페이징 -->
 						<table>
 							<tr class="text-center">
@@ -332,7 +332,7 @@ if (selectMemberAdminCount / rowPerPage != 0) {
 				<hr>
 				<div class="row align-items-center justify-content-md-between">
 					<div class="col-md-6">
-						<div class="copyright">&copy; 2022 Creative Tim.</div>
+						<div class="copyright">&copy; 2022 도랑</div>
 					</div>
 					<div class="col-md-6">
 						<ul class="nav nav-footer justify-content-end">

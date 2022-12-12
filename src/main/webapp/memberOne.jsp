@@ -46,7 +46,8 @@ String memberName = loginMember.getMemberName();
 	<nav id="navbar-main"
 		class="navbar navbar-main navbar-expand-lg navbar-transparent navbar-light py-2">
 		<div class="container">
-			<a class="navbar-brand mr-lg-5" href="../index.html"> <img
+			<a class="navbar-brand mr-lg-5"
+				href="<%=request.getContextPath()%>/memberOne.jsp"> <img
 				src="resource/assets/img/brand/white.png">
 			</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -58,7 +59,7 @@ String memberName = loginMember.getMemberName();
 				<div class="navbar-collapse-header">
 					<div class="row">
 						<div class="col-6 collapse-brand">
-							<a href="../../../index.html"> <img
+							<a href="<%=request.getContextPath()%>/memberOne.jsp"> <img
 								src="resource/assets/img/brand/blue.png">
 							</a>
 						</div>
@@ -83,11 +84,19 @@ String memberName = loginMember.getMemberName();
 							<a href="<%=request.getContextPath()%>/cash/cashList.jsp"
 								class="dropdown-item">가계부</a> <a
 								href="<%=request.getContextPath()%>/help/helpList.jsp"
-								class="dropdown-item">문의하기</a> <a
-								href="../resource/examples/login.html" class="dropdown-item">Login</a>
+								class="dropdown-item">문의하기</a>
+							<%
+							if (loginMember.getMemberLevel() > 0) {
+							%>
+							<a href="<%=request.getContextPath()%>/admin/adminMain.jsp"
+								class="dropdown-item">관리자 메인</a>
+							<%
+							}
+							%>
 							<a href="../resource/examples/register.html"
 								class="dropdown-item">Register</a>
 						</div></li>
+
 				</ul>
 				<ul class="navbar-nav align-items-lg-center ml-lg-auto">
 					<li class="nav-item"><a class="nav-link nav-link-icon"
@@ -211,9 +220,7 @@ String memberName = loginMember.getMemberName();
 				<hr>
 				<div class="row align-items-center justify-content-md-between">
 					<div class="col-md-6">
-						<div class="copyright">
-							&copy; 2022 <a href="" target="_blank">Creative Tim</a>.
-						</div>
+						<div class="copyright">&copy; 2022 도랑</div>
 					</div>
 					<div class="col-md-6">
 						<ul class="nav nav-footer justify-content-end">

@@ -38,12 +38,12 @@ String msg1=request.getParameter("msg1");
 			<span></span>
 			<span></span>
 	    </div>
-		<div class="container pt-lg-4">
+		<div class="container pt-lg-1">
 			<div class="row justify-content-center">
 				<div class="col-lg-5">
 					<div class="card bg-secondary shadow border-0">
-						<div class="card-header bg-white pb-5">
-							<div class="text-muted text-center mb-3"><small>Sign in with</small></div>
+						<div class="card-header bg-white pb-3">
+							<div class="text-muted text-center mb-2"><small>Sign in with</small></div>
 							<div class="btn-wrapper text-center">
 								<a href="#" class="btn btn-neutral btn-icon">
 									<span class="btn-inner--icon"><img src="resource/assets/img/icons/common/github.svg"></span>
@@ -55,14 +55,14 @@ String msg1=request.getParameter("msg1");
 								</a>
 							</div>
 						</div>
-						<div class="card-body px-lg-5 py-lg-5">
+						<div class="card-body px-lg-5 py-lg-4"><!--py는 회색영역 여백  lg는 네모난 전체 크기 -->
 							<div class="text-center text-muted mb-4">
 								<small>Or sign in with credentials</small>
 							</div>
 							<%
 								if(msg1!=null){
 							%>		
-								<div><%=msg1 %></div>
+								<div class="alert alert-danger" role="alert"><%=msg1 %></div>
 							<%		
 								}
 							%>
@@ -108,7 +108,7 @@ String msg1=request.getParameter("msg1");
 						</div>
 					<div class="row mt-3">
 						<div class="col-6">
-							<a href="<%=request.getContextPath()%>/loginForm.jsp" class="text-light">로그인</a>
+							<a href="<%=request.getContextPath()%>/loginForm.jsp" class="text-light">LOG IN</a>
 						</div>
 					</div>
 				</div>

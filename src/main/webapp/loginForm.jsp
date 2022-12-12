@@ -60,11 +60,11 @@ int lastPage = selectNoticeCount / rowPerPage;
 			<span></span> <span></span> <span></span> <span></span> <span></span>
 			<span></span> <span></span>
 		</div>
-		<div class="container pt-lg-4">
+		<div class="container pt-lg-1"><!-- 배경 상단 높이 -->
 			<div class="row justify-content-center">
-				<div class="col-lg-5">
+				<div class="col-lg-5"><!-- 하얀부분 가로  -->
 					<div class="card bg-secondary shadow border-0">
-						<div class="card-header bg-white pb-5">
+						<div class="card-header bg-white pb-3">
 							<div class="text-muted text-center mb-3">
 								<small>Sign in with</small>
 							</div>
@@ -152,10 +152,10 @@ int lastPage = selectNoticeCount / rowPerPage;
 		<div class="container">
 			<div class="row row-grid align-items-center mb-5">
 				<!--하단 넓이로 추정 -->
-				<table>
+				<table class="table">
 					<tr class="text-center">
-						<th>공지사항</th>
-						<th>날짜</th>
+						<th>Notice</th>
+						<th>DATE</th>
 					</tr>
 					<%
 					for (Notice n : list) {
@@ -172,7 +172,7 @@ int lastPage = selectNoticeCount / rowPerPage;
 			<hr>
 			<div class="row align-items-center justify-content-md-between">
 				<div class="col-md-6">
-					<div class="copyright">&copy; 2022 Creative Tim</div>
+					<div class="copyright">&copy; 2022 도랑</div>
 				</div>
 				<div class="col-md-6">
 					<ul class="nav nav-footer justify-content-end">

@@ -37,7 +37,7 @@ ArrayList<HashMap<String, Object>> list = helpDao.selectHelpList(memberId);
 <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css"
 	rel="stylesheet">
 <!-- Nucleo Icons -->
-<link href="./resource/assets/css/nucleo-icons.css" rel="stylesheet" />
+<link href="../resource/assets/css/nucleo-icons.css" rel="stylesheet" />
 <link href="../resource/assets/css/nucleo-svg.css" rel="stylesheet" />
 <!-- Font Awesome Icons -->
 <link href="../resource/assets/css/font-awesome.css" rel="stylesheet" />
@@ -52,7 +52,8 @@ ArrayList<HashMap<String, Object>> list = helpDao.selectHelpList(memberId);
 	<nav id="navbar-main"
 		class="navbar navbar-main navbar-expand-lg navbar-transparent navbar-light py-2">
 		<div class="container">
-			<a class="navbar-brand mr-lg-5" href="../index.html"> <img
+			<a class="navbar-brand mr-lg-5"
+				href="<%=request.getContextPath()%>/memberOne.jsp"> <img
 				src="../resource/assets/img/brand/white.png">
 			</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -64,7 +65,7 @@ ArrayList<HashMap<String, Object>> list = helpDao.selectHelpList(memberId);
 				<div class="navbar-collapse-header">
 					<div class="row">
 						<div class="col-6 collapse-brand">
-							<a href="../../../../index.html"> <img
+							<a href="<%=request.getContextPath()%>/memberOne.jsp"> <img
 								src="../resource/assets/img/brand/blue.png">
 							</a>
 						</div>
@@ -83,14 +84,13 @@ ArrayList<HashMap<String, Object>> list = helpDao.selectHelpList(memberId);
 					<li class="nav-item dropdown"><a href="#" class="nav-link"
 						data-toggle="dropdown" href="#" role="button"> <i
 							class="ni ni-collection d-lg-none"></i> <span
-							class="nav-link-inner--text">바로가기</span>
+							class="nav-link-inner--text">MENU</span>
 					</a>
 						<div class="dropdown-menu">
-							<a href="<%=request.getContextPath()%>/cash/cashList.jsp" class="dropdown-item">가계부</a>
-							<a href="<%=request.getContextPath()%>/help/helpList.jsp" class="dropdown-item">문의하기</a>
-							<a href="../resource/examples/login.html" class="dropdown-item">Login</a>
-							<a href="../resource/examples/register.html"
-								class="dropdown-item">Register</a>
+							<a href="<%=request.getContextPath()%>/cash/cashList.jsp"
+								class="dropdown-item">Calender</a> <a
+								href="<%=request.getContextPath()%>/help/helpList.jsp"
+								class="dropdown-item">Help</a> 
 						</div></li>
 				</ul>
 				<ul class="navbar-nav align-items-lg-center ml-lg-auto">
@@ -120,13 +120,13 @@ ArrayList<HashMap<String, Object>> list = helpDao.selectHelpList(memberId);
 					</a></li>
 					<li class="nav-item"><a class="btn btn-neutral"
 						href="<%=request.getContextPath()%>/memberOne.jsp"> <span
-							class="nav-link-inner--text">마이페이지</span>
+							class="nav-link-inner--text">My Page</span>
 					</a></li>
 					<li class="nav-item d-none d-lg-block"><a
 						href="<%=request.getContextPath()%>/logOut.jsp" target="_blank"
 						class="btn btn-neutral btn-icon"> <span
-							class="btn-inner--icon">
-						</span> <span class="nav-link-inner--text">LOG OUT</span>
+							class="btn-inner--icon"> </span> <span
+							class="nav-link-inner--text">LOG OUT</span>
 					</a></li>
 				</ul>
 			</div>
@@ -135,6 +135,8 @@ ArrayList<HashMap<String, Object>> list = helpDao.selectHelpList(memberId);
 	<!-- End Navbar -->
 	<section class="section section-shaped section-lg">
 		<div class="shape shape-style-1 bg-gradient-default"></div>
+		<!-- 배경 색 -->
+		
 		<%
 		if (msg2 != null) {
 		%>
@@ -143,85 +145,77 @@ ArrayList<HashMap<String, Object>> list = helpDao.selectHelpList(memberId);
 		}
 		%>
 		<div class="container">
-		<div class="row row-grid align-items-center mb-5">
-		<table class="table table-striped table-responsive ">
-			<tr class="text-center">
-				<th>번호</th>
-				<th>내용</th>
-				<th>작성 날짜</th>
-				<th>답변 내용</th>
-				<th>답변 날짜</th>
-				<th>문의 수정</th>
-				<th>문의 삭제</th>
-			</tr>
-			<%
-			for (HashMap<String, Object> m : list) {
-			%>
-			<tr>
-				<td><%=m.get("helpNo")%></td>
-				<td><%=m.get("helpMemo")%></td>
-				<td><%=m.get("helpCreatedate")%></td>
-				<td>
-					<%
-					if (m.get("commentMemo") == null) {
-					%> 
-						답변 전 
-					<%
-					} else {
-					%> <%=m.get("commentMemo")%> 
-					<%
-					 }
-					%>
-				</td>
-				<td>
-					<%
-					if (m.get("commentCreatedate") == null) {
-					%> 
-						&nbsp; 
-					<%
- 					} else {
- 					%> 
- 						<%=m.get("commentCreatedate")%> 
- 					<%
-					 }
-					 %>
-				</td>
-				<td>
-					<%
-					if (m.get("commentMemo") == null) {
-					%> <a
-					href="<%=request.getContextPath()%>/help/updateHelpForm.jsp?helpNo=<%=m.get("helpNo")%>&helpMemo=<%=m.get("helpMemo")%>">수정</a>
-					<%
-					} else {
-					%> 
-					&nbsp;
-					<%
-					 }
-					%>
-				</td>
-				<td>
-					<%
-					if (m.get("commentMemo") == null) {
-					%> <a
-					href="<%=request.getContextPath()%>/help/deleteHelpAction.jsp?helpNo=<%=m.get("helpNo")%>">삭제</a>
-					<%
-					} else {
-					%> 
-						&nbsp; 
-					<%
- 						}
-					%>
-				</td>
-			</tr>
-					<%
-					}
-					%>
-		</table>
-		<div >
-			<a href="<%=request.getContextPath()%>/help/insertHelpForm.jsp">문의
-				글쓰기 </a>
-		</div>
-		</div>
+			<div class="p-5 mb-7 bg-light">
+				<!-- table 배경색 -->
+				<div class="row row-grid align-items-center mb-5 ">
+					<table class="table ">
+						<tr class="text-center">
+							<th>No.</th>
+							<th>내용</th>
+							<th>작성 날짜</th>
+							<th>답변 내용</th>
+							<th>답변 날짜</th>
+							<th>문의 수정</th>
+							<th>문의 삭제</th>
+						</tr>
+						<%
+						for (HashMap<String, Object> m : list) {
+						%>
+						<tr>
+							<td>No.<%=m.get("helpNo")%></td>
+							<td><%=m.get("helpMemo")%></td>
+							<td><%=m.get("helpCreatedate")%></td>
+							<td>
+								<%
+								if (m.get("commentMemo") == null) {
+								%> 답변 전 <%
+								} else {
+								%> <%=m.get("commentMemo")%> <%
+ }
+ %>
+							</td>
+							<td>
+								<%
+								if (m.get("commentCreatedate") == null) {
+								%> &nbsp; <%
+ } else {
+ %> <%=m.get("commentCreatedate")%> <%
+ }
+ %>
+							</td>
+							<td>
+								<%
+								if (m.get("commentMemo") == null) {
+								%> <a
+								href="<%=request.getContextPath()%>/help/updateHelpForm.jsp?helpNo=<%=m.get("helpNo")%>&helpMemo=<%=m.get("helpMemo")%>">수정</a>
+								<%
+								} else {
+								%> &nbsp; <%
+ }
+ %>
+							</td>
+							<td>
+								<%
+								if (m.get("commentMemo") == null) {
+								%> <a
+								href="<%=request.getContextPath()%>/help/deleteHelpAction.jsp?helpNo=<%=m.get("helpNo")%>">삭제</a>
+								<%
+								} else {
+								%> &nbsp; <%
+ }
+ %>
+							</td>
+						</tr>
+						<%
+						}
+						%>
+					</table>
+					<div>
+						<a href="<%=request.getContextPath()%>/help/insertHelpForm.jsp">문의
+							글쓰기 </a>
+					</div>
+				</div>
+			</div>
 		</div>
 	</section>
 	<footer class="footer">
@@ -232,7 +226,7 @@ ArrayList<HashMap<String, Object>> list = helpDao.selectHelpList(memberId);
 			<hr>
 			<div class="row align-items-center justify-content-md-between">
 				<div class="col-md-6">
-					<div class="copyright">&copy; 2022 Creative Tim</div>
+					<div class="copyright">&copy; 2022 도랑</div>
 				</div>
 				<div class="col-md-6">
 					<ul class="nav nav-footer justify-content-end">
