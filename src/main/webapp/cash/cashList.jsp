@@ -13,7 +13,7 @@ if (session.getAttribute("loginMember") == null ) {
 	return;
 }
 int memberLevel = loginMember.getMemberLevel();
-System.out.println(memberLevel + "<-멤버레벨");
+//System.out.println(memberLevel + "<-멤버레벨");
 //request 년,월이 넘어와야함,  아무것도 안넘어오면 이번달
 int year = 0;
 int month = 0;
@@ -78,6 +78,7 @@ cash.getCashNo();
 	</div>
 	<a href="<%=request.getContextPath()%>/memberOne.jsp">마이 페이지</a>
 	<a href="<%=request.getContextPath()%>/logOut.jsp"> 로그아웃</a>
+	<a href="<%=request.getContextPath()%>/index.jsp"> 인덱스</a>
 
 	<div>
 		<%=year%>년<%=month + 1%>월
@@ -116,7 +117,19 @@ cash.getCashNo();
 							String cashDate = (String) (m.get("cashDate"));
 							if (Integer.parseInt(cashDate.substring(8)) == date) {
 					%>
-							<%=(String) (m.get("categoryKind"))%>
+							<%
+								if(m.get("categoryKind").equals("수입")){
+							%>		
+									<span style="color: blue;"> +
+									<%=(String) (m.get("categoryKind"))%></span>
+							<%		
+								}else{
+							%>		
+								<span style="color: red;"> -
+								<%=(String) (m.get("categoryKind"))%> </span>
+							<%		
+								}
+							%>
 							<%=(String) (m.get("categoryName"))%>
 							<%=(Long) (m.get("cashPrice"))%>원 <br>
 					<%

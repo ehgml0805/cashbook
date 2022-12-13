@@ -51,10 +51,12 @@ Member resultMember=memberDao.login(paramMember);
 </head>
 
 <body class="login-page">
+	<!-- Navbar -->
 	<nav id="navbar-main"
 		class="navbar navbar-main navbar-expand-lg navbar-transparent navbar-light py-2">
 		<div class="container">
-			<a class="navbar-brand mr-lg-5" href="<%=request.getContextPath()%>/memberOne.jsp"> <img
+			<a class="navbar-brand mr-lg-5"
+				href="<%=request.getContextPath()%>/memberOne.jsp"> <img
 				src="resource/assets/img/brand/white.png">
 			</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -88,8 +90,8 @@ Member resultMember=memberDao.login(paramMember);
 							class="nav-link-inner--text">MENU</span>
 					</a>
 						<div class="dropdown-menu">
-							<a href="<%=request.getContextPath()%>/cash/cashList.jsp" class="dropdown-item">가계부</a>
-							<a href="<%=request.getContextPath()%>/help/helpList.jsp" class="dropdown-item">문의하기</a>
+							<a href="<%=request.getContextPath()%>/cash/cashList.jsp" class="dropdown-item">Calendar</a>
+							<a href="<%=request.getContextPath()%>/help/helpList.jsp" class="dropdown-item">Help</a>
 						</div></li>
 				</ul>
 				<ul class="navbar-nav align-items-lg-center ml-lg-auto">
@@ -207,13 +209,15 @@ Member resultMember=memberDao.login(paramMember);
 							</form>
 						</div>
 					</div>
-					<div class="row mt-3">
+										<div class="row mt-3">
 						<div class="col-6">
-							<a href="<%=request.getContextPath()%>/updateMemberPWForm.jsp"
-								class="text-light"><small>비밀번호 변경</small></a>
+							<a href="<%=request.getContextPath()%>/updateMemberPWForm.jsp" class="text-light"><small>비밀번호 변경</small></a>
+						</div>
+						<div class="col-6 text-right">
+							<a href="<%=request.getContextPath()%>/deleteMemberForm.jsp"
+								class="text-light"><small>회원 탈퇴하기</small></a>
 						</div>
 					</div>
-
 				</div>
 			</div>
 		</div>
@@ -245,23 +249,23 @@ Member resultMember=memberDao.login(paramMember);
 	</footer>
 
 	<!--   Core JS Files   -->
-	<script src="../assets/js/core/jquery.min.js" type="text/javascript"></script>
-	<script src="../assets/js/core/popper.min.js" type="text/javascript"></script>
-	<script src="../assets/js/core/bootstrap.min.js" type="text/javascript"></script>
-	<script src="../assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+	<script src="resource/assets/js/core/jquery.min.js" type="text/javascript"></script>
+	<script src="resource/assets/js/core/popper.min.js" type="text/javascript"></script>
+	<script src="resource/assets/js/core/bootstrap.min.js" type="text/javascript"></script>
+	<script src="resource/assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
 	<!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
-	<script src="../assets/js/plugins/bootstrap-switch.js"></script>
+	<script src="resource/assets/js/plugins/bootstrap-switch.js"></script>
 	<!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
-	<script src="../assets/js/plugins/nouislider.min.js"
+	<script src="resource/assets/js/plugins/nouislider.min.js"
 		type="text/javascript"></script>
-	<script src="../assets/js/plugins/moment.min.js"></script>
-	<script src="../assets/js/plugins/datetimepicker.js"
+	<script src="resource/assets/js/plugins/moment.min.js"></script>
+	<script src="resource/assets/js/plugins/datetimepicker.js"
 		type="text/javascript"></script>
-	<script src="../assets/js/plugins/bootstrap-datepicker.min.js"></script>
+	<script src="resource/assets/js/plugins/bootstrap-datepicker.min.js"></script>
 	<!-- Control Center for Argon UI Kit: parallax effects, scripts for the example pages etc -->
 	<!--  Google Maps Plugin    -->
 	<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
-	<script src="../assets/js/argon-design-system.min.js?v=1.2.2"
+	<script src="resource/assets/js/argon-design-system.min.js?v=1.2.2"
 		type="text/javascript"></script>
 	<script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
 	<script>

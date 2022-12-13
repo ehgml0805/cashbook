@@ -81,8 +81,8 @@ String loginMemberPw = loginMember.getMemberPw();
 							class="nav-link-inner--text">MENU</span>
 					</a>
 						<div class="dropdown-menu">
-							<a href="<%=request.getContextPath()%>/cash/cashList.jsp" class="dropdown-item">가계부</a>
-							<a href="<%=request.getContextPath()%>/help/helpList.jsp" class="dropdown-item">문의하기</a>
+							<a href="<%=request.getContextPath()%>/cash/cashList.jsp" class="dropdown-item">Calendar</a>
+							<a href="<%=request.getContextPath()%>/help/helpList.jsp" class="dropdown-item">Help</a>
 						</div></li>
 				</ul>
 				<ul class="navbar-nav align-items-lg-center ml-lg-auto">
@@ -213,7 +213,7 @@ String loginMemberPw = loginMember.getMemberPw();
 			<div class="row align-items-center justify-content-md-between">
 				<div class="col-md-6">
 					<div class="copyright">
-						&copy; 2022 <a href="" target="_blank">Creative Tim</a>.
+							&copy; 2022 도랑
 					</div>
 				</div>
 				<div class="col-md-6">
@@ -233,23 +233,23 @@ String loginMemberPw = loginMember.getMemberPw();
 	</footer>
 
 	<!--   Core JS Files   -->
-	<script src="../assets/js/core/jquery.min.js" type="text/javascript"></script>
-	<script src="../assets/js/core/popper.min.js" type="text/javascript"></script>
-	<script src="../assets/js/core/bootstrap.min.js" type="text/javascript"></script>
-	<script src="../assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+	<script src="resource/assets/js/core/jquery.min.js" type="text/javascript"></script>
+	<script src="resource/assets/js/core/popper.min.js" type="text/javascript"></script>
+	<script src="resource/assets/js/core/bootstrap.min.js" type="text/javascript"></script>
+	<script src="resource/assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
 	<!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
-	<script src="../assets/js/plugins/bootstrap-switch.js"></script>
+	<script src="resource/assets/js/plugins/bootstrap-switch.js"></script>
 	<!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
-	<script src="../assets/js/plugins/nouislider.min.js"
+	<script src="resource/assets/js/plugins/nouislider.min.js"
 		type="text/javascript"></script>
-	<script src="../assets/js/plugins/moment.min.js"></script>
-	<script src="../assets/js/plugins/datetimepicker.js"
+	<script src="resource/assets/js/plugins/moment.min.js"></script>
+	<script src="resource/assets/js/plugins/datetimepicker.js"
 		type="text/javascript"></script>
-	<script src="../assets/js/plugins/bootstrap-datepicker.min.js"></script>
+	<script src="resource/assets/js/plugins/bootstrap-datepicker.min.js"></script>
 	<!-- Control Center for Argon UI Kit: parallax effects, scripts for the example pages etc -->
 	<!--  Google Maps Plugin    -->
 	<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
-	<script src="../assets/js/argon-design-system.min.js?v=1.2.2"
+	<script src="resource/assets/js/argon-design-system.min.js?v=1.2.2"
 		type="text/javascript"></script>
 	<script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
 	<script>

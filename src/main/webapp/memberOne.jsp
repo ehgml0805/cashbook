@@ -78,23 +78,21 @@ String memberName = loginMember.getMemberName();
 					<li class="nav-item dropdown"><a href="#" class="nav-link"
 						data-toggle="dropdown" href="#" role="button"> <i
 							class="ni ni-collection d-lg-none"></i> <span
-							class="nav-link-inner--text">바로가기</span>
+							class="nav-link-inner--text">MENU</span>
 					</a>
 						<div class="dropdown-menu">
 							<a href="<%=request.getContextPath()%>/cash/cashList.jsp"
-								class="dropdown-item">가계부</a> <a
+								class="dropdown-item">Calendar</a> <a
 								href="<%=request.getContextPath()%>/help/helpList.jsp"
-								class="dropdown-item">문의하기</a>
+								class="dropdown-item">Help</a>
 							<%
 							if (loginMember.getMemberLevel() > 0) {
 							%>
 							<a href="<%=request.getContextPath()%>/admin/adminMain.jsp"
-								class="dropdown-item">관리자 메인</a>
+								class="dropdown-item">Admin Main</a>
 							<%
 							}
 							%>
-							<a href="../resource/examples/register.html"
-								class="dropdown-item">Register</a>
 						</div></li>
 
 				</ul>
