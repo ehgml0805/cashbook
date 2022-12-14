@@ -160,14 +160,15 @@ if (selectNoticeCount / rowPerPage != 0) {
 		<!-- 배경 색 -->
 		<!-- 고객센터 문의 목록 -->
 		<div class="container">
+		<h3 style="color: white;">Notice List.</h3>
 			<div class="p-5 mb-7 bg-light">
-				<h3>Notice List</h3>
 				<!-- 공지 입력 만들기 -->
 				<div>
 					<a
-						href="<%=request.getContextPath()%>/admin/notice/insertNoticeForm.jsp">공지
+						href="<%=request.getContextPath()%>/admin/notice/insertNoticeForm.jsp" style="font-weight: bold;">공지
 						추가</a>
 				</div>
+				<br>
 				<!-- table 배경색 -->
 				<div class="row row-grid align-items-center mb-5 ">
 					<table class="table text-center">
@@ -195,6 +196,7 @@ if (selectNoticeCount / rowPerPage != 0) {
 						%>
 
 					</table>
+					<div class="container" style="text-align: center;">
 					<a
 						href="<%=request.getContextPath()%>/admin/noticeList.jsp?currentPage=1">처음</a>
 					<%
@@ -216,7 +218,7 @@ if (selectNoticeCount / rowPerPage != 0) {
 					%>
 					<a
 						href="<%=request.getContextPath()%>/admin/noticeList.jsp?currentPage=<%=lastPage%>">마지막</a>
-
+					</div>
 				</div>
 			</div>
 		</div>

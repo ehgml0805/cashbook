@@ -82,7 +82,6 @@ Member resultMember=memberDao.login(paramMember);
 						</div>
 					</div>
 				</div>
-
 				<ul class="navbar-nav navbar-nav-hover align-items-lg-center">
 					<li class="nav-item dropdown"><a href="#" class="nav-link"
 						data-toggle="dropdown" href="#" role="button"> <i
@@ -90,8 +89,12 @@ Member resultMember=memberDao.login(paramMember);
 							class="nav-link-inner--text">MENU</span>
 					</a>
 						<div class="dropdown-menu">
-							<a href="<%=request.getContextPath()%>/cash/cashList.jsp" class="dropdown-item">Calendar</a>
-							<a href="<%=request.getContextPath()%>/help/helpList.jsp" class="dropdown-item">Help</a>
+							<a href="<%=request.getContextPath()%>/index.jsp"
+								class="dropdown-item">Index</a> <a
+								href="<%=request.getContextPath()%>/cash/cashList.jsp"
+								class="dropdown-item">Calender</a> <a
+								href="<%=request.getContextPath()%>/help/helpList.jsp"
+								class="dropdown-item">Help</a>
 						</div></li>
 				</ul>
 				<ul class="navbar-nav align-items-lg-center ml-lg-auto">
@@ -157,7 +160,7 @@ Member resultMember=memberDao.login(paramMember);
 							<%
 							}
 							%>
-							<form
+							<form id="updateForm"
 								action="<%=request.getContextPath()%>/updateMemberAction.jsp"
 								method="post" role="form">
 
@@ -190,7 +193,7 @@ Member resultMember=memberDao.login(paramMember);
 												class="ni ni-email-83"></i></span>
 										</div>
 										<input type="text" name="memberName" class="form-control"
-											placeholder="변경 할 이름">
+											placeholder="변경 할 이름" id="memberName">
 									</div>
 								</div>
 								<div class="form-group focused">
@@ -200,11 +203,11 @@ Member resultMember=memberDao.login(paramMember);
 												class="ni ni-lock-circle-open"></i></span>
 										</div>
 										<input type="password" name="memberPw" class="form-control"
-											placeholder="비밀번호">
+											placeholder="비밀번호" id="memberPw">
 									</div>
 								</div>
 								<div class="text-center">
-									<button type="submit" class="btn btn-primary mt-4">UPDATE</button>
+									<button type="button" class="btn btn-primary mt-4" id="updateBt">UPDATE</button>
 								</div>
 							</form>
 						</div>
@@ -222,6 +225,28 @@ Member resultMember=memberDao.login(paramMember);
 			</div>
 		</div>
 	</section>
+	<script>
+		let updateBt=document.querySelector('#updateBt');
+		updateBt.addEventListener('click', function(e) {
+			
+			let memberName=document.querySelector('#memberName');
+			if(memberName.value==''){
+				alert('변경 할 이름을 입력해 주세요!');
+				memberName.focus();
+				return;
+			}
+			let memberPw=document.querySelector('#memberPw');
+			if(memberPw.value==''){
+				alert('비밀번호를 입력하세요!');
+				memberPw.focus();
+				return;
+			}
+			
+			let updateForm=document.querySelector('#updateForm');
+			updateForm.submit();
+			
+		});
+	</script>
 
 	<footer class="footer">
 		<div class="container">

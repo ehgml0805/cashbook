@@ -150,12 +150,12 @@ if (selectHelpCount / rowPerPage != 0) {
 		<!-- 배경 색 -->
 		<!-- 고객센터 문의 목록 -->
 		<div class="container">
+		<h3 style="color: white;">Help List.</h3>
 			<div class="p-5 mb-7 bg-light">
-				<h3>Help List</h3>
 				<!-- table 배경색 -->
 				<div class="row row-grid align-items-center mb-5 ">
-					<table class="table">
-						<tr class="text-center">
+					<table class="table text-center">
+						<tr>
 							<th>No.</th>
 							<th>문의 내용</th>
 							<th>회원 ID</th>

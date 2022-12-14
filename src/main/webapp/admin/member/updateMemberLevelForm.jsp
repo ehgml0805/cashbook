@@ -154,7 +154,7 @@ Member member = memberDao.selectMemberOne(memberNo);
 						<input type="hidden" name="memberNo" value="<%=memberNo%>">
 						<table>
 							<tr>
-								<td><div class="form-group text-center">회원 아이디</div></td>
+								<td><div class="form-group text-center" style="font-weight: bold;">회원 아이디</div></td>
 								<td>
 									<div class="form-group text-center">
 										<input type="text" name="memberId"
@@ -164,7 +164,7 @@ Member member = memberDao.selectMemberOne(memberNo);
 								</td>
 							</tr>
 							<tr>
-								<td><div class="form-group text-center">회원 이름</div></td>
+								<td><div class="form-group text-center" style="font-weight: bold;">회원 이름</div></td>
 								<td>
 									<div class="form-group text-center">
 										<input type="text" name="memberName"
@@ -174,7 +174,7 @@ Member member = memberDao.selectMemberOne(memberNo);
 								</td>
 							</tr>
 							<tr>
-								<td><div class="form-group text-center">회원 기존 레벨</div></td>
+								<td><div class="form-group text-center" style="font-weight: bold;">회원 기존 레벨</div></td>
 								<td>
 									<%
 									if (member.getMemberLevel() == 0) {
@@ -198,7 +198,7 @@ Member member = memberDao.selectMemberOne(memberNo);
 								</td>
 							</tr>
 							<tr>
-								<td><div class="form-group text-center">회원 변경 레벨</div></td>
+								<td><div class="form-group text-center" style="font-weight: bold;">회원 변경 레벨</div></td>
 								<td>
 									<div class="form-group text-center">
 										<input type="radio" name="memberLevel" value="0">0 일반

@@ -144,39 +144,54 @@ System.out.println(memberLevel + "<-멤버레벨");
 				<%
 				}
 				%>
-				<div style="margin:auto;text-align:center;">
-				<form style="display:inline-block;"
-					action="<%=request.getContextPath()%>/admin/category/insertCategoryAction.jsp"
-					method="post">
-					<table>
-						<tr>
-							<td><div class="form-group">수입/지출</div></td>
-							<td>
-								<div class="form-group text-left">
-									<div class="custom-control custom-radio mb-3">
-										<input type="radio" name="categoryKind" value="수입">수입
-										&nbsp;
-										<input type="radio" name="categoryKind" value="지출">지출
-								</div>
-								</div>
-							</td>
-						</tr>
-						<tr>
-							<td><div class="form-group">항목</div></td>
-							<td><div class="form-group ">
-									<input type="text" name="categoryName"
-										class="form-control form-control-alternative">
-								</div></td>
-						</tr>
-					</table>
-					<div class="text-center">
-						<button type="submit" class="btn btn-primary mt-4">추가하기</button>
-					</div>
-				</form>
+				<div style="margin: auto; text-align: center;">
+					<form style="display: inline-block;" id="insertcategoryForm"
+						action="<%=request.getContextPath()%>/admin/category/insertCategoryAction.jsp"
+						method="post">
+						<table>
+							<tr>
+								<td><div class="form-group" style="font-weight: bold;">수입/지출</div></td>
+								<td>
+									<div class="form-group text-left">
+										<div class="custom-control custom-radio mb-3">
+											<input type="radio" name="categoryKind" value="수입">수입
+											&nbsp;&nbsp;
+											<input type="radio" name="categoryKind" value="지출">지출
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td><div class="form-group" style="font-weight: bold;">항목</div></td>
+								<td><div class="form-group ">
+										<input type="text" name="categoryName" id="categoryName"
+											class="form-control form-control-alternative">
+									</div></td>
+							</tr>
+						</table>
+						<div class="text-center">
+							<button type="button" class="btn btn-primary mt-4" id="insertCategoryBt">추가하기</button>
+						</div>
+					</form>
 				</div>
 			</div>
 		</div>
 	</section>
+	<script>
+		let insertCategoryBt=document.querySelector('#insertCategoryBt');
+		insertCategoryBt.addEventListener('click', function(e) {
+			console.log('insertCategoryBt click');
+			
+			let categoryName=document.querySelector('#categoryName');
+			if(categoryName.value==''){
+				alert('항목을 입력하세요');
+				categoryName.focus();
+				return;
+			}
+			let insertcategoryForm=document.querySelector('#insertcategoryForm');
+			insertcategoryForm.submit();
+		});
+	</script>
 
 	<footer class="footer">
 		<div class="container">

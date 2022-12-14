@@ -7,8 +7,7 @@
 request.setCharacterEncoding("utf-8");
 if(session.getAttribute("loginMember")==null||request.getParameter("memberName").equals("")
 	||request.getParameter("memberPw").equals("")){
-	String msg1=URLEncoder.encode("✔이름과 비밀번호를 입력하세요!","utf-8");
-	response.sendRedirect(request.getContextPath()+"/updateMemberForm.jsp?msg1="+msg1);
+	response.sendRedirect(request.getContextPath()+"/updateMemberForm.jsp");
 	return;
 }
 //개인정보 수정 폼에서 아이디 받아오기

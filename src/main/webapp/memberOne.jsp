@@ -81,20 +81,24 @@ String memberName = loginMember.getMemberName();
 							class="nav-link-inner--text">MENU</span>
 					</a>
 						<div class="dropdown-menu">
-							<a href="<%=request.getContextPath()%>/cash/cashList.jsp"
-								class="dropdown-item">Calendar</a> <a
+							<a href="<%=request.getContextPath()%>/index.jsp"
+								class="dropdown-item">Index</a>
+							<a
+								href="<%=request.getContextPath()%>/cash/cashList.jsp"
+								class="dropdown-item">Calender</a>
+							<a
 								href="<%=request.getContextPath()%>/help/helpList.jsp"
 								class="dropdown-item">Help</a>
 							<%
-							if (loginMember.getMemberLevel() > 0) {
+								if(loginMember.getMemberLevel() > 0) {
 							%>
-							<a href="<%=request.getContextPath()%>/admin/adminMain.jsp"
-								class="dropdown-item">Admin Main</a>
-							<%
-							}
+									<a 
+									href="<%=request.getContextPath()%>/admin/adminMain.jsp" 
+									class="dropdown-item">Admin Main</a>
+							<%	
+								}
 							%>
 						</div></li>
-
 				</ul>
 				<ul class="navbar-nav align-items-lg-center ml-lg-auto">
 					<li class="nav-item"><a class="nav-link nav-link-icon"

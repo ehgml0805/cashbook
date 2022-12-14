@@ -81,10 +81,14 @@ String loginMemberPw = loginMember.getMemberPw();
 							class="nav-link-inner--text">MENU</span>
 					</a>
 						<div class="dropdown-menu">
-							<a href="<%=request.getContextPath()%>/cash/cashList.jsp" class="dropdown-item">Calendar</a>
-							<a href="<%=request.getContextPath()%>/help/helpList.jsp" class="dropdown-item">Help</a>
+							<a href="<%=request.getContextPath()%>/index.jsp"
+								class="dropdown-item">Index</a> <a
+								href="<%=request.getContextPath()%>/cash/cashList.jsp"
+								class="dropdown-item">Calender</a> <a
+								href="<%=request.getContextPath()%>/help/helpList.jsp"
+								class="dropdown-item">Help</a>
 						</div></li>
-				</ul>
+				</ul>>
 				<ul class="navbar-nav align-items-lg-center ml-lg-auto">
 					<li class="nav-item"><a class="nav-link nav-link-icon"
 						href="https://www.facebook.com/CreativeTim/" target="_blank"
@@ -147,7 +151,7 @@ String loginMemberPw = loginMember.getMemberPw();
 							<%
 							}
 							%>
-							<form
+							<form id="updatePw"
 								action="<%=request.getContextPath()%>/updateMemberPWAction.jsp"
 								method="post" role="form">
 								<div class="form-group">
@@ -178,7 +182,7 @@ String loginMemberPw = loginMember.getMemberPw();
 												class="ni ni-lock-circle-open"></i></span>
 										</div>
 										<input type="password" name="bememberPw" class="form-control"
-											placeholder="변경 전 비밀번호">
+											placeholder="변경 전 비밀번호" id="bememberPw">
 									</div>
 								</div>
 								<div class="form-group focused">
@@ -188,11 +192,11 @@ String loginMemberPw = loginMember.getMemberPw();
 												class="ni ni-lock-circle-open"></i></span>
 										</div>
 										<input type="password" name="memberPw" class="form-control"
-											placeholder="변경 할 비밀번호">
+											placeholder="변경 할 비밀번호" id="memberPw">
 									</div>
 								</div>
 								<div class="text-center">
-									<button type="submit" class="btn btn-primary mt-4">UPDATE</button>
+									<button type="button" class="btn btn-primary mt-4" id="updatePwBt">UPDATE</button>
 								</div>
 							</form>
 						</div>
@@ -207,6 +211,29 @@ String loginMemberPw = loginMember.getMemberPw();
 			</div>
 		</div>
 	</section>
+	
+		<script>
+		let updatePwBt=document.querySelector('#updatePwBt');
+		updatePwBt.addEventListener('click', function(e) {
+			console.log('updatePwBt click!')
+			
+		let bememberPw=document.querySelector('#bememberPw');
+		if(bememberPw.value==''){
+			alert('변경 전 비밀번호를 입력하세요');
+			bememberPw.focus();
+			return;
+		}
+		let memberPw=document.querySelector('#memberPw');
+		if(memberPw.value==''){
+			alert('변경 할 비밀번호를 확인하세요!');
+			memberPw.focus();
+			return;
+		}
+		let updatePwBForm=document.querySelector('#updatePw');
+		updatePwBForm.submit();
+		
+		});
+	</script>
 	<footer class="footer">
 		<div class="container">
 			<hr>
@@ -231,7 +258,7 @@ String loginMemberPw = loginMember.getMemberPw();
 			</div>
 		</div>
 	</footer>
-
+	
 	<!--   Core JS Files   -->
 	<script src="resource/assets/js/core/jquery.min.js" type="text/javascript"></script>
 	<script src="resource/assets/js/core/popper.min.js" type="text/javascript"></script>

@@ -79,8 +79,10 @@ String loginMemberName = loginMember.getMemberName();
 							class="nav-link-inner--text">MENU</span>
 					</a>
 						<div class="dropdown-menu">
-							<a href="<%=request.getContextPath()%>/cash/cashList.jsp"
-								class="dropdown-item">Calendar</a> <a
+							<a href="<%=request.getContextPath()%>/index.jsp"
+								class="dropdown-item">Index</a> <a
+								href="<%=request.getContextPath()%>/cash/cashList.jsp"
+								class="dropdown-item">Calender</a> <a
 								href="<%=request.getContextPath()%>/help/helpList.jsp"
 								class="dropdown-item">Help</a>
 						</div></li>
@@ -147,7 +149,7 @@ String loginMemberName = loginMember.getMemberName();
 							<%
 							}
 							%>
-							<form
+							<form id="deleteForm"
 								action="<%=request.getContextPath()%>/deleteMemberAction.jsp"
 								method="post" role="form">
 								<div class="form-group">
@@ -177,12 +179,12 @@ String loginMemberName = loginMember.getMemberName();
 											<span class="input-group-text"><i
 												class="ni ni-lock-circle-open"></i></span>
 										</div>
-										<input type="password" name="memberPw" class="form-control"
+										<input type="password" name="memberPw" id="memberPw" class="form-control"
 											placeholder="비밀번호">
 									</div>
 								</div>
 								<div class="text-center">
-									<button type="submit" class="btn btn-primary mt-4">탈퇴하기</button>
+									<button type="button" class="btn btn-primary mt-4" id="deleteBt">탈퇴하기</button>
 								</div>
 							</form>
 						</div>
@@ -215,6 +217,23 @@ String loginMemberName = loginMember.getMemberName();
 			</div>
 		</div>
 	</footer>
+	<script>
+		let deleteBt=document.querySelector('#deleteBt');
+		deleteBt.addEventListener('click', function(e) {
+			console.log('deleteBt click' );
+			
+			let memberPw=document.querySelector('#memberPw');
+			if(memberPw.value==''){
+				alert('비밀번호를 입력하세요!');
+				memberPw.focus();
+				return;
+			}
+			
+			let deleteForm=document.querySelector('#deleteForm');
+			deleteForm.sumnit();
+			
+		});
+	</script>
 
 	<!--   Core JS Files   -->
 	<script src="resource/assets/js/core/jquery.min.js" type="text/javascript"></script>

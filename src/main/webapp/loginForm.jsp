@@ -85,7 +85,7 @@ int lastPage = selectNoticeCount / rowPerPage;
 								<small>Or sign in with credentials</small>
 							</div>
 							<form action="<%=request.getContextPath()%>/loginAction.jsp"
-								method="post" role="form">
+								method="post" role="form" id="loginForm">
 
 								<%
 								if (msg != null) {
@@ -105,7 +105,7 @@ int lastPage = selectNoticeCount / rowPerPage;
 											<span class="input-group-text"><i
 												class="ni ni-email-83"></i></span>
 										</div>
-										<input type="text" name="memberId"
+										<input type="text" name="memberId" id="memberId"
 											class="form-control form-control-alternative"
 											placeholder="아 이 디">
 									</div>
@@ -116,7 +116,7 @@ int lastPage = selectNoticeCount / rowPerPage;
 											<span class="input-group-text"><i
 												class="ni ni-lock-circle-open"></i></span>
 										</div>
-										<input type="password" name="memberPw"
+										<input type="password" name="memberPw" id="memberPw"
 											class="form-control form-control-alternative"
 											placeholder="비밀번호">
 									</div>
@@ -128,7 +128,7 @@ int lastPage = selectNoticeCount / rowPerPage;
 										for=" customCheckLogin"><span>Remember me</span></label>
 								</div>
 								<div class="text-center">
-									<button type="submit" class="btn btn-primary my-3">Sign
+									<button type="button" class="btn btn-primary my-3" id="loginBt">Sign
 										in</button>
 								</div>
 							</form>
@@ -188,6 +188,31 @@ int lastPage = selectNoticeCount / rowPerPage;
 				</div>
 			</div>
 		</div>
+		<script>
+			let loginBt=document.querySelector('#loginBt');
+			loginBt.addEventListener('click',function(e) {
+				//디버깅	
+			 	console.log('loginBt click!')
+			 	
+			let memberId=document.querySelector('#memberId');
+			if(memberId.value==''){
+				alert('아이디를 입력하세요!');
+				memberId.focus();
+				return;
+				}
+				
+			let memberPw=document.querySelector('#memberPw');
+			if(memberPw.value==''){
+				alert('비밀번호를 입력하세요!')
+				memberPw.focus();
+				return;
+			}
+			
+			let loginForm=document.querySelector('#loginForm');
+			loginForm.submit();
+			
+			});
+		</script>
 	</footer>
 	<!--   Core JS Files   -->
 	<script src="resourc/assets/js/core/jquery.min.js"

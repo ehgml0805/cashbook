@@ -142,24 +142,40 @@ String msg1 = request.getParameter("msg1");
 				<%
 				}
 				%>
-				<form
+				<form id="insertNoticeForm"
 					action="<%=request.getContextPath()%>/admin/notice/insertNoticeAction.jsp"
 					method="post">
 					<div class="form-group">
-						<h3>공지 내용</h3>
+						<h3 style="font-weight: bold;">공지 내용</h3>
 					</div>
 					<div class="form-group">
 						<textarea class="form-control  form-control-alternative"
 							 placeholder="공지사항을 입력하세요."
-							rows="10" cols="30" name="noticeMemo"></textarea>
+							rows="10" cols="30" name="noticeMemo" id="noticeMemo"></textarea>
 					</div>
 					<div class="text-center">
-						<button type="submit" class="btn btn-primary mt-4">공지 추가</button>
+						<button type="button" class="btn btn-primary mt-4" id="insetNoticeBt">공지 추가</button>
 					</div>
 				</form>
 			</div>
 		</div>
 	</section>
+	
+				<script>
+				let insetNoticeBt=document.querySelector('#insetNoticeBt');
+				insetNoticeBt.addEventListener('click', function(e) {
+					console.log('insetNoticeBt click');
+					
+					let noticeMemo=document.querySelector('#noticeMemo');
+					if(noticeMemo.value==''){
+						alert('공지사항을 입력하세요');
+						noticeMemo.focus();
+						return;
+					}
+					let insertNoticeForm=document.querySelector('#insertNoticeForm');
+					insertNoticeForm.submit();
+				});
+			</script>
 
 	<footer class="footer">
 		<div class="container">

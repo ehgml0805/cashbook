@@ -144,13 +144,14 @@ ArrayList<Category> categoryList = categoryDao.selectCategoryListByAdmin();
 		<!-- 페이징 놉 -->
 		<!-- 카테고리 리스트 출력하기 -->
 		<div class="container">
+		<h3 style="color: white;">Category List.</h3>
 			<div class="p-5 mb-7 bg-light">
-				<h3>Category List</h3>
 				<div>
-					<a
+					<a style="font-weight: bold;"
 						href="<%=request.getContextPath()%>/admin/category/insertCategoryForm.jsp">카테고리
 						추가</a>
 				</div>
+				<br>
 				<!-- table 배경색 -->
 				<div class="row row-grid align-items-center mb-5 ">
 					<table class="table text-center">

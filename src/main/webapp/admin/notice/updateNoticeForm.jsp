@@ -147,25 +147,41 @@ Notice notice = noticeDao.selectNotice(noticeNo);
 				<%
 				}
 				%>
-				<form
+				<form id="updateNoticeForm"
 					action="<%=request.getContextPath()%>/admin/notice/updateNoticeAction.jsp"
 					method="post">
 					<div class="form-group">
+					 <div style="font-weight: bold;">공지 번호</div>
 						<input class="form-control form-control-alternative" 
 						type="text" name="noticeNo" value="<%=noticeNo%>" readonly="readonly">
 					</div>
-					<div>공지내용</div>
+					<div style="font-weight: bold;">공지내용</div>
 					<div class="form-group">
-						<textarea class="form-control  form-control-alternative" rows="10"
+						<textarea class="form-control  form-control-alternative" rows="10" id="noticeMemo"
 							cols="30" name="noticeMemo"><%=notice.getNoticeMemo()%></textarea>
 					</div>
 					<div class="text-center">
-					<button type="submit" class="btn btn-primary mt-4">수정하기</button>
+					<button type="submit" class="btn btn-primary mt-4" id="updateNoticeBt">수정하기</button>
 					</div>
 				</form>
 			</div>
 		</div>
 	</section>
+	<script>
+		let updateNoticeBt=document.querySelector('#updateNoticeBt');
+		updateNoticeBt.addEventListener('click', function(e) {
+			console.log('updateNoticeBt click');
+			
+			let noticeMemo=document.querySelector('#noticeMemo');
+			if(noticeMemo.value==''){
+				alert('메모를 입력하세요');
+				noticeMemo.focus();
+				return;
+			}
+			let updateNoticeForm=document.querySelector('#updateNoticeForm');
+			updateNoticeForm.submit();
+		});
+	</script>
 
 	<footer class="footer">
 		<div class="container">

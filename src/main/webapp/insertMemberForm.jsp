@@ -66,13 +66,13 @@ String msg1=request.getParameter("msg1");
 							<%		
 								}
 							%>
-							<form action="<%=request.getContextPath()%>/insertMemberAction.jsp"  method="post" role="form">
+							<form action="<%=request.getContextPath()%>/insertMemberAction.jsp"  method="post" role="form" id="insertForm">
 							 <div class="form-group">
 							 	<div class="input-group input-group-alternative mb-3">
 									<div class="input-group-prepend">
 									<span class="input-group-text"><i class="ni ni-hat-3"></i></span>
 									</div>
-									<input type="text" name="memberName" class="form-control" placeholder="이 름">
+									<input type="text" name="memberName" id="memberName" class="form-control" placeholder="이 름">
 								</div>
 							</div>
 							<div class="form-group">
@@ -80,7 +80,7 @@ String msg1=request.getParameter("msg1");
 									<div class="input-group-prepend">
 										<span class="input-group-text"><i class="ni ni-email-83"></i></span>
 									</div>
-									<input type="text" name="memberId" class="form-control" placeholder="아 이 디">
+									<input type="text" name="memberId" id="memberId" class="form-control" placeholder="아 이 디">
 								</div>
 							</div>
 							<div class="form-group focused">
@@ -88,7 +88,7 @@ String msg1=request.getParameter("msg1");
 									<div class="input-group-prepend">
 										<span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
 									</div>
-									<input type="password" name="memberPw" class="form-control" placeholder="비밀번호">
+									<input type="password" name="memberPw" id="memberPw" class="form-control" placeholder="비밀번호">
 								</div>
 							</div>
 							<div class="text-muted font-italic"><small>password strength: <span class="text-success font-weight-700">strong</span></small></div>
@@ -101,7 +101,7 @@ String msg1=request.getParameter("msg1");
 								</div>
 							</div>
 							<div class="text-center">
-								<button type="submit" class="btn btn-primary mt-4">Create account</button>
+								<button type="button" class="btn btn-primary mt-4"  id="insertBt">Create account</button>
 							</div>
 						</form>
 							</div>
@@ -115,6 +115,44 @@ String msg1=request.getParameter("msg1");
 			</div>
 		</div>
 </section>
+		<script>
+			let insertBt=document.querySelector('#insertBt');
+			insertBt.addEventListener('click', function(e) {
+				console.log('insertBt click');
+			
+			let memberName=document.querySelector('#memberName');
+			if(memberName.value==''){
+				alert('이름을 입력하세요');
+				memberName.focus();
+				return;
+			}
+				
+			let memberId=document.querySelector('#memberId');
+			if(memberId.value==''){
+				alert('아이디를 입력하세요!');
+				memberId.focus();
+				return;
+			}
+			
+			let memberPw=document.querySelector('#memberPw');
+			if(memberPw.value==''){
+				alert('비밀번호를 입력하세요!');
+				memberPw.focus();
+				return;
+			}
+			
+			let customCheckRegister=document.querySelectorAll('.customCheckRegister');
+			console.log(customCheckRegister.length);
+			if(customCheckRegister!=0){
+				alert('동의하세요')
+				return;
+			}
+			
+			let insertForm=document.querySelector('#insertForm');
+			insertForm.submit();
+				
+			});
+		</script>
 	<footer class="footer">
     <div class="container">
       <hr>
@@ -143,7 +181,6 @@ String msg1=request.getParameter("msg1");
       </div>
     </div>
   </footer>
-	
 	<!--   Core JS Files   -->
 	<script src="../assets/js/core/jquery.min.js" type="text/javascript"></script>
 	<script src="../assets/js/core/popper.min.js" type="text/javascript"></script>

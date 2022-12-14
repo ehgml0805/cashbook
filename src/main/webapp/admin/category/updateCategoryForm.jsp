@@ -149,13 +149,14 @@ Category category = categoryDao.selectCategoryOne(categoryNo);
 				}
 				%>
 				<div style="margin: auto; text-align: center;">
-					<form style="display: inline-block;"
+					<form style="display: inline-block;" id="updateCategoryForm"
 						action="<%=request.getContextPath()%>/admin/category/updateCategoryAction.jsp"
 						method="post">
 						<input type="hidden" name="categoryNo" value="<%=categoryNo%>">
 						<table>
 							<tr>
-								<td><div class="form-group text-center">수입/지출</div></td>
+								<td><div class="form-group text-center"
+										style="font-weight: bold;">수입/지출</div></td>
 								<td>
 									<div class="form-group">
 										<div class="custom-control custom-radio mb-3">
@@ -187,7 +188,8 @@ Category category = categoryDao.selectCategoryOne(categoryNo);
 								</td>
 							</tr>
 							<tr>
-								<td><div class="form-group text-center">변경 전 항목</div></td>
+								<td><div class="form-group text-center"
+										style="font-weight: bold;">변경 전 항목</div></td>
 								<td>
 									<div class="form-group">
 										<input type="text" value="<%=category.getCategoryName()%>"
@@ -196,23 +198,40 @@ Category category = categoryDao.selectCategoryOne(categoryNo);
 								</td>
 							</tr>
 							<tr>
-								<td><div class="form-group">변경 후 항목</div></td>
+								<td><div class="form-group" style="font-weight: bold;">변경
+										후 항목</div></td>
 								<td>
 									<div class="form-group">
-										<input type="text" name="categoryName"
+										<input type="text" name="categoryName" id="categoryName"
 											class="form-control form-control-alternative">
 									</div>
 								</td>
 							</tr>
 						</table>
 						<div class="text-center">
-							<button type="submit" class="btn btn-primary mt-4">수정하기</button>
+							<button type="button" class="btn btn-primary mt-4" id="updateCategoryBt">수정하기</button>
 						</div>
 					</form>
 				</div>
 			</div>
 		</div>
 	</section>
+	
+		<script>
+		let updateCategoryBt=document.querySelector('#updateCategoryBt');
+		updateCategoryBt.addEventListener('click', function(e) {
+			console.log('updateCategoryBt click');
+			
+			let categoryName=document.querySelector('#categoryName');
+			if(categoryName.value==''){
+				alert('변경 할 항목을 입력하세요');
+				categoryName.focus();
+				return;
+			}
+			let updateCategoryForm=document.querySelector('#updateCategoryForm');
+			updateCategoryForm.submit();
+		});
+	</script>
 
 	<footer class="footer">
 		<div class="container">

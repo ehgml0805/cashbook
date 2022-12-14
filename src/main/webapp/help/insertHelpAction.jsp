@@ -16,7 +16,7 @@ if(loginMember==null|| request.getParameter("helpMemo")==null||request.getParame
 String helpMemo=request.getParameter("helpMemo");
 //String memberId=request.getParameter("memberId");
 String memberId=loginMember.getMemberId();
-System.out.println(memberId+"memberId");
+//System.out.println(memberId+"memberId");
 
 //model 불러오기
 Help help=new Help();
