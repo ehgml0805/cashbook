@@ -19,6 +19,5 @@ public class DBUtil {
 		}
 		if(rs!=null) {conn.close();
 		}
-	   
 	}
 }

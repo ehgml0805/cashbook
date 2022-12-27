@@ -6,6 +6,8 @@ import util.DBUtil;
 import vo.Cash;
 
 public class CashDao {
+	
+	// 사용자 월 별 수입/지출 합과 평균
 	public ArrayList<HashMap<String, Object>> selectCashSumByMonth(String memberId,int year){
 		ArrayList<HashMap<String, Object>> list= new ArrayList<HashMap<String,Object>>();
 		DBUtil dbUtil = new DBUtil();
