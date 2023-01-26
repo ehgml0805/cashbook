@@ -156,18 +156,14 @@ ArrayList<HashMap<String, Object>> list = cashDao.selectCashListByDate(loginMemb
 						style="color: white;">님 반갑습니다. </span> &#127881;
 				</h3>
 			</div>
-			<div class="container">
 			<div class="p-5 mb-7 bg-light">
 			<form id="insertCashForm"
 				action="<%=request.getContextPath()%>/cash/insertCashAction.jsp?year=<%=year%>&month=<%=month%>&date=<%=date%>"
 				method="post">
-				<input type="hidden" name="memberId"
-					value="<%=loginMember.getMemberId()%>"> <input
-					type="hidden" name="year" value="<%=year%>"> <input
-					type="hidden" name="month" value="<%=month%>"> <input
-					type="hidden" name="date" value="<%=date%>">
-				
-
+				<input type="hidden" name="memberId" value="<%=loginMember.getMemberId()%>">
+				<input type="hidden" name="year" value="<%=year%>">
+				<input type="hidden" name="month" value="<%=month%>">
+				<input type="hidden" name="date" value="<%=date%>">
 					<div style="font-weight: bold;">
 						사용일자
 					</div>
@@ -233,13 +229,12 @@ ArrayList<HashMap<String, Object>> list = cashDao.selectCashListByDate(loginMemb
 			</script>
 			<br>
 			<br>
-			<div class="container">
 			<table class="table">
-				<tr>
-					<td>가격</td>
+				<tr style="text-align: center;">
+					<td>사용 날짜</td>
 					<td>수입/지출</td>
 					<td>항목</td>
-					<td>사용 날짜</td>
+					<td>가격</td>
 					<td>메모</td>
 					<td>수정 / 삭제</td>
 
@@ -249,11 +244,11 @@ ArrayList<HashMap<String, Object>> list = cashDao.selectCashListByDate(loginMemb
 					String cashDate = (String) (m.get("cashDate"));
 					if (Integer.parseInt(cashDate.substring(8)) == date) {
 				%>
-				<tr>
-					<td><%=m.get("cashPrice")%></td>
+				<tr style="text-align: center;">
+					<td><%=m.get("cashDate")%></td>
 					<td><%=m.get("categoryKind")%></td>
 					<td><%=m.get("categoryName")%></td>
-					<td><%=m.get("cashDate")%></td>
+					<td><%=m.get("cashPrice")%></td>
 					<td><%=m.get("cashMemo")%></td>
 					<td><a
 						href="<%=request.getContextPath()%>/cash/updateCashForm.jsp?cashNo=<%=m.get("cashNo")%>&year=<%=year%>&month=<%=month%>&date=<%=date%>">수정</a>
@@ -265,7 +260,6 @@ ArrayList<HashMap<String, Object>> list = cashDao.selectCashListByDate(loginMemb
 				}
 				%>
 			</table>
-		</div>
 		</div>
 		</div>
 	</section>

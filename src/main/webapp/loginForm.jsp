@@ -60,7 +60,7 @@ int lastPage = selectNoticeCount / rowPerPage;
 			<span></span> <span></span> <span></span> <span></span> <span></span>
 			<span></span> <span></span>
 		</div>
-		<div class="container pt-lg-1"><!-- 배경 상단 높이 -->
+		<div class="container"><!-- 배경 상단 높이 -->
 			<div class="row justify-content-center">
 				<div class="col-lg-5"><!-- 하얀부분 가로  -->
 					<div class="card bg-secondary shadow border-0">
@@ -107,7 +107,7 @@ int lastPage = selectNoticeCount / rowPerPage;
 										</div>
 										<input type="text" name="memberId" id="memberId"
 											class="form-control form-control-alternative"
-											placeholder="아 이 디">
+											placeholder="아 이 디" value="fkd0910">
 									</div>
 								</div>
 								<div class="form-group focused">
@@ -118,7 +118,7 @@ int lastPage = selectNoticeCount / rowPerPage;
 										</div>
 										<input type="password" name="memberPw" id="memberPw"
 											class="form-control form-control-alternative"
-											placeholder="비밀번호">
+											placeholder="비밀번호" value="1234">
 									</div>
 								</div>
 								<div
@@ -160,7 +160,7 @@ int lastPage = selectNoticeCount / rowPerPage;
 					<%
 					for (Notice n : list) {
 					%>
-					<tr>
+					<tr class="text-center">
 						<td><%=n.getNoticeMemo()%></td>
 						<td><%=n.getCreatedate()%></td>
 					</tr>
@@ -169,7 +169,6 @@ int lastPage = selectNoticeCount / rowPerPage;
 					%>
 				</table>
 			</div>
-			<hr>
 			<div class="row align-items-center justify-content-md-between">
 				<div class="col-md-6">
 					<div class="copyright">&copy; 2022 도랑</div>

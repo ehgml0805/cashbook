@@ -106,8 +106,6 @@ if (selectMemberAdminCount / rowPerPage != 0) {
 							class="nav-link-inner--text">MENU</span>
 					</a>
 						<div class="dropdown-menu">
-						<a href="<%=request.getContextPath()%>/memberOne.jsp"
-								class="dropdown-item"> My Page</a>
 							<a href="<%=request.getContextPath()%>/admin/noticeList.jsp"
 								class="dropdown-item">Notice</a> <a
 								href="<%=request.getContextPath()%>/admin/helpListAll.jsp"
@@ -115,7 +113,7 @@ if (selectMemberAdminCount / rowPerPage != 0) {
 								href="<%=request.getContextPath()%>/admin/memberList.jsp"
 								class="dropdown-item">Member List</a> <a
 								href="<%=request.getContextPath()%>/admin/categoryList.jsp"
-								class="dropdown-item">Ctegory </a>
+								class="dropdown-item">Category </a>
 						</div></li>
 
 				</ul>
@@ -145,7 +143,13 @@ if (selectMemberAdminCount / rowPerPage != 0) {
 							class="nav-link-inner--text d-lg-none">Github</span>
 					</a></li>
 					<li class="nav-item"><a class="btn btn-neutral"
-						href="<%=request.getContextPath()%>/logOut.jsp"> <span
+						href="<%=request.getContextPath()%>/memberOne.jsp"> <span
+							class="nav-link-inner--text">My Page</span>
+					</a></li>
+					<li class="nav-item d-none d-lg-block"><a
+						href="<%=request.getContextPath()%>/logOut.jsp" target="_blank"
+						class="btn btn-neutral btn-icon"> <span
+							class="btn-inner--icon"> </span> <span
 							class="nav-link-inner--text">LOG OUT</span>
 					</a></li>
 				</ul>
@@ -168,9 +172,8 @@ if (selectMemberAdminCount / rowPerPage != 0) {
 					<div class="col px-0">
 						<div class="row align-items-center justify-content-center">
 							<div class="col-lg-6 text-center">
-								<h1 class="text-white display-1"></h1>
-								<h2 class="display-4 font-weight-normal text-white">ADMIN
-									MAIN PAGE</h2>
+								<h1 class="text-white display-1">관리자 메인</h1>
+								<h2 class="display-4 font-weight-normal text-white"></h2>
 							</div>
 						</div>
 					</div>

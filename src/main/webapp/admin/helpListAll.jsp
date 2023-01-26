@@ -217,27 +217,29 @@ if (selectHelpCount / rowPerPage != 0) {
 						}
 						%>
 					</table>
-					<a
-						href="<%=request.getContextPath()%>/admin/helpListAll.jsp?currentPage=1">처음</a>
-					<%
-					if (currentPage > 1) {
-					%>
-					<a 
-						href="<%=request.getContextPath()%>/admin/helpListAll.jsp?currentPage=<%=currentPage - 1%>">이전</a>
-					<%
-					}
-					%>
-					 <span><%=currentPage%></span>
-					<%
-					if (currentPage < lastPage) {
-					%>
-					<a 
-						href="<%=request.getContextPath()%>/admin/helpListAll.jsp?currentPage=<%=currentPage + 1%>">다음</a>
-					<%
-					}
-					%>
-					<a
-						href="<%=request.getContextPath()%>/admin/helpListAll.jsp?currentPage=<%=lastPage%>">마지막</a>
+					<div class="container" style="text-align: center;">
+						<a
+							href="<%=request.getContextPath()%>/admin/helpListAll.jsp?currentPage=1">처음</a>
+						<%
+						if (currentPage > 1) {
+						%>
+						<a 
+							href="<%=request.getContextPath()%>/admin/helpListAll.jsp?currentPage=<%=currentPage - 1%>">이전</a>
+						<%
+						}
+						%>
+						 <span><%=currentPage%></span>
+						<%
+						if (currentPage < lastPage) {
+						%>
+						<a 
+							href="<%=request.getContextPath()%>/admin/helpListAll.jsp?currentPage=<%=currentPage + 1%>">다음</a>
+						<%
+						}
+						%>
+						<a
+							href="<%=request.getContextPath()%>/admin/helpListAll.jsp?currentPage=<%=lastPage%>">마지막</a>
+					</div>
 				</div>
 			</div>
 		</div>

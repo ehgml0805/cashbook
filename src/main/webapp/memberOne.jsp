@@ -89,15 +89,6 @@ String memberName = loginMember.getMemberName();
 							<a
 								href="<%=request.getContextPath()%>/help/helpList.jsp"
 								class="dropdown-item">Help</a>
-							<%
-								if(loginMember.getMemberLevel() > 0) {
-							%>
-									<a 
-									href="<%=request.getContextPath()%>/admin/adminMain.jsp" 
-									class="dropdown-item">Admin Main</a>
-							<%	
-								}
-							%>
 						</div></li>
 				</ul>
 				<ul class="navbar-nav align-items-lg-center ml-lg-auto">
@@ -125,8 +116,21 @@ String memberName = loginMember.getMemberName();
 							<i class="fa fa-github"></i> <span
 							class="nav-link-inner--text d-lg-none">Github</span>
 					</a></li>
-					<li class="nav-item"><a class="btn btn-neutral"
-						href="<%=request.getContextPath()%>/logOut.jsp"> <span
+					<%
+						if(loginMember.getMemberLevel() > 0) {
+					%>
+							<li class="nav-item">
+							<a class="btn btn-neutral"
+							href="<%=request.getContextPath()%>/admin/adminMain.jsp"> <span
+								class="nav-link-inner--text">Admin Page</span>
+							</a></li>
+					<%	
+						}
+					%>
+					<li class="nav-item d-none d-lg-block"><a
+						href="<%=request.getContextPath()%>/logOut.jsp" target="_blank"
+						class="btn btn-neutral btn-icon"> <span
+							class="btn-inner--icon"> </span> <span
 							class="nav-link-inner--text">LOG OUT</span>
 					</a></li>
 				</ul>
@@ -193,12 +197,12 @@ String memberName = loginMember.getMemberName();
 								<i class="ni location_pin mr-2"></i>ID
 								<%=memberId%></div>
 							<div class="h4 mt-4">
-								<i class="ni business_briefcase-24 mr-2"></i>Solution Manager -
-								Creative Tim Officer
+								<i class="ni business_briefcase-24 mr-2"></i>구디아카데미 공공데이터 과정 자바 58기 김도희 개인프로젝트.
+								
 							</div>
 							<div>
-								<i class="ni education_hat mr-2"></i>University of Computer
-								Science
+								<i class="ni education_hat mr-2"></i>
+									마리아 디비를 이용하고 mvc모델1으로 만들어 보았음.
 							</div>
 						</div>
 						<div class="mt-5 py-5 border-top text-center">
