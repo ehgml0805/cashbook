@@ -13,6 +13,7 @@ if (loginMember == null) {
 }
 String memberId = loginMember.getMemberId();
 System.out.println(memberId + "<==로그인한 아이디");
+String memberName = loginMember.getMemberName();
 String msg2 = request.getParameter("msg2");
 //model호출
 HelpDao helpDao = new HelpDao();
@@ -23,262 +24,319 @@ ArrayList<HashMap<String, Object>> list = helpDao.selectHelpList(memberId);
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link rel="apple-touch-icon" sizes="76x76"
-	href="../resource/assets/img/apple-icon.png">
-<link rel="icon" type="image/png"
-	href="../resource/assets/img/favicon.png">
-<title>문의하기</title>
+	href="../assets/img/apple-icon.png">
+<link rel="icon" type="image/png" href="../assets/img/favicon.ico">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<title>문의사항</title>
+<meta
+	content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
+	name='viewport' />
 <!--     Fonts and icons     -->
 <link
-	href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700"
-	rel="stylesheet">
-<link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css"
-	rel="stylesheet">
-<!-- Nucleo Icons -->
-<link href="../resource/assets/css/nucleo-icons.css" rel="stylesheet" />
-<link href="../resource/assets/css/nucleo-svg.css" rel="stylesheet" />
-<!-- Font Awesome Icons -->
-<link href="../resource/assets/css/font-awesome.css" rel="stylesheet" />
-<link href="../resource/assets/css/nucleo-svg.css" rel="stylesheet" />
-<!-- CSS Files -->
-<link href="../resource/assets/css/argon-design-system.css?v=1.2.2"
+	href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200"
 	rel="stylesheet" />
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
+<!-- CSS Files -->
+<link href="../resource2/assets/css/bootstrap.min.css" rel="stylesheet" />
+<link
+	href="../resource2/assets/css/light-bootstrap-dashboard.css?v=2.0.0 "
+	rel="stylesheet" />
+<!-- CSS Just for demo purpose, don't include it in your project -->
+<link href="../resource2/assets/css/demo.css" rel="stylesheet" />
 </head>
 
-<body class="landing-page">
-	<!-- Navbar -->
-	<nav id="navbar-main"
-		class="navbar navbar-main navbar-expand-lg navbar-transparent navbar-light py-2">
-		<div class="container">
-			<a class="navbar-brand mr-lg-5"
-				href="<%=request.getContextPath()%>/memberOne.jsp"> <img
-				src="../resource/assets/img/brand/white.png">
-			</a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse"
-				data-target="#navbar_global" aria-controls="navbar_global"
-				aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-			<div class="navbar-collapse collapse" id="navbar_global">
-				<div class="navbar-collapse-header">
-					<div class="row">
-						<div class="col-6 collapse-brand">
-							<a href="<%=request.getContextPath()%>/memberOne.jsp"> <img
-								src="../resource/assets/img/brand/blue.png">
+<body>
+	<div class="wrapper">
+		<div class="sidebar"
+			data-image="../resource2/assets/img/sidebar-5.jpg">
+			<!--
+        	Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
+
+        	Tip 2: you can also add an image using data-image tag
+   			 -->
+			<div class="sidebar-wrapper">
+				<div class="logo">
+					<a href="<%=request.getContextPath()%>/memberOne.jsp" class="simple-text"> Cashbook </a>
+				</div>
+				<ul class="nav">
+					<li>
+						<a class="nav-link" href="<%=request.getContextPath()%>/cash/cashList.jsp">
+							<i class="nc-icon nc-money-coins"></i>
+							<p>Calender</p>
+						</a>
+					</li>
+					<li>
+						<a class="nav-link" href="<%=request.getContextPath()%>/index.jsp">
+							<i class="nc-icon nc-chart-pie-36"></i>
+							<p>Index</p>
+						</a>
+					</li>
+					<li>
+						<a class="nav-link" href="<%=request.getContextPath()%>/memberOne.jsp">
+							<i class="nc-icon nc-circle-09"></i>
+							<p>User Profile</p>
+						</a>
+					</li>
+					<li class="nav-item active">
+						<a class="nav-link" href="<%=request.getContextPath()%>/help/helpList.jsp">
+							<i class="nc-icon nc-notes"></i>
+							<p>Customer Help</p>
+						</a>
+					</li>
+					<%
+					if (loginMember.getMemberLevel() > 0) {
+					%>
+						<li>
+							<a class="nav-link" href="<%=request.getContextPath()%>/admin/adminMain.jsp"> 
+								<i class="nc-icon nc-atom"></i>
+								<p>Admin Page</p>
 							</a>
-						</div>
-						<div class="col-6 collapse-close">
-							<button type="button" class="navbar-toggler"
-								data-toggle="collapse" data-target="#navbar_global"
-								aria-controls="navbar_global" aria-expanded="false"
-								aria-label="Toggle navigation">
-								<span></span> <span></span>
-							</button>
-						</div>
+						</li>
+						<li>
+							<a class="nav-link" href="./icons.html">
+								<i class="nc-icon nc-atom"></i>
+								<p>Icons</p>
+							</a>
+						</li>
+						<li><a class="nav-link" href="./maps.html"> 
+								<i class="nc-icon nc-pin-3"></i>
+								<p>Maps</p>
+							</a>
+						</li>
+						<li>
+							<a class="nav-link" href="./notifications.html"> 
+								<i class="nc-icon nc-bell-55"></i>
+								<p>Notifications</p>
+							</a>
+						</li>
+						<li class="nav-item active active-pro">
+							<a class="nav-link active" href="upgrade.html">
+								<i class="nc-icon nc-alien-33"></i>
+								<p>Upgrade to PRO</p>
+							</a>
+						</li>
+					<%
+					}
+					%>
+
+				</ul>
+			</div>
+		</div>
+		<div class="main-panel">
+			<!-- Navbar -->
+			<nav class="navbar navbar-expand-lg " color-on-scroll="500">
+				<div class="container-fluid">
+					<a class="navbar-brand" href="#pablo"><%=memberName%></a>
+					<button href="" class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+						aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-bar burger-lines"></span> 
+						<span class="navbar-toggler-bar burger-lines"></span> 
+						<span class="navbar-toggler-bar burger-lines"></span>
+					</button>
+					<!-- 작은 화면 네비바 시작 -->
+					<div class="collapse navbar-collapse justify-content-end"
+						id="navigation">
+						<ul class="nav navbar-nav mr-auto">
+							<li class="nav-item">
+								<a href="<%=request.getContextPath()%>/cash/cashList.jsp" class="nav-link" data-toggle="dropdown"> 
+									<i class="nc-icon nc-circle-09"></i> 
+									<span class="d-lg-none">Calender</span>
+								</a>
+							</li>
+							<li class="dropdown nav-item">
+								<a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+									<i class="nc-icon nc-planet"></i>
+									<span class="notification">5</span>
+									<span class="d-lg-none">Notification</span>
+								</a>
+								<ul class="dropdown-menu">
+									<a class="dropdown-item" href="#">Notification 1</a>
+									<a class="dropdown-item" href="#">Notification 2</a>
+									<a class="dropdown-item" href="#">Notification 3</a>
+									<a class="dropdown-item" href="#">Notification 4</a>
+									<a class="dropdown-item" href="#">Another notification</a>
+								</ul>
+							</li>
+							<li class="nav-item">
+								<a href="#" class="nav-link">
+									<i class="nc-icon nc-zoom-split"></i>
+									<span class="d-lg-block">&nbsp;Search</span>
+								</a>
+							</li>
+						</ul>
+						<ul class="navbar-nav ml-auto">
+							<!-- <li class="nav-item">
+								<a class="nav-link" href="#pablo">
+									<span class="no-icon">Account</span>
+								</a>
+							</li> -->
+							<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown"
+									aria-haspopup="true" aria-expanded="false">
+									<span class="no-icon">Dropdown</span>
+								</a>
+								<div class="dropdown-menu"
+									aria-labelledby="navbarDropdownMenuLink">
+									<a class="dropdown-item" href="#">Action</a> <a
+										class="dropdown-item" href="#">Another action</a> <a
+										class="dropdown-item" href="#">Something</a> <a
+										class="dropdown-item" href="#">Something else here</a>
+									<div class="divider"></div>
+									<a class="dropdown-item" href="#">Separated link</a>
+								</div>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="<%=request.getContextPath()%>/logOut.jsp">
+								<span class="no-icon">Log out</span>
+								</a>
+							</li>
+						</ul>
+					</div>
+					<!-- 작은 화면 네비바 끝 -->
+				</div>
+			</nav>
+			<!-- End Navbar -->
+			<div class="col-md-12">
+				<div class="card card-plain table-plain-bg">
+					<%
+					if (msg2 != null) {
+					%>
+						<div class="alert alert-danger text-center" role="alert"><%=msg2%></div>
+					<%
+					}
+					%>
+					<div class="card-header ">
+						<h4 class="card-title">Help List</h4>
+						<p class="card-category">회원이 문의한 글을 쓴 내역을 볼 수 있음</p>
+					</div>
+					<div align="right">
+						<a href="<%=request.getContextPath()%>/help/insertHelpForm.jsp"
+							style="font-weight: bold;">문의 글쓰기 </a>
+					</div>
+					<div class="card-body table-full-width table-responsive">
+						<table class="table table-hover">
+							<tr>
+								<th>No.</th>
+								<th>내용</th>
+								<th>작성 날짜</th>
+								<th>답변 내용</th>
+								<th>답변 날짜</th>
+								<th>수정 / 삭제</th>
+							</tr>
+							<%
+							for (HashMap<String, Object> m : list) {
+							%>
+							<tr>
+								<td>No.<%=m.get("helpNo")%></td>
+								<td><%=m.get("helpMemo")%></td>
+								<td><%=m.get("helpCreatedate")%></td>
+								<td>
+									<%
+									if (m.get("commentMemo") == null) {
+									%> 
+										답변 전 
+									<%
+									} else {
+									%> 
+										<%=m.get("commentMemo")%>
+									<%
+									}
+									%>
+								</td>
+								<td>
+									<%
+									if (m.get("commentCreatedate") == null) {
+									%> 
+										&nbsp;
+									<%
+									} else {
+									%> 
+										<%=m.get("commentCreatedate")%>
+									<%
+									}
+									%>
+								</td>
+								<td>
+									<%
+									if (m.get("commentMemo") == null) {
+									%> 
+										<a href="<%=request.getContextPath()%>/help/updateHelpForm.jsp?helpNo=<%=m.get("helpNo")%>&helpMemo=<%=m.get("helpMemo")%>">
+										수정 / 삭제</a> 
+									<%
+									} else {
+									%> 
+										&nbsp;
+									<%
+									}
+									%> 
+									<%
+									if (m.get("commentMemo") == null) {
+									%> 
+										<a href="<%=request.getContextPath()%>/help/deleteHelpAction.jsp?helpNo=<%=m.get("helpNo")%>">삭제</a>
+									<%
+									} else {
+									%> 
+										&nbsp;
+									<%
+									}
+									%>
+								</td>
+							</tr>
+							<%
+							}
+							%>
+						</table>
 					</div>
 				</div>
-				<ul class="navbar-nav navbar-nav-hover align-items-lg-center">
-					<li class="nav-item dropdown"><a href="#" class="nav-link"
-						data-toggle="dropdown" href="#" role="button"> <i
-							class="ni ni-collection d-lg-none"></i> <span
-							class="nav-link-inner--text">MENU</span>
-					</a>
-						<div class="dropdown-menu">
-							<a href="<%=request.getContextPath()%>/index.jsp"
-								class="dropdown-item">Index</a> <a
-								href="<%=request.getContextPath()%>/cash/cashList.jsp"
-								class="dropdown-item">Calender</a> <a
-								href="<%=request.getContextPath()%>/help/helpList.jsp"
-								class="dropdown-item">Help</a>
-						</div></li>
-				</ul>
-				<ul class="navbar-nav align-items-lg-center ml-lg-auto">
-					<li class="nav-item"><a class="nav-link nav-link-icon"
-						href="https://www.facebook.com/CreativeTim/" target="_blank"
-						data-toggle="tooltip" title="Like us on Facebook"> <i
-							class="fa fa-facebook-square"></i> <span
-							class="nav-link-inner--text d-lg-none">Facebook</span>
-					</a></li>
-					<li class="nav-item"><a class="nav-link nav-link-icon"
-						href="https://www.instagram.com/creativetimofficial"
-						target="_blank" data-toggle="tooltip"
-						title="Follow us on Instagram"> <i class="fa fa-instagram"></i>
-							<span class="nav-link-inner--text d-lg-none">Instagram</span>
-					</a></li>
-					<li class="nav-item"><a class="nav-link nav-link-icon"
-						href="https://twitter.com/creativetim" target="_blank"
-						data-toggle="tooltip" title="Follow us on Twitter"> <i
-							class="fa fa-twitter-square"></i> <span
-							class="nav-link-inner--text d-lg-none">Twitter</span>
-					</a></li>
-					<li class="nav-item"><a class="nav-link nav-link-icon"
-						href="https://github.com/creativetimofficial/argon-design-system"
-						target="_blank" data-toggle="tooltip" title="Star us on Github">
-							<i class="fa fa-github"></i> <span
-							class="nav-link-inner--text d-lg-none">Github</span>
-					</a></li>
-					<li class="nav-item"><a class="btn btn-neutral"
-						href="<%=request.getContextPath()%>/memberOne.jsp"> <span
-							class="nav-link-inner--text">My Page</span>
-					</a></li>
-					<li class="nav-item d-none d-lg-block"><a
-						href="<%=request.getContextPath()%>/logOut.jsp" target="_blank"
-						class="btn btn-neutral btn-icon"> <span
-							class="btn-inner--icon"> </span> <span
-							class="nav-link-inner--text">LOG OUT</span>
-					</a></li>
-				</ul>
 			</div>
+			</section>
+			<footer class="footer">
+				<div class="container-fluid">
+					<nav>
+						<ul class="footer-menu">
+							<li><a href="#"> Home </a></li>
+							<li><a href="#"> Company </a></li>
+							<li><a href="#"> Portfolio </a></li>
+							<li><a href="https://github.com/ehgml0805/cashbook"
+								target='_blank'> Git Hub </a></li>
+						</ul>
+						<p class="copyright text-center">
+							©
+							<script>
+								document.write(new Date().getFullYear())
+							</script>
+							<a href="http://www.creative-tim.com">Creative Tim</a>, made with
+							love for a better web
+						</p>
+					</nav>
+				</div>
+			</footer>
 		</div>
-	</nav>
-	<!-- End Navbar -->
-	<section class="section section-shaped section-lg">
-		<div class="shape shape-style-1 bg-gradient-default"></div>
-		<!-- 배경 색 -->
-
-		<%
-		if (msg2 != null) {
-		%>
-		<div class="alert alert-danger text-center" role="alert"><%=msg2%></div>
-		<%
-		}
-		%>
-		<div class="container">
-		<h3 style="color: white;">Help List</h3>
-			<div class="p-5 mb-7 bg-light">
-				<!-- table 배경색 -->
-				<div>
-					<a href="<%=request.getContextPath()%>/help/insertHelpForm.jsp" style="font-weight: bold;">문의
-						글쓰기 </a>
-				</div>
-				<br>
-				<div class="row row-grid align-items-center mb-5 ">
-					<table class="table text-center">
-						<tr>
-							<th>No.</th>
-							<th>내용</th>
-							<th>작성 날짜</th>
-							<th>답변 내용</th>
-							<th>답변 날짜</th>
-							<th>수정 / 삭제</th>
-						</tr>
-						<%
-						for (HashMap<String, Object> m : list) {
-						%>
-						<tr>
-							<td>No.<%=m.get("helpNo")%></td>
-							<td><%=m.get("helpMemo")%></td>
-							<td><%=m.get("helpCreatedate")%></td>
-							<td>
-								<%
-								if (m.get("commentMemo") == null) {
-								%> 답변 전 <%
-								} else {
-								%> <%=m.get("commentMemo")%> <%
- }
- %>
-							</td>
-							<td>
-								<%
-								if (m.get("commentCreatedate") == null) {
-								%> 
-									&nbsp;
-								<%
-								 } else {
-								%>
-								  <%=m.get("commentCreatedate")%> 
-								<%
-								 }
-								%>
-							</td>
-							<td>
-								<%
-								if (m.get("commentMemo") == null) {
-								%> <a
-									href="<%=request.getContextPath()%>/help/updateHelpForm.jsp?helpNo=<%=m.get("helpNo")%>&helpMemo=<%=m.get("helpMemo")%>">수정 / </a>
-								<%
-								} else {
-								%> 
-								&nbsp;
-								<%
-								 }
-								%>
-			
-								<%
-								if (m.get("commentMemo") == null) {
-								%> <a
-								href="<%=request.getContextPath()%>/help/deleteHelpAction.jsp?helpNo=<%=m.get("helpNo")%>">삭제</a>
-								<%
-								} else {
-								%> &nbsp; <%
- }
- %>
-							</td>
-						</tr>
-						<%
-						}
-						%>
-					</table>
-				</div>
-			</div>
-		</div>
-	</section>
-	<footer class="footer">
-		<div class="container">
-			<div class="row row-grid align-items-center mb-5">
-				<!--하단 넓이로 추정 -->
-			</div>
-			<hr>
-			<div class="row align-items-center justify-content-md-between">
-				<div class="col-md-6">
-					<div class="copyright">&copy; 2022 도랑</div>
-				</div>
-				<div class="col-md-6">
-					<ul class="nav nav-footer justify-content-end">
-						<li class="nav-item"><a href="" class="nav-link"
-							target="_blank">Creative Tim</a></li>
-						<li class="nav-item"><a href="" class="nav-link"
-							target="_blank">About Us</a></li>
-						<li class="nav-item"><a href="" class="nav-link"
-							target="_blank">Blog</a></li>
-						<li class="nav-item"><a href="" class="nav-link"
-							target="_blank">License</a></li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</footer>
+	</div>
 	<!--   Core JS Files   -->
-	<script src="../resource/assets/js/core/jquery.min.js"
+	<script src="../resource2/assets/js/core/jquery.3.2.1.min.js"
 		type="text/javascript"></script>
-	<script src="../resource/assets/js/core/popper.min.js"
+	<script src="../resource2/assets/js/core/popper.min.js"
 		type="text/javascript"></script>
-	<script src="../resource/assets/js/core/bootstrap.min.js"
+	<script src="../resource2/assets/js/core/bootstrap.min.js"
 		type="text/javascript"></script>
-	<script
-		src="../resource/assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
 	<!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
-	<script src="../resource/assets/js/plugins/bootstrap-switch.js"></script>
-	<!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
-	<script src="../resource/assets/js/plugins/nouislider.min.js"
-		type="text/javascript"></script>
-	<script src="../resource/assets/js/plugins/moment.min.js"></script>
-	<script src="../resource/assets/js/plugins/datetimepicker.js"
-		type="text/javascript"></script>
-	<script src="../resource/assets/js/plugins/bootstrap-datepicker.min.js"></script>
-	<!-- Control Center for Argon UI Kit: parallax effects, scripts for the example pages etc -->
+	<script src="../resource2/assets/js/plugins/bootstrap-switch.js"></script>
 	<!--  Google Maps Plugin    -->
-	<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
-	<script src="../resource/assets/js/argon-design-system.min.js?v=1.2.2"
+	<script type="text/javascript"
+		src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+	<!--  Chartist Plugin  -->
+	<script src="../resource2/assets/js/plugins/chartist.min.js"></script>
+	<!--  Notifications Plugin    -->
+	<script src="../resource2/assets/js/plugins/bootstrap-notify.js"></script>
+	<!-- Control Center for Light Bootstrap Dashboard: scripts for the example pages etc -->
+	<script
+		src="../resource2/assets/js/light-bootstrap-dashboard.js?v=2.0.0 "
 		type="text/javascript"></script>
-	<script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
-	<script>
-		window.TrackJS && TrackJS.install({
-			token : "ee6fab19c5a04ac1a32a645abde4613a",
-			application : "argon-design-system-pro"
-		});
-	</script>
+	<!-- Light Bootstrap Dashboard DEMO methods, don't include it in your project! -->
+	<script src="../resource2/assets/js/demo.js"></script>
+
 </body>
 </html>

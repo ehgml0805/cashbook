@@ -8,114 +8,188 @@ String msg1=request.getParameter("msg1");
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<link rel="apple-touch-icon" sizes="76x76" href="resource/assets/img/apple-icon.png">
-	<link rel="icon" type="image/png" href="resource/assets/img/favicon.png">
-<title>회원가입</title>
-	<!--     Fonts and icons     -->
-	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
-	<link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
-	<!-- Nucleo Icons -->
-	<link href="resource/assets/css/nucleo-icons.css" rel="stylesheet" />
-	<link href="resource/assets/css/nucleo-svg.css" rel="stylesheet" />
-	<!-- Font Awesome Icons -->
-	<link href="resource/assets/css/font-awesome.css" rel="stylesheet" />
-	<link href="resource/assets/css/nucleo-svg.css" rel="stylesheet" />
-	<!-- CSS Files -->
-	<link href="resource/assets/css/argon-design-system.css?v=1.2.2" rel="stylesheet" />
+    <meta charset="utf-8" />
+    <link rel="apple-touch-icon" sizes="76x76" href="resource2/assets/img/apple-icon.png">
+    <link rel="icon" type="image/png" href="resource2/assets/img/favicon.ico">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>회원가입</title>
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+    <!--     Fonts and icons     -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
+    <!-- CSS Files -->
+    <link href="resource2/assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="resource2/assets/css/light-bootstrap-dashboard.css?v=2.0.0 " rel="stylesheet" />
+    <!-- CSS Just for demo purpose, don't include it in your project -->
+    <link href="resource2/assets/css/demo.css" rel="stylesheet" />
 </head>
 
-<body class="login-page">
-	<section class="section section-shaped section-lg">
-	 	<div class="shape shape-style-1 bg-gradient-default"><!-- 배경 -->
-			<span></span><!--땡땡이 무늬-->
-			<span></span>
-			<span></span>
-			<span></span>
-			<span></span>
-			<span></span>
-			<span></span>
-			<span></span>
-	    </div>
-		<div class="container pt-lg-1">
-			<div class="row justify-content-center">
-				<div class="col-lg-5">
-					<div class="card bg-secondary shadow border-0">
-						<div class="card-header bg-white pb-3">
-							<div class="text-muted text-center mb-2"><small>Sign in with</small></div>
-							<div class="btn-wrapper text-center">
-								<a href="#" class="btn btn-neutral btn-icon">
-									<span class="btn-inner--icon"><img src="resource/assets/img/icons/common/github.svg"></span>
-									<span class="btn-inner--text">Github</span>
-								</a>
-								<a href="#" class="btn btn-neutral btn-icon">
-									<span class="btn-inner--icon"><img src="resource/assets/img/icons/common/google.svg"></span>
-									<span class="btn-inner--text">Google</span>
-								</a>
-							</div>
-						</div>
-						<div class="card-body px-lg-5 py-lg-4"><!--py는 회색영역 여백  lg는 네모난 전체 크기 -->
-							<div class="text-center text-muted mb-4">
-								<small>Or sign in with credentials</small>
+<body>
+  <div class="wrapper">
+        <div class="sidebar" data-image="resource2/assets/img/sidebar-5.jpg">
+            <!--
+        Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
+
+        Tip 2: you can also add an image using data-image tag
+    -->
+            <div class="sidebar-wrapper">
+                <div class="logo">
+                    <a href="<%=request.getContextPath()%>/memberOne.jsp" class="simple-text">
+                        Cashbook
+                    </a>
+                </div>
+                <ul class="nav">
+                    <li>
+                        <a class="nav-link" href="<%=request.getContextPath()%>/cash/cashList.jsp">
+                            <i class="nc-icon nc-money-coins"></i>
+                            <p>Calender</p>
+                        </a>
+                    </li>
+                    <li>
+						<a class="nav-link" href="<%=request.getContextPath()%>/index.jsp">
+							<i class="nc-icon nc-chart-pie-36"></i>
+							<p>Index</p>
+						</a>
+					</li>
+                    <li>
+                        <a class="nav-link" href="<%=request.getContextPath()%>/memberOne.jsp">
+                            <i class="nc-icon nc-circle-09"></i>
+                            <p>User Profile</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="<%=request.getContextPath()%>/help/helpList.jsp">
+                            <i class="nc-icon nc-notes"></i>
+                            <p>Customer Help</p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+ 		<div class="main-panel">
+            <!-- Navbar -->
+            <nav class="navbar navbar-expand-lg " color-on-scroll="500">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#pablo">비회원</a>
+                    <button href="" class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-bar burger-lines"></span>
+                        <span class="navbar-toggler-bar burger-lines"></span>
+                        <span class="navbar-toggler-bar burger-lines"></span>
+                    </button>
+                    <div class="collapse navbar-collapse justify-content-end" id="navigation">
+                        <ul class="nav navbar-nav mr-auto">
+                            <li class="nav-item">
+                                <a href="<%=request.getContextPath()%>/cash/cashList.jsp" class="nav-link" data-toggle="dropdown">
+                                    <i class="nc-icon nc-circle-09"></i>
+                                    <span class="d-lg-none">Calender</span>
+                                </a>
+                            </li>
+                            <li class="dropdown nav-item">
+                                <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+                                    <i class="nc-icon nc-planet"></i>
+                                    <span class="notification">5</span>
+                                    <span class="d-lg-none">Notification</span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <a class="dropdown-item" href="#">Notification 1</a>
+                                    <a class="dropdown-item" href="#">Notification 2</a>
+                                    <a class="dropdown-item" href="#">Notification 3</a>
+                                    <a class="dropdown-item" href="#">Notification 4</a>
+                                    <a class="dropdown-item" href="#">Another notification</a>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="nc-icon nc-zoom-split"></i>
+                                    <span class="d-lg-block">&nbsp;Search</span>
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="navbar-nav ml-auto">
+                            <!-- <li class="nav-item">
+                                <a class="nav-link" href="#pablo">
+                                    <span class="no-icon">Account</span>
+                                </a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span class="no-icon">Dropdown</span>
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <a class="dropdown-item" href="#">Action</a>
+                                    <a class="dropdown-item" href="#">Another action</a>
+                                    <a class="dropdown-item" href="#">Something</a>
+                                    <a class="dropdown-item" href="#">Something else here</a>
+                                    <div class="divider"></div>
+                                    <a class="dropdown-item" href="#">Separated link</a>
+                                </div>
+                            </li> -->
+                            <li class="nav-item">
+                                <a class="nav-link" href="<%=request.getContextPath()%>/loginForm.jsp">
+                                    <span class="no-icon">Sign In</span>
+                                </a>
+                            </li>
+                        </ul> 
+                    </div>
+                </div>
+            </nav>
+			<!-- End Navbar -->
+			<br>
+			<div class="content">
+				<div class="container">
+					<div class="col-md-5 col-sm-6 ml-auto mr-auto">
+						<form
+							action="<%=request.getContextPath()%>/insertMemberAction.jsp"
+							method="post" role="form" id="insertForm">
+
+							<%
+							if (msg1 != null) {
+							%>
+							<div class="alert alert-danger" role="alert">
+								<%=msg1%>
 							</div>
 							<%
-								if(msg1!=null){
-							%>		
-								<div class="alert alert-danger" role="alert"><%=msg1 %></div>
-							<%		
-								}
+							}
 							%>
-							<form action="<%=request.getContextPath()%>/insertMemberAction.jsp"  method="post" role="form" id="insertForm">
-							 <div class="form-group">
-							 	<div class="input-group input-group-alternative mb-3">
-									<div class="input-group-prepend">
-									<span class="input-group-text"><i class="ni ni-hat-3"></i></span>
-									</div>
-									<input type="text" name="memberName" id="memberName" class="form-control" placeholder="이 름">
+							<div class="card card-login card-hidden">
+								<div class="card-header ">
+									<h3 class="header text-center">Sign up</h3>
 								</div>
-							</div>
-							<div class="form-group">
-								<div class="input-group input-group-alternative mb-3">
-									<div class="input-group-prepend">
-										<span class="input-group-text"><i class="ni ni-email-83"></i></span>
-									</div>
-									<input type="text" name="memberId" id="memberId" class="form-control" placeholder="아 이 디">
-								</div>
-							</div>
-							<div class="form-group focused">
-								<div class="input-group input-group-alternative">
-									<div class="input-group-prepend">
-										<span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
-									</div>
-									<input type="password" name="memberPw" id="memberPw" class="form-control" placeholder="비밀번호">
-								</div>
-							</div>
-							<div class="text-muted font-italic"><small>password strength: <span class="text-success font-weight-700">strong</span></small></div>
-							<div class="row my-4">
-								<div class="col-12">
-									<div class="custom-control custom-control-alternative custom-checkbox">
-										<input class="custom-control-input" id="customCheckRegister" type="checkbox">
-										<label class="custom-control-label" for="customCheckRegister"><span>I agree with the <a href="#">Privacy Policy</a></span></label>
+								<div class="card-body ">
+									<div class="card-body">
+										<div class="form-group">
+											<label>Name</label> <input type="text" name="memberName"
+												id="memberName" class="form-control" placeholder="이 름">
+										</div>
+										<div class="form-group">
+											<label>Email</label> <input type="text" name="memberId"
+												id="memberId" class="form-control" placeholder="아 이 디">
+										</div>
+										<div class="form-group">
+											<label>Password</label> <input type="password"
+												name="memberPw" id="memberPw" class="form-control"
+												placeholder="비밀번호">
+										</div>
+										<div class="form-group">
+											<div class="form-check" style="text-align: center;">
+												<label class="form-check-label" style="vertical-align: text-top;"> 
+													<input class="form-check-input" type="checkbox" value="" checked>
+													<span class="form-check-sign"></span> I agree with the <a href="#">Privacy Policy
+												</label>
+											</div>
+										</div>
 									</div>
 								</div>
-							</div>
-							<div class="text-center">
-								<button type="button" class="btn btn-primary mt-4"  id="insertBt">Create account</button>
+								<div class="card-footer ml-auto mr-auto" style="text-align: center;">
+									<button type="submit" class="btn btn-warning btn-wd" id="insertBt">Sign up</button>
+								</div>
 							</div>
 						</form>
-							</div>
-						</div>
-					<div class="row mt-3">
-						<div class="col-6">
-							<a href="<%=request.getContextPath()%>/loginForm.jsp" class="text-light">LOG IN</a>
-						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-</section>
-		<script>
+
+			<script>
 			let insertBt=document.querySelector('#insertBt');
 			insertBt.addEventListener('click', function(e) {
 				console.log('insertBt click');
@@ -153,57 +227,21 @@ String msg1=request.getParameter("msg1");
 				
 			});
 		</script>
-	<footer class="footer">
-    <div class="container">
-      <hr>
-      <div class="row align-items-center justify-content-md-between">
-        <div class="col-md-6">
-          <div class="copyright">
-            &copy; 2022 <a href="" target="_blank">Creative Tim</a>.
-          </div>
-        </div>
-        <div class="col-md-6">
-          <ul class="nav nav-footer justify-content-end">
-            <li class="nav-item">
-              <a href="" class="nav-link" target="_blank">Creative Tim</a>
-            </li>
-            <li class="nav-item">
-              <a href="" class="nav-link" target="_blank">About Us</a>
-            </li>
-            <li class="nav-item">
-              <a href="" class="nav-link" target="_blank">Blog</a>
-            </li>
-            <li class="nav-item">
-              <a href="" class="nav-link" target="_blank">License</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </footer>
-	<!--   Core JS Files   -->
-	<script src="../assets/js/core/jquery.min.js" type="text/javascript"></script>
-	<script src="../assets/js/core/popper.min.js" type="text/javascript"></script>
-	<script src="../assets/js/core/bootstrap.min.js" type="text/javascript"></script>
-	<script src="../assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
-	<!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
-	<script src="../assets/js/plugins/bootstrap-switch.js"></script>
-	<!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
-	<script src="../assets/js/plugins/nouislider.min.js" type="text/javascript"></script>
-	<script src="../assets/js/plugins/moment.min.js"></script>
-	<script src="../assets/js/plugins/datetimepicker.js" type="text/javascript"></script>
-	<script src="../assets/js/plugins/bootstrap-datepicker.min.js"></script>
-	<!-- Control Center for Argon UI Kit: parallax effects, scripts for the example pages etc -->
-	<!--  Google Maps Plugin    -->
-	<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
-	<script src="../assets/js/argon-design-system.min.js?v=1.2.2" type="text/javascript"></script>
-	<script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
-	<script>
-	window.TrackJS &&
-		TrackJS.install({
-		token: "ee6fab19c5a04ac1a32a645abde4613a",
-		application: "argon-design-system-pro"
-	});
-  </script>
+<!--   Core JS Files   -->
+<script src="resource2/assets/js/core/jquery.3.2.1.min.js" type="text/javascript"></script>
+<script src="resource2/assets/js/core/popper.min.js" type="text/javascript"></script>
+<script src="resource2/assets/js/core/bootstrap.min.js" type="text/javascript"></script>
+<!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
+<script src="resource2/assets/js/plugins/bootstrap-switch.js"></script>
+<!--  Google Maps Plugin    -->
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+<!--  Chartist Plugin  -->
+<script src="resource2/assets/js/plugins/chartist.min.js"></script>
+<!--  Notifications Plugin    -->
+<script src="resource2/assets/js/plugins/bootstrap-notify.js"></script>
+<!-- Control Center for Light Bootstrap Dashboard: scripts for the example pages etc -->
+<script src="resource2/assets/js/light-bootstrap-dashboard.js?v=2.0.0 " type="text/javascript"></script>
+<!-- Light Bootstrap Dashboard DEMO methods, don't include it in your project! -->
+<script src="resource2/assets/js/demo.js"></script>
 </body>
 </html>

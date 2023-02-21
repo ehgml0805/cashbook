@@ -21,7 +21,7 @@ Member resultMember=memberDao.login(paramMember);
 
 if(resultMember !=null){
 	session.setAttribute("loginMember", resultMember);//loginMember에 memberId랑 memberName이 들어 있는건가?
-	response.sendRedirect(request.getContextPath()+"/memberOne.jsp");
+	response.sendRedirect(request.getContextPath()+"/cash/cashList.jsp");
 }else{
 	String msg=URLEncoder.encode("✔ 비밀번호를 확인하세요!","utf-8");
 	response.sendRedirect(request.getContextPath()+"/loginForm.jsp?msg="+msg);
