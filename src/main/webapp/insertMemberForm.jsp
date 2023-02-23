@@ -138,8 +138,7 @@ String msg1=request.getParameter("msg1");
 			<div class="content">
 				<div class="container">
 					<div class="col-md-5 col-sm-6 ml-auto mr-auto">
-						<form
-							action="<%=request.getContextPath()%>/insertMemberAction.jsp"
+						<form action="<%=request.getContextPath()%>/insertMemberAction.jsp"
 							method="post" role="form" id="insertForm">
 
 							<%
@@ -170,14 +169,14 @@ String msg1=request.getParameter("msg1");
 												name="memberPw" id="memberPw" class="form-control"
 												placeholder="비밀번호">
 										</div>
-										<div class="form-group">
+										<!-- <div class="form-group">
 											<div class="form-check" style="text-align: center;">
 												<label class="form-check-label" style="vertical-align: text-top;"> 
 													<input class="form-check-input" type="checkbox" value="" checked>
 													<span class="form-check-sign"></span> I agree with the <a href="#">Privacy Policy
 												</label>
 											</div>
-										</div>
+										</div> -->
 									</div>
 								</div>
 								<div class="card-footer ml-auto mr-auto" style="text-align: center;">
@@ -227,21 +226,44 @@ String msg1=request.getParameter("msg1");
 				
 			});
 		</script>
-<!--   Core JS Files   -->
-<script src="resource2/assets/js/core/jquery.3.2.1.min.js" type="text/javascript"></script>
-<script src="resource2/assets/js/core/popper.min.js" type="text/javascript"></script>
-<script src="resource2/assets/js/core/bootstrap.min.js" type="text/javascript"></script>
-<!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
-<script src="resource2/assets/js/plugins/bootstrap-switch.js"></script>
-<!--  Google Maps Plugin    -->
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
-<!--  Chartist Plugin  -->
-<script src="resource2/assets/js/plugins/chartist.min.js"></script>
-<!--  Notifications Plugin    -->
-<script src="resource2/assets/js/plugins/bootstrap-notify.js"></script>
-<!-- Control Center for Light Bootstrap Dashboard: scripts for the example pages etc -->
-<script src="resource2/assets/js/light-bootstrap-dashboard.js?v=2.0.0 " type="text/javascript"></script>
-<!-- Light Bootstrap Dashboard DEMO methods, don't include it in your project! -->
-<script src="resource2/assets/js/demo.js"></script>
+			<footer class="footer">
+				<div class="container-fluid">
+					<nav>
+						<ul class="footer-menu">
+							<li><a href="#"> Home </a></li>
+							<li><a href="#"> Company </a></li>
+							<li><a href="#"> Portfolio </a></li>
+							<li><a href="https://github.com/ehgml0805/cashbook"
+								target='_blank'> Git Hub </a></li>
+						</ul>
+						<p class="copyright text-center">
+							©
+							<script>
+							document.write(new Date().getFullYear())
+						</script>
+							<a href="http://www.creative-tim.com">Creative Tim</a>, made
+							with love for a better web
+						</p>
+					</nav>
+				</div>
+			</footer>
+		</div>
+	</div>
+	<!--   Core JS Files   -->
+	<script src="resource2/assets/js/core/jquery.3.2.1.min.js" type="text/javascript"></script>
+	<script src="resource2/assets/js/core/popper.min.js" type="text/javascript"></script>
+	<script src="resource2/assets/js/core/bootstrap.min.js" type="text/javascript"></script>
+	<!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
+	<script src="resource2/assets/js/plugins/bootstrap-switch.js"></script>
+	<!--  Google Maps Plugin    -->
+	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+	<!--  Chartist Plugin  -->
+	<script src="resource2/assets/js/plugins/chartist.min.js"></script>
+	<!--  Notifications Plugin    -->
+	<script src="resource2/assets/js/plugins/bootstrap-notify.js"></script>
+	<!-- Control Center for Light Bootstrap Dashboard: scripts for the example pages etc -->
+	<script src="resource2/assets/js/light-bootstrap-dashboard.js?v=2.0.0 " type="text/javascript"></script>
+	<!-- Light Bootstrap Dashboard DEMO methods, don't include it in your project! -->
+	<script src="resource2/assets/js/demo.js"></script>
 </body>
 </html>

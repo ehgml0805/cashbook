@@ -63,7 +63,7 @@ if (selectMemberAdminCount / rowPerPage != 0) {
 
 <body style="overflow: auto;">
 	<div class="wrapper">
-		<div class="sidebar" data-image="../resource2/assets/img/sidebar-4.jpg" data-color="orange">
+		<div class="sidebar" data-image="../resource2/assets/img/sidebar-1.jpg" data-color="orange">
 			<!--
 	        Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
 	
@@ -71,7 +71,7 @@ if (selectMemberAdminCount / rowPerPage != 0) {
 	   		 -->
             <div class="sidebar-wrapper">
                 <div class="logo">
-                    <a href="<%=request.getContextPath()%>/memberOne.jsp" class="simple-text">
+                    <a href="<%=request.getContextPath()%>/cash/cashList.jsp" class="simple-text">
                         Cashbook
                     </a>
                 </div>
@@ -85,7 +85,7 @@ if (selectMemberAdminCount / rowPerPage != 0) {
                     <li>
 						<a class="nav-link" href="<%=request.getContextPath()%>/index.jsp">
 							<i class="nc-icon nc-chart-pie-36"></i>
-							<p>Index</p>
+							<p>Chart</p>
 						</a>
 					</li>
                     <li>

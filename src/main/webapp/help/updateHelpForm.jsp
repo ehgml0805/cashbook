@@ -46,7 +46,7 @@ Help list = helpDao.selectHelp(help);
 <body style="overflow: auto;">
 	<div class="wrapper">
 		<div class="sidebar"
-			data-image="../resource2/assets/img/sidebar-4.jpg">
+			data-image="../resource2/assets/img/sidebar-5.jpg">
 			<!--
 	        Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
 	
@@ -54,7 +54,7 @@ Help list = helpDao.selectHelp(help);
 	   		 -->
             <div class="sidebar-wrapper">
                 <div class="logo">
-                    <a href="<%=request.getContextPath()%>/memberOne.jsp" class="simple-text">
+                    <a href="<%=request.getContextPath()%>/cash/cashList.jsp" class="simple-text">
                         Cashbook
                     </a>
                 </div>
@@ -68,7 +68,7 @@ Help list = helpDao.selectHelp(help);
                     <li>
 						<a class="nav-link" href="<%=request.getContextPath()%>/index.jsp">
 							<i class="nc-icon nc-chart-pie-36"></i>
-							<p>Index</p>
+							<p>Chart</p>
 						</a>
 					</li>
                     <li>
@@ -190,56 +190,51 @@ Help list = helpDao.selectHelp(help);
 				</div>
 			</nav>
 			<!-- End Navbar -->
-			<div class="container">
-				<div class="col-md-12">
-					<div class="card card-plain table-plain-bg" style="height: 580px;">
-						<div class="card-header ">
-							<h4 class="card-title">문의사항 수정하기</h4>
-							<p class="card-category">회원이 문의사항을 수정할 수 있다.</p>
-						</div>
-						<br>
-						<%
-						if (msg1 != null) {
-						%>
-							<%=msg1%>
-						<%
-						}
-						%>
-						<form id="updateHelpForm"
-							action="<%=request.getContextPath()%>/help/updateHelpAction.jsp"
-							method="post">
-							<table width="100%" style="text-align: center;">
-								<tr>
-									<td>문의번호</td>
-									<td><input type="text" name="helpNo" value="<%=helpNo%>"
-										readonly="readonly" class="form-control form-control">
-								</tr>
-								<tr>
-									<td colspan="2"><hr></td>
-								</tr>
-								<tr>
-									<td>내용</td>
-									<td><textarea id="helpMemo"
-											class="form-control  form-control-alternative"
-											name="helpMemo"><%=helpMemo%></textarea>
-								</tr>
-								<tr>
-									<td colspan="2"><hr></td>
-								</tr>
-								<tr>
-									<td>작성자</td>
-									<td><input type="text" name="memberId"
-										class="form-control form-control" value="<%=loginMemberId%>"
-										readonly="readonly"></td>
-								<tr>
-									<td colspan="2"><hr></td>
-								</tr>
-							</table>
-							<div class="text-center">
-								<button type="button" class="btn btn-primary mt-4"
-									id="updateHelpBt">수정하기</button>
+			<div class="content">
+				<div class="container-fluid">
+					<div class="container-fluid">
+						<div class="row">
+							<div class="col-md-6 mr-auto ml-auto">
+								<form id="updateHelpForm" action="<%=request.getContextPath()%>/help/updateHelpAction.jsp" method="post">
+									<div class="card ">
+										<div class="card-header ">
+											<h4 class="card-title">문의사항 수정하기</h4>
+										</div>
+										<%
+										if (msg1 != null) {
+										%>
+											<div class="alert alert-danger text-center" role="alert"><%=msg1%></div>
+										<%
+										}
+										%>
+										<div class="card-body ">
+											<div class="form-group has-label">
+												<label> 작성자 <star class="star">*</star> </label> 
+												<input type="text" name="memberId" value=<%=loginMemberId%> readonly="readonly" class="form-control">
+											</div>
+											<div class="form-group has-label">
+												<label> 문의내용 <star class="star">*</star>
+												</label>
+												<textarea id="helpMemo" class="form-control  form-control-alternative" name="helpMemo"><%=helpMemo%></textarea>
+											</div>
+											<div class="form-group has-label">
+												<label> 문의번호<star class="star">*</star></label> 
+												<input class="form-control" name="helpNo" value="<%=helpNo%>" readonly="readonly" class="form-control form-control">
+											</div> 
+											<div class="card-category form-category">
+												<star class="star">*</star>
+												Required fields
+											</div>
+										</div>
+										<div class="card-footer text-right">
+											<button type="button"
+												class="btn btn-info btn-fill pull-right" id="updateHelpBt">수정하기</button>
+											<div class="clearfix"></div>
+										</div>
+									</div>
+								</form>
 							</div>
-						</form>
+						</div>
 					</div>
 				</div>
 			</div>

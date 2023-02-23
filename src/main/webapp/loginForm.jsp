@@ -40,132 +40,183 @@ int lastPage = selectNoticeCount / rowPerPage;
     <link href="resource2/assets/css/light-bootstrap-dashboard.css?v=2.0.0 " rel="stylesheet" />
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link href="resource2/assets/css/demo.css" rel="stylesheet" />
+	
 </head>
 
 <body>
-            <div class= data-color="black" data-image="resource2/assets/img/full-screen-image-3.jpg" ;>
-            <br>
+
+	<nav class="navbar navbar-expand-lg ">
+		<div class="container">
+			<div class="navbar-wrapper">
+				<a class="navbar-brand" href="#pablo">CashBook</a>
+				<button class="navbar-toggler navbar-toggler-right" type="button"
+					data-toggle="collapse" aria-controls="navigation-index"
+					aria-expanded="false" aria-label="Toggle navigation">
+					<!-- <span class="navbar-toggler-bar burger-lines"></span>
+					<span class="navbar-toggler-bar burger-lines"></span>
+					<span class="navbar-toggler-bar burger-lines"></span> -->
+				</button>
+			</div>
+			<div class="collapse navbar-collapse justify-content-end" id="navigation">
+               	<ul class="nav navbar">
+					<li class="nav-item">
+						<a href="<%=request.getContextPath()%>/cash/cashList.jsp" class="nav-link" style="color: black;">
+							<i class="nc-icon nc-money-coins"></i> Calender
+						</a>
+					</li>
+					<li class="nav-item active">
+						<a href="<%=request.getContextPath()%>/loginForm.jsp" class="nav-link" style="color: black;">
+							<i class="nc-icon nc-badge"></i> Sign In
+						</a>
+					</li>
+					<li class="nav-item">
+						<a href="<%=request.getContextPath()%>/insertMemberForm.jsp" class="nav-link" style="color: black;">
+							<i class="nc-icon nc-mobile"></i> Sign Up
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<br>
+	<!-- <div style="background-image:url(resource2/assets/img/full-screen-image-3.jpg); "> -->
+	<div >
+		<div class="container">
 			<div class="content">
 				<div class="row">
-						<div class="col-md-4 col-sm-6 ml-auto mr-auto">
-							<form action="<%=request.getContextPath()%>/loginAction.jsp"
-								method="post" role="form" id="loginForm">
-
-								<%
-								if (msg != null) {
-								%>
-
-								<div>
-									<div class="alert alert-danger" role="alert">
-										<%=msg%>
+					<div class="col-md-4 col-sm-6 ml-auto mr-auto">
+						<form action="<%=request.getContextPath()%>/loginAction.jsp" method="post" role="form" id="loginForm">
+						<%
+						if (msg != null) {
+						%>
+						<div class="alert alert-danger" role="alert">
+							<%=msg%>
+						</div>
+						<%
+						}
+						%>
+						<div class="card card-login card-hidden">
+							<div class="card-header ">
+								<h3 class="header text-center">Sign In</h3>
+							</div>
+							<div class="card-body ">
+								<div class="card-body">
+									<div class="form-group">
+										<label>Email address</label>
+										<input type="text" name="memberId" id="memberId" class="form-control form-control-alternative"
+											placeholder="아 이 디" value="fkd0910">
 									</div>
-								</div>
-								<%
-								}
-								%>
-								<div class="card card-login card-hidden">
-									<div class="card-header ">
-										<h3 class="header text-center">Sign In</h3>
+									<div class="form-group">
+										<label>Password</label>
+										<input type="password" name="memberPw" id="memberPw" class="form-control form-control-alternative"
+											placeholder="비밀번호" value="1234">
 									</div>
-									<div class="card-body ">
-										<div class="card-body">
-											<div class="form-group">
-												<label>Email address</label> <input type="text"
-													name="memberId" id="memberId"
-													class="form-control form-control-alternative"
-													placeholder="아 이 디" value="fkd0910">
-											</div>
-											<div class="form-group">
-												<label>Password</label> <input type="password"
-													name="memberPw" id="memberPw"
-													class="form-control form-control-alternative"
-													placeholder="비밀번호" value="1234">
-											</div>
-											<div class="form-group">
-												<div class="form-check">
-													<label class="form-check-label"> <input
-														class="form-check-input" type="checkbox" value="" checked>
-														<span class="form-check-sign"></span> Subscribe to
-														newsletter
-													</label>
-												</div>
-											</div>
+									<!-- <div class="form-group">
+										<div class="form-check">
+											<label class="form-check-label"> 
+											<input class="form-check-input" type="checkbox" value="" checked>
+												<span class="form-check-sign"></span> Subscribe to newsletter
+											</label>
 										</div>
-									</div>
-									<div class="card-footer ml-auto mr-auto">
-										<button type="submit" class="btn btn-warning btn-wd"
-											id="loginBt">Sign In</button>
-									</div>
-								</div>
-							</form>
-							<div class="row mt-3">
-								<div class="col-6">
-									<a href="<%=request.getContextPath()%>/insertMemberForm.jsp"
-										class="text-muted"><small>회원가입</small></a>
+									</div> -->
 								</div>
 							</div>
+							<div class="card-footer ml-auto mr-auto">
+								<button type="submit" class="btn btn-warning btn-wd"
+									id="loginBt">Sign In</button>
+							</div>
 						</div>
-					<div class="col-7">
+						</form>
+						<div class="row mt-3">
+							<div class="col-6">
+								<a href="<%=request.getContextPath()%>/insertMemberForm.jsp" style="color: orange;"
+									class="text-muted"><small>회원가입</small></a>
+							</div>
+						</div>
+					</div>
+					<div class="col-8">
 						<table class="table" style="text-align: center;">
 							<tr>
 								<th style="text-align: center;">공지 내용</th>
 								<th style="text-align: center;">날짜</th>
 							</tr>
 							<%
-					for (Notice n : list) {
-					%>
+							for (Notice n : list) {
+							%>
 							<tr>
 								<td><%=n.getNoticeMemo()%></td>
 								<td><%=n.getCreatedate()%></td>
 							</tr>
 							<%
-					}
-					%>
+							}
+							%>
 						</table>
 					</div>
 				</div>
 			</div>
-			</div>
-	<script>
-		let loginBt = document.querySelector('#loginBt');
-		loginBt.addEventListener('click', function(e) {
-			//디버깅	
-			console.log('loginBt click!')
-
-			let memberId = document.querySelector('#memberId');
-			if (memberId.value == '') {
-				alert('아이디를 입력하세요!');
-				memberId.focus();
-				return;
-			}
-
-			let memberPw = document.querySelector('#memberPw');
-			if (memberPw.value == '') {
-				alert('비밀번호를 입력하세요!')
-				memberPw.focus();
-				return;
-			}
-
-			let loginForm = document.querySelector('#loginForm');
-			loginForm.submit();
-
-		});
-	</script>
-<!--   Core JS Files   -->
-<script src="resource2/assets/js/core/jquery.3.2.1.min.js" type="text/javascript"></script>
-<script src="resource2/assets/js/core/popper.min.js" type="text/javascript"></script>
-<script src="resource2/assets/js/core/bootstrap.min.js" type="text/javascript"></script>
-<!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
-<script src="resource2/assets/js/plugins/bootstrap-switch.js"></script>
-<!--  Google Maps Plugin    -->
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
-<!--  Chartist Plugin  -->
-<script src="resource2/assets/js/plugins/chartist.min.js"></script>
-<!--  Notifications Plugin    -->
-<script src="resource2/assets/js/plugins/bootstrap-notify.js"></script>
-<!-- Control Center for Light Bootstrap Dashboard: scripts for the example pages etc -->
-<script src="resource2/assets/js/light-bootstrap-dashboard.js?v=2.0.0 " type="text/javascript"></script>
-<!-- Light Bootstrap Dashboard DEMO methods, don't include it in your project! -->
-<script src="resource2/assets/js/demo.js"></script>
+			<script>
+				let loginBt = document.querySelector('#loginBt');
+				loginBt.addEventListener('click', function(e) {
+					//디버깅	
+					console.log('loginBt click!')
+		
+					let memberId = document.querySelector('#memberId');
+					if (memberId.value == '') {
+						alert('아이디를 입력하세요!');
+						memberId.focus();
+						return;
+					}
+		
+					let memberPw = document.querySelector('#memberPw');
+					if (memberPw.value == '') {
+						alert('비밀번호를 입력하세요!')
+						memberPw.focus();
+						return;
+					}
+		
+					let loginForm = document.querySelector('#loginForm');
+					loginForm.submit();
+		
+				});
+			</script>
+			<footer class="footer">
+				<div class="container-fluid">
+					<nav>
+						<ul class="footer-menu">
+							<li><a href="#"> Home </a></li>
+							<li><a href="#"> Company </a></li>
+							<li><a href="#"> Portfolio </a></li>
+							<li><a href="https://github.com/ehgml0805/cashbook"
+								target='_blank'> Git Hub </a></li>
+						</ul>
+						<p class="copyright text-center">
+							©
+							<script>
+							document.write(new Date().getFullYear())
+						</script>
+							<a href="http://www.creative-tim.com">Creative Tim</a>, made
+							with love for a better web
+						</p>
+					</nav>
+				</div>
+			</footer>
+		</div>
+	</div>
+	<!--   Core JS Files   -->
+	<script src="resource2/assets/js/core/jquery.3.2.1.min.js" type="text/javascript"></script>
+	<script src="resource2/assets/js/core/popper.min.js" type="text/javascript"></script>
+	<script src="resource2/assets/js/core/bootstrap.min.js" type="text/javascript"></script>
+	<!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
+	<script src="resource2/assets/js/plugins/bootstrap-switch.js"></script>
+	<!--  Google Maps Plugin    -->
+	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+	<!--  Chartist Plugin  -->
+	<script src="resource2/assets/js/plugins/chartist.min.js"></script>
+	<!--  Notifications Plugin    -->
+	<script src="resource2/assets/js/plugins/bootstrap-notify.js"></script>
+	<!-- Control Center for Light Bootstrap Dashboard: scripts for the example pages etc -->
+	<script src="resource2/assets/js/light-bootstrap-dashboard.js?v=2.0.0 " type="text/javascript"></script>
+	<!-- Light Bootstrap Dashboard DEMO methods, don't include it in your project! -->
+	<script src="resource2/assets/js/demo.js"></script>
 </body>
 </html>

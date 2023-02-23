@@ -67,7 +67,7 @@ DecimalFormat decFormat = new DecimalFormat("###,###");
 	   		 -->
             <div class="sidebar-wrapper">
                 <div class="logo">
-                    <a href="<%=request.getContextPath()%>/memberOne.jsp" class="simple-text">
+                    <a href="<%=request.getContextPath()%>/cash/cashList.jsp" class="simple-text">
                         Cashbook
                     </a>
                 </div>
@@ -81,7 +81,7 @@ DecimalFormat decFormat = new DecimalFormat("###,###");
                     <li>
 						<a class="nav-link" href="<%=request.getContextPath()%>/index.jsp">
 							<i class="nc-icon nc-chart-pie-36"></i>
-							<p>Index</p>
+							<p>Chart</p>
 						</a>
 					</li>
                     <li>
@@ -136,207 +136,198 @@ DecimalFormat decFormat = new DecimalFormat("###,###");
 				</ul>
             </div>
         </div>
- 		<div class="main-panel">
-            <!-- Navbar -->
-            <nav class="navbar navbar-expand-lg " color-on-scroll="500">
-                <div class="container-fluid">
-                    <a class="navbar-brand" href="#pablo"><%=memberName%></a>
-                    <button href="" class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-bar burger-lines"></span>
-                        <span class="navbar-toggler-bar burger-lines"></span>
-                        <span class="navbar-toggler-bar burger-lines"></span>
-                    </button>
-                    <div class="collapse navbar-collapse justify-content-end" id="navigation">
-                        <ul class="nav navbar-nav mr-auto">
-                            <li class="nav-item">
-                                <a href="<%=request.getContextPath()%>/cash/cashList.jsp" class="nav-link" data-toggle="dropdown">
-                                    <i class="nc-icon nc-circle-09"></i>
-                                    <span class="d-lg-none">Calender</span>
-                                </a>
-                            </li>
-                            <li class="dropdown nav-item">
-                                <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-                                    <i class="nc-icon nc-planet"></i>
-                                    <span class="notification">5</span>
-                                    <span class="d-lg-none">Notification</span>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <a class="dropdown-item" href="#">Notification 1</a>
-                                    <a class="dropdown-item" href="#">Notification 2</a>
-                                    <a class="dropdown-item" href="#">Notification 3</a>
-                                    <a class="dropdown-item" href="#">Notification 4</a>
-                                    <a class="dropdown-item" href="#">Another notification</a>
-                                </ul>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">
-                                    <i class="nc-icon nc-zoom-split"></i>
-                                    <span class="d-lg-block">&nbsp;Search</span>
-                                </a>
-                            </li>
-                        </ul>
-                        <ul class="navbar-nav ml-auto">
-                            <!-- <li class="nav-item">
+		<div class="main-panel">
+			<!-- Navbar -->
+			<nav class="navbar navbar-expand-lg " color-on-scroll="500">
+				<div class="container-fluid">
+					<a class="navbar-brand" href="#pablo"><%=memberName%></a>
+					<button href="" class="navbar-toggler navbar-toggler-right"
+						type="button" data-toggle="collapse"
+						aria-controls="navigation-index" aria-expanded="false"
+						aria-label="Toggle navigation">
+						<span class="navbar-toggler-bar burger-lines"></span> <span
+							class="navbar-toggler-bar burger-lines"></span> <span
+							class="navbar-toggler-bar burger-lines"></span>
+					</button>
+					<div class="collapse navbar-collapse justify-content-end"
+						id="navigation">
+						<ul class="nav navbar-nav mr-auto">
+							<li class="nav-item"><a
+								href="<%=request.getContextPath()%>/cash/cashList.jsp"
+								class="nav-link" data-toggle="dropdown"> <i
+									class="nc-icon nc-circle-09"></i> <span class="d-lg-none">Calender</span>
+							</a></li>
+							<li class="dropdown nav-item"><a href="#"
+								class="dropdown-toggle nav-link" data-toggle="dropdown"> <i
+									class="nc-icon nc-planet"></i> <span class="notification">5</span>
+									<span class="d-lg-none">Notification</span>
+							</a>
+								<ul class="dropdown-menu">
+									<a class="dropdown-item" href="#">Notification 1</a>
+									<a class="dropdown-item" href="#">Notification 2</a>
+									<a class="dropdown-item" href="#">Notification 3</a>
+									<a class="dropdown-item" href="#">Notification 4</a>
+									<a class="dropdown-item" href="#">Another notification</a>
+								</ul></li>
+							<li class="nav-item"><a href="#" class="nav-link"> <i
+									class="nc-icon nc-zoom-split"></i> <span class="d-lg-block">&nbsp;Search</span>
+							</a></li>
+						</ul>
+						<ul class="navbar-nav ml-auto">
+							<!-- <li class="nav-item">
                                 <a class="nav-link" href="#pablo">
                                     <span class="no-icon">Account</span>
                                 </a>
                             </li> -->
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span class="no-icon">Dropdown</span>
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                    <a class="dropdown-item" href="#">Action</a>
-                                    <a class="dropdown-item" href="#">Another action</a>
-                                    <a class="dropdown-item" href="#">Something</a>
-                                    <a class="dropdown-item" href="#">Something else here</a>
-                                    <div class="divider"></div>
-                                    <a class="dropdown-item" href="#">Separated link</a>
-                                </div>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="<%=request.getContextPath()%>/logOut.jsp">
-                                    <span class="no-icon">LOG OUT</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-            <!-- End Navbar -->
-			<div class="container">
-				<div class="col-md-12">
-					<div class="card card-plain table-plain-bg">
-						<div class="card-header ">
-							<h4 class="card-title">일별 상세보기</h4>
-							<p class="card-category">회원이 일별 사용 금액을 볼 수 있다</p>
-						</div>
-						<br>
-						<form id="insertCashForm"
-							action="<%=request.getContextPath()%>/cash/insertCashAction.jsp?year=<%=year%>&month=<%=month%>&date=<%=date%>"
-							method="post">
-							<input type="hidden" name="memberId" value="<%=loginMember.getMemberId()%>"> <input
-								type="hidden" name="year" value="<%=year%>">
-							<input type="hidden" name="month" value="<%=month%>"> 
-							<input type="hidden" name="date" value="<%=date%>">
-							<table width="100%">
-								<tr>
-									<th style="font-weight: bold;">사용일자</th>
-									<td>
-										<input type="text" name="cashDate" value="<%=year%>-<%=month%>-<%=date%>" readonly="readonly"
-										class="form-control form-control"></td>
-								</tr>
-								<tr>
-									<td colspan="2"><hr></td>
-								</tr>
-								<tr>
-									<th style="font-weight: bold;">항목</th>
-									<td style="font-weight: bold;">
-										<select name="categoryNo" class="form-control form-control">
-											<%
-											for (Category c : categoryList) {
-											%>
-											<option value="<%=c.getCategoryNo()%>">
-												<%=c.getCategoryNo()%>
-												<%=c.getCategoryKind()%>
-												<%=c.getCategoryName()%>
-											</option>
-											<%
-											}
-											%>
-									</select></td>
-								</tr>
-								<tr>
-									<td colspan="2"><hr></td>
-								</tr>
-								<tr>
-									<th style="font-weight: bold;">금액</th>
-									<td style="font-weight: bold;">
-										<input type="text" name="cashPrice" class="form-control form-control"
-										id="cashPrice"></td>
-								</tr>
-								<tr>
-									<td colspan="2"><hr></td>
-								</tr>
-								<tr>
-									<th style="font-weight: bold;">메모</th>
-									<td>
-										<textarea cols="30" rows="10" class="form-control  form-control-alternative"
-											name="cashMemo" id="cashMemo"></textarea>
-									</td>
-								</tr>
-								<tr>
-									<td colspan="2"><hr></td>
-								</tr>
-							</table>
-							<div class="text-center">
-								<button type="button" class="btn btn-primary mt-4" id="insetCashBt">추가</button>
-							</div>
-						</form>
-						<script>
-							let insetCashBt = document
-									.querySelector('#insetCashBt');
-							insetCashBt.addEventListener('click', function(e) {
-								console.log('insetCashBt click');
-
-								let cashPrice = document
-										.querySelector('#cashPrice');
-								if (cashPrice.value == '') {
-									alert('금액을 입력하세요');
-									cashPrice.focus();
-									return;
-								}
-
-								let cashMemo = document
-										.querySelector('#cashMemo');
-								if (cashMemo.value == '') {
-									alert('메모를 입력하세요');
-									cashMemo.focus();
-									return;
-								}
-								let insertCashForm = document
-										.querySelector('#insertCashForm');
-								insertCashForm.submit();
-							});
-						</script>
-						<br> 
-						<br>
-						<table class="table">
-							<tr style="text-align: center; font-weight: bolder;">
-								<td>사용 날짜</td>
-								<td>수입/지출</td>
-								<td>항목</td>
-								<td>가격</td>
-								<td>메모</td>
-								<td>수정 / 삭제</td>
-
-							</tr>
-							<%
-							for (HashMap<String, Object> m : list) {
-								String cashDate = (String) (m.get("cashDate"));
-								if (Integer.parseInt(cashDate.substring(8)) == date) {
-							%>
-							<tr style="text-align: center;">
-								<td><%=m.get("cashDate")%></td>
-								<td><%=m.get("categoryKind")%></td>
-								<td><%=m.get("categoryName")%></td>
-								<td><%=decFormat.format(m.get("cashPrice"))%></td>
-								<td><%=m.get("cashMemo")%></td>
-								<td>
-									<a href="<%=request.getContextPath()%>/cash/updateCashForm.jsp?cashNo=<%=m.get("cashNo")%>&year=<%=year%>&month=<%=month%>&date=<%=date%>">
-									<i class="fa fa-edit"></i> / </a>
-									<a href="<%=request.getContextPath()%>/cash/deleteCashAction.jsp?cashNo=<%=m.get("cashNo")%>&year=<%=year%>&month=<%=month%>&date=<%=date%>" style="color: red;">
-									<i class="fa fa-times"></i></a></td>
-							</tr>
-							<%
-							}
-							}
-							%>
-						</table>
+							<li class="nav-item dropdown"><a
+								class="nav-link dropdown-toggle" href="http://example.com"
+								id="navbarDropdownMenuLink" data-toggle="dropdown"
+								aria-haspopup="true" aria-expanded="false"> <span
+									class="no-icon">Dropdown</span>
+							</a>
+								<div class="dropdown-menu"
+									aria-labelledby="navbarDropdownMenuLink">
+									<a class="dropdown-item" href="#">Action</a> <a
+										class="dropdown-item" href="#">Another action</a> <a
+										class="dropdown-item" href="#">Something</a> <a
+										class="dropdown-item" href="#">Something else here</a>
+									<div class="divider"></div>
+									<a class="dropdown-item" href="#">Separated link</a>
+								</div></li>
+							<li class="nav-item"><a class="nav-link"
+								href="<%=request.getContextPath()%>/logOut.jsp"> <span
+									class="no-icon">LOG OUT</span>
+							</a></li>
+						</ul>
 					</div>
 				</div>
+			</nav>
+			<!-- End Navbar -->
+			<div class="content">
+				<div class="container-fluid">
+					<div class="container-fluid">
+						<div class="row">
+							<div class="col-md-6 mr-auto ml-auto">
+								<form id="insertCashForm"
+									action="<%=request.getContextPath()%>/cash/insertCashAction.jsp?year=<%=year%>&month=<%=month%>&date=<%=date%>"
+									method="post">
+									<input type="hidden" name="memberId" value="<%=loginMember.getMemberId()%>">
+									<input type="hidden" name="year" value="<%=year%>"> 
+									<input type="hidden" name="month" value="<%=month%>"> 
+									<input type="hidden" name="date" value="<%=date%>">
+									<div class="card ">
+										<div class="card-header ">
+											<h4 class="card-title">사용금액 추가하기</h4>
+										</div>
+										<div class="card-body ">
+											<div class="form-group has-label">
+												<label> 사용일자 <star class="star">*</star>
+												</label> 
+												<input type="text" name="cashDate" value="<%=year%>-<%=month%>-<%=date%>" readonly="readonly"
+													class="form-control">
+											</div>
+											<div class="form-group has-label">
+												<label> 항목 <star class="star">*</star>
+												</label> 
+												<select name="categoryNo" class="form-control form-control">
+													<%
+													for (Category c : categoryList) {
+													%>
+													<option value="<%=c.getCategoryNo()%>">
+														<%=c.getCategoryNo()%>
+														<%=c.getCategoryKind()%>
+														<%=c.getCategoryName()%>
+													</option>
+													<%
+													}
+													%>
+												</select>
+											</div>
+											<div class="form-group has-label">
+												<label> 금액 <star class="star">*</star>
+												</label> 
+												<input name="cashPrice" class="form-control form-control" id="cashPrice">
+											</div>
+											<div class="form-group has-label">
+												<label> 메모 <star class="star">*</star>
+												</label>
+												<textarea placeholder="문의사항을 입력하세요..." class="form-control form-control-alternative" name="cashMemo" id="cashMemo"></textarea>
+											</div>
+											<div class="card-category form-category">
+												<star class="star">*</star>
+												Required fields
+											</div>
+										</div>
+										<div class="card-footer text-right">
+											<button type="button"
+												class="btn btn-info btn-fill pull-right" id="insetCashBt">추가</button>
+											<div class="clearfix"></div>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+					<script>
+					let insetCashBt = document.querySelector('#insetCashBt');
+					insetCashBt.addEventListener('click', function(e) {
+						console.log('insetCashBt click');
+	
+						let cashPrice = document.querySelector('#cashPrice');
+						if (cashPrice.value == '') {
+							alert('금액을 입력하세요');
+							cashPrice.focus();
+							return;
+						}
+	
+						let cashMemo = document.querySelector('#cashMemo');
+						if (cashMemo.value == '') {
+							alert('메모를 입력하세요');
+							cashMemo.focus();
+							return;
+						}
+						let insertCashForm = document
+								.querySelector('#insertCashForm');
+						insertCashForm.submit();
+					});
+				</script>
+					<table class="table">
+						<tr style="text-align: center; font-weight: bolder;">
+							<td>사용 날짜</td>
+							<td>수입/지출</td>
+							<td>항목</td>
+							<td>가격</td>
+							<td>메모</td>
+							<td>수정 / 삭제</td>
+
+						</tr>
+						<%
+					for (HashMap<String, Object> m : list) {
+						String cashDate = (String) (m.get("cashDate"));
+						if (Integer.parseInt(cashDate.substring(8)) == date) {
+					%>
+						<tr style="text-align: center;">
+							<td><%=m.get("cashDate")%></td>
+							<td><%=m.get("categoryKind")%></td>
+							<td><%=m.get("categoryName")%></td>
+							<td><%=decFormat.format(m.get("cashPrice"))%></td>
+							<td><%=m.get("cashMemo")%></td>
+							<td><a
+								href="<%=request.getContextPath()%>/cash/updateCashForm.jsp?cashNo=<%=m.get("cashNo")%>&year=<%=year%>&month=<%=month%>&date=<%=date%>">
+									<i class="fa fa-edit"></i> /
+							</a> <a
+								href="<%=request.getContextPath()%>/cash/deleteCashAction.jsp?cashNo=<%=m.get("cashNo")%>&year=<%=year%>&month=<%=month%>&date=<%=date%>"
+								style="color: red;"> <i class="fa fa-times"></i></a></td>
+						</tr>
+						<%
+						}
+					}
+					%>
+					</table>
+				</div>
 			</div>
-			<footer class="footer">
+		</div>
+		<footer class="footer">
               <div class="container-fluid">
                   <nav>
                       <ul class="footer-menu">

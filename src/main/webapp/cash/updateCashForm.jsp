@@ -57,7 +57,7 @@ Cash cash = cashDao.selectCashOne(cashNo);
 	   		 -->
 			<div class="sidebar-wrapper">
 				<div class="logo">
-					<a href="<%=request.getContextPath()%>/memberOne.jsp"
+					<a href="<%=request.getContextPath()%>/cash/cashList.jsp"
 						class="simple-text"> Cashbook </a>
 				</div>
                 <ul class="nav">
@@ -70,7 +70,7 @@ Cash cash = cashDao.selectCashOne(cashNo);
                     <li>
 						<a class="nav-link" href="<%=request.getContextPath()%>/index.jsp">
 							<i class="nc-icon nc-chart-pie-36"></i>
-							<p>Index</p>
+							<p>Chart</p>
 						</a>
 					</li>
                     <li>
@@ -193,68 +193,65 @@ Cash cash = cashDao.selectCashOne(cashNo);
                 </div>
             </nav>
 			<!-- End Navbar -->
-			<div class="container">
-				<div class="col-md-12">
-					<div class="card card-plain table-plain-bg" style="height: 580px;">
-						<div class="card-header ">
-							<h4 class="card-title">일별 수정하기</h4>
-							<p class="card-category">회원이 일별 사용 금액을 수정할 수 있다.</p>
-						</div>
-						<br>
-						<%
-							if(msg1!=null){
-						%>
-						<div class="alert alert-danger text-center" role="alert"><%=msg1%></div>
-						<%		
-							}
-						%>
-						<form id="updateCashForm" action="<%=request.getContextPath()%>/cash/updateCashAction.jsp"
-							method="post">
-							<input type="hidden" name="memberId"
-								value="<%=loginMember.getMemberId()%>"> <input
-								type="hidden" name="year" value="<%=year%>"> <input
-								type="hidden" name="month" value="<%=month%>"> <input
-								type="hidden" name="date" value="<%=date%>"> <input
-								type="hidden" name="cashNo" value="<%=cashNo%>">
-							<table width="100%">
-								<tr>
-									<td style="font-weight: bold; text-align: center;">사용 날짜</td>
-									<td><input type="text" name="cashDate"
-										value="<%=cash.getCashDate() %>" readonly="readonly"
-										class="form-control form-control"></td>
-								</tr>
-								<tr>
-									<td colspan="2"><hr></td>
-								</tr>
-								<tr>
-									<td style="font-weight: bold; text-align: center;">가격</td>
-
-									<td>
-										<input type="text" name="cashPrice" id="cashPrice"
-										value="<%=cash.getCashPrice()%>"
-										class="form-control form-control">
-									</td>
-									</tr>
-								<tr>
-									<td colspan="2"><hr></td>
-								</tr>
-								<tr>
-									<td style="font-weight: bold; text-align: center;">메모</td>
-
-									<td>
-										<textarea class="form-control form-control-alternative"
-										cols="30" rows="10" name="cashMemo" id="cashMemo"><%=cash.getCashMemo() %></textarea>
-									</td>
-									</tr>
-								<tr>
-									<td colspan="2"><hr></td>
-								</tr>
-							</table>
-							<div class="text-center">
-								<button type="button" class="btn btn-primary mt-4"
-									id="updateCashBt">수정하기</button>
+			<div class="content">
+				<div class="container-fluid">
+					<div class="container-fluid">
+						<div class="row">
+							<div class="col-md-6 mr-auto ml-auto">
+								<form id="updateCashForm"
+									action="<%=request.getContextPath()%>/cash/updateCashAction.jsp"
+									method="post">
+									<div class="card ">
+										<div class="card-header ">
+											<h4 class="card-title">사용금액 수정하기</h4>
+										</div>
+										<input type="hidden" name="memberId"
+											value="<%=loginMember.getMemberId()%>"> <input
+											type="hidden" name="year" value="<%=year%>"> <input
+											type="hidden" name="month" value="<%=month%>"> <input
+											type="hidden" name="date" value="<%=date%>"> <input
+											type="hidden" name="cashNo" value="<%=cashNo%>">
+										<%
+											if(msg1!=null){
+										%>
+										<div class="alert alert-danger text-center" role="alert"><%=msg1%></div>
+										<%		
+											}
+										%>
+										<div class="card-body ">
+											<div class="form-group has-label">
+												<label> 사용일자 <star class="star">*</star>
+												</label> <input type="text" name="cashDate"
+													value="<%=cash.getCashDate() %>" readonly="readonly"
+													class="form-control">
+											</div>
+											<div class="form-group has-label">
+												<label> 금액 <star class="star">*</star>
+												</label> <input name="cashPrice" id="cashPrice"
+													value="<%=cash.getCashPrice()%>"
+													class="form-control form-control">
+											</div>
+											<div class="form-group has-label">
+												<label> 메모 <star class="star">*</star>
+												</label>
+												<textarea placeholder="문의사항을 입력하세요..."
+													class="form-control form-control-alternative"
+													name="cashMemo" id="cashMemo"><%=cash.getCashMemo() %></textarea>
+											</div>
+											<div class="card-category form-category">
+												<star class="star">*</star>
+												Required fields
+											</div>
+										</div>
+										<div class="card-footer text-right">
+											<button type="button"
+												class="btn btn-info btn-fill pull-right" id="updateCashBt">수정</button>
+											<div class="clearfix"></div>
+										</div>
+									</div>
+								</form>
 							</div>
-						</form>
+						</div>
 					</div>
 				</div>
 			</div>

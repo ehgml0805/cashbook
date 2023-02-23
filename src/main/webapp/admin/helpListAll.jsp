@@ -36,7 +36,7 @@ if (selectHelpCount / rowPerPage != 0) {
 <link rel="apple-touch-icon" sizes="76x76" href="../resource2/assets/img/apple-icon.png">
 <link rel="icon" type="image/png" href="../resource2/assets/img/favicon.ico">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<title>문의사항 관리하기</title>
+<title>문의사항 관리</title>
 <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
 <!--     Fonts and icons     -->
 <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
@@ -50,7 +50,7 @@ if (selectHelpCount / rowPerPage != 0) {
 
 <body>
 	<div class="wrapper">
-		<div class="sidebar" data-image="../resource2/assets/img/sidebar-5.jpg" data-color="orange">
+		<div class="sidebar" data-image="../resource2/assets/img/sidebar-2.jpg" data-color="orange">
 			<!--
         	Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
 
@@ -58,7 +58,7 @@ if (selectHelpCount / rowPerPage != 0) {
    			 -->
             <div class="sidebar-wrapper">
                 <div class="logo">
-                    <a href="<%=request.getContextPath()%>/memberOne.jsp" class="simple-text">
+                    <a href="<%=request.getContextPath()%>/cash/cashList.jsp" class="simple-text">
                         Cashbook
                     </a>
                 </div>
@@ -72,7 +72,7 @@ if (selectHelpCount / rowPerPage != 0) {
                     <li>
 						<a class="nav-link" href="<%=request.getContextPath()%>/index.jsp">
 							<i class="nc-icon nc-chart-pie-36"></i>
-							<p>Index</p>
+							<p>Chart</p>
 						</a>
 					</li>
                     <li>
@@ -204,15 +204,15 @@ if (selectHelpCount / rowPerPage != 0) {
 					</div>
 				<div class="card-body table-full-width table-responsive">
 						<table class="table table-hover">
-						<tr style="text-align: center;">
-							<td style="font-weight: bolder;" >No.</th>
-							<td style="font-weight: bolder;" >문의 내용</th>
-							<td style="font-weight: bolder;" >회원 ID</th>
-							<td style="font-weight: bolder;" >문의 날짜</th>
-							<td style="font-weight: bolder;" >답변 내용</th>
-							<td style="font-weight: bolder;" >답변 날짜</th>
-							<td style="font-weight: bolder;" >답변 추가 / 수정 / 삭제</th>
-						</tr>
+							<tr style="text-align: center;">
+								<td style="font-weight: bolder;" >No.</th>
+								<td style="font-weight: bolder;" >문의 내용</th>
+								<td style="font-weight: bolder;" >회원 ID</th>
+								<td style="font-weight: bolder;" >문의 날짜</th>
+								<td style="font-weight: bolder;" >답변 내용</th>
+								<td style="font-weight: bolder;" >답변 날짜</th>
+								<td style="font-weight: bolder;" >답변 추가 / 수정 / 삭제</th>
+							</tr>
 						<%
 						for (HashMap<String, Object> m : list) {
 						%>
@@ -253,7 +253,7 @@ if (selectHelpCount / rowPerPage != 0) {
 									<i class="fa fa-edit"></i></a> <%
 								 } else {
 								 %> 
-								 	<a href="<%=request.getContextPath()%>/admin/comment/updateCommentForm.jsp?commentNo=<%=m.get("commentNo")%>">
+								 	<a href="<%=request.getContextPath()%>/admin/comment/updateCommentForm.jsp?commentNo=<%=m.get("commentNo")%>&helpNo=<%=m.get("helpNo")%>">
 								 	<i class="fa fa-edit"></i> / </a>
 									<a href="<%=request.getContextPath()%>/admin/comment/deleteCommentAction.jsp?commentNo=<%=m.get("commentNo")%>" style="color: red;">
 									<i class="fa fa-times"></i></a></a>
@@ -267,53 +267,48 @@ if (selectHelpCount / rowPerPage != 0) {
 						%>
 					</table>
 					<div class="container" style="text-align: center;">
-						<a
-							href="<%=request.getContextPath()%>/admin/helpListAll.jsp?currentPage=1" style="color: black;">처음</a>
+						<a href="<%=request.getContextPath()%>/admin/helpListAll.jsp?currentPage=1" style="color: black;">처음</a>
 						<%
 						if (currentPage > 1) {
 						%>
-						<a 
-							href="<%=request.getContextPath()%>/admin/helpListAll.jsp?currentPage=<%=currentPage - 1%>" style="color: black;">이전</a>
+							<a href="<%=request.getContextPath()%>/admin/helpListAll.jsp?currentPage=<%=currentPage - 1%>" style="color: black;">이전</a>
 						<%
 						}
 						%>
-						 <span><%=currentPage%></span>
+							<span><%=currentPage%></span>
 						<%
 						if (currentPage < lastPage) {
 						%>
-						<a 
-							href="<%=request.getContextPath()%>/admin/helpListAll.jsp?currentPage=<%=currentPage + 1%>" style="color: black;">다음</a>
+							<a href="<%=request.getContextPath()%>/admin/helpListAll.jsp?currentPage=<%=currentPage + 1%>" style="color: black;">다음</a>
 						<%
 						}
 						%>
-						<a
-							href="<%=request.getContextPath()%>/admin/helpListAll.jsp?currentPage=<%=lastPage%>" style="color: black;">마지막</a>
+						<a href="<%=request.getContextPath()%>/admin/helpListAll.jsp?currentPage=<%=lastPage%>" style="color: black;">마지막</a>
 					</div>
 				</div>
 			</div>
 		</div>
-	</section>
-			<footer class="footer">
-				<div class="container-fluid">
-					<nav>
-						<ul class="footer-menu">
-							<li><a href="#"> Home </a></li>
-							<li><a href="#"> Company </a></li>
-							<li><a href="#"> Portfolio </a></li>
-							<li><a href="https://github.com/ehgml0805/cashbook"
-								target='_blank'> Git Hub </a></li>
-						</ul>
-						<p class="copyright text-center">
-							©
-							<script>
-								document.write(new Date().getFullYear())
-							</script>
-							<a href="http://www.creative-tim.com">Creative Tim</a>, made with
-							love for a better web
-						</p>
-					</nav>
-				</div>
-			</footer>
+		<footer class="footer">
+			<div class="container-fluid">
+				<nav>
+					<ul class="footer-menu">
+						<li><a href="#"> Home </a></li>
+						<li><a href="#"> Company </a></li>
+						<li><a href="#"> Portfolio </a></li>
+						<li><a href="https://github.com/ehgml0805/cashbook"
+							target='_blank'> Git Hub </a></li>
+					</ul>
+					<p class="copyright text-center">
+						©
+						<script>
+							document.write(new Date().getFullYear())
+						</script>
+						<a href="http://www.creative-tim.com">Creative Tim</a>, made with
+						love for a better web
+					</p>
+				</nav>
+			</div>
+		</footer>
 		</div>
 	</div>
 	<!--   Core JS Files   -->

@@ -97,7 +97,7 @@ DecimalFormat decFormat = new DecimalFormat("###,###");
 	   		 -->
             <div class="sidebar-wrapper">
                 <div class="logo">
-                    <a href="<%=request.getContextPath()%>/memberOne.jsp" class="simple-text">
+                    <a href="<%=request.getContextPath()%>/cash/cashList.jsp" class="simple-text">
                         Cashbook
                     </a>
                 </div>
@@ -111,7 +111,7 @@ DecimalFormat decFormat = new DecimalFormat("###,###");
                     <li>
 						<a class="nav-link" href="<%=request.getContextPath()%>/index.jsp">
 							<i class="nc-icon nc-chart-pie-36"></i>
-							<p>Index</p>
+							<p>Chart</p>
 						</a>
 					</li>
                     <li>

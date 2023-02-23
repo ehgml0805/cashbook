@@ -7,6 +7,9 @@ if (session.getAttribute("loginMember") == null) {
 	response.sendRedirect(request.getContextPath() + "/loginForm.jsp");
 	return;
 }
+String msg2 = request.getParameter("msg2");
+String msg1 = request.getParameter("msg1");
+
 //session에 있는 ID랑 NAME 받아오기
 Member loginMember = (Member) session.getAttribute("loginMember");
 String memberId = loginMember.getMemberId();
@@ -42,7 +45,7 @@ String memberName = loginMember.getMemberName();
     -->
             <div class="sidebar-wrapper">
                 <div class="logo">
-                    <a href="<%=request.getContextPath()%>/memberOne.jsp" class="simple-text">
+                    <a href="<%=request.getContextPath()%>/cash/cashList.jsp" class="simple-text">
                         Cashbook
                     </a>
                 </div>
@@ -56,7 +59,7 @@ String memberName = loginMember.getMemberName();
                     <li>
 						<a class="nav-link" href="<%=request.getContextPath()%>/index.jsp">
 							<i class="nc-icon nc-chart-pie-36"></i>
-							<p>Index</p>
+							<p>Chart</p>
 						</a>
 					</li>
                     <li class="nav-item active">
@@ -67,49 +70,48 @@ String memberName = loginMember.getMemberName();
                     </li>
                     <li>
                         <a class="nav-link" href="<%=request.getContextPath()%>/help/helpList.jsp">
-                            <i class="nc-icon nc-notes"></i>
+                            <i class="nc-icon nc-zoom-split"></i>
                             <p>Customer Help</p>
                         </a>
                     </li>
                     <%
 						if(loginMember.getMemberLevel() > 0) {
 					%>
-						<li>
-	                        <a class="nav-link" href="<%=request.getContextPath()%>/admin/adminMain.jsp">
-	                            <i class="nc-icon nc-atom"></i>
-	                            <p>Admin Page</p>
-	                        </a>
-                    	</li>
-                    	 <li>
-	                        <a class="nav-link" href="./icons.html">
-	                            <i class="nc-icon nc-atom"></i>
-	                            <p>Icons</p>
-	                        </a>
-	                    </li>
-	                    <li>
-	                        <a class="nav-link" href="./maps.html">
-	                            <i class="nc-icon nc-pin-3"></i>
-	                            <p>Maps</p>
-	                        </a>
-	                    </li>
-	                    <li>
-	                        <a class="nav-link" href="./notifications.html">
-	                            <i class="nc-icon nc-bell-55"></i>
-	                            <p>Notifications</p>
-	                        </a>
-	                    </li>
-	                    <li class="nav-item active active-pro">
-	                        <a class="nav-link active" href="upgrade.html">
-	                            <i class="nc-icon nc-alien-33"></i>
-	                            <p>Upgrade to PRO</p>
-	                        </a>
-	                    </li>
-							
+					<hr>
+                   	 <li>
+                        <a class="nav-link" href="<%=request.getContextPath()%>/admin/noticeList.jsp">
+                            <i class="nc-icon nc-bell-55"></i>
+                            <p>Notice</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="<%=request.getContextPath()%>/admin/categoryList.jsp">
+                            <i class="nc-icon nc-preferences-circle-rotate"></i>
+                            <p>Category</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="<%=request.getContextPath()%>/admin/memberList.jsp">
+                            <i class="nc-icon nc-single-02"></i>
+                            <p>Member</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="<%=request.getContextPath()%>/admin/helpListAll.jsp">
+                            <i class="nc-icon nc-bullet-list-67"></i>
+                            <p>Help List</p>
+                        </a>
+                   	</li>
+                    <li class="nav-item active active-pro">
+                        <a class="nav-link active" href="<%=request.getContextPath()%>/admin/adminMain.jsp">
+                            <i class="nc-icon nc-alien-33"></i>
+                            <p>Admin Page</p>
+                        </a>
+                    </li>
 					<%	
 						}
 					%>
-                  
-                </ul>
+				</ul>
             </div>
         </div>
  		<div class="main-panel">
@@ -172,7 +174,7 @@ String memberName = loginMember.getMemberName();
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="<%=request.getContextPath()%>/logOut.jsp">
-                                    <span class="no-icon">Log out</span>
+                                    <span class="no-icon">LOG OUT</span>
                                 </a>
                             </li>
                         </ul>
@@ -183,90 +185,56 @@ String memberName = loginMember.getMemberName();
             <div class="content">
                 <div class="container-fluid">
                     <div class="row">
-                        <div class="col-md-8">
+                        <div class="col-md-6">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4 class="card-title">Edit Profile</h4>
+                                    <h4 class="card-title">Updte Profile</h4>
                                 </div>
-                                <div class="card-body">
-                                    <form>
-                                        <div class="row">
-                                            <div class="col-md-5 pr-1">
-                                                <div class="form-group">
-                                                    <label>Company (disabled)</label>
-                                                    <input type="text" class="form-control" disabled="" placeholder="Company" value="Creative Code Inc.">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-3 px-1">
-                                                <div class="form-group">
-                                                    <label>Username</label>
-                                                    <input type="text" class="form-control" placeholder="Username" value="michael23">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4 pl-1">
-                                                <div class="form-group">
-                                                    <label for="exampleInputEmail1">Email address</label>
-                                                    <input type="email" class="form-control" placeholder="Email">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6 pr-1">
-                                                <div class="form-group">
-                                                    <label>First Name</label>
-                                                    <input type="text" class="form-control" placeholder="Company" value="Mike">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 pl-1">
-                                                <div class="form-group">
-                                                    <label>Last Name</label>
-                                                    <input type="text" class="form-control" placeholder="Last Name" value="Andrew">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="form-group">
-                                                    <label>Address</label>
-                                                    <input type="text" class="form-control" placeholder="Home Address" value="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-4 pr-1">
-                                                <div class="form-group">
-                                                    <label>City</label>
-                                                    <input type="text" class="form-control" placeholder="City" value="Mike">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4 px-1">
-                                                <div class="form-group">
-                                                    <label>Country</label>
-                                                    <input type="text" class="form-control" placeholder="Country" value="Andrew">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4 pl-1">
-                                                <div class="form-group">
-                                                    <label>Postal Code</label>
-                                                    <input type="number" class="form-control" placeholder="ZIP Code">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="form-group">
-                                                    <label>About Me</label>
-                                                    <textarea rows="4" cols="80" class="form-control" placeholder="Here can be your description" value="Mike">Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.</textarea>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <button type="submit" class="btn btn-info btn-fill pull-right">Update Profile</button>
-                                        <div class="clearfix"></div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
+                                <%
+								if (msg1 != null) {
+								%>
+									<div class="alert alert-danger" role="alert"><%=msg1%></div>
+								<%
+								}
+								%>
+								<div class="card-body">
+                                    <form id="updateForm" action="<%=request.getContextPath()%>/updateMemberAction.jsp" method="post">
+                                        <div class="form-group has-label">
+												<label> ID </label> 
+												<input type="text" name="memberId" id="memberId" value="<%=memberId%>" readonly="readonly"
+													class="form-control form-control">
+										</div>
+										<div class="form-group has-label">
+												<label> 변경 전 이름 </label> 
+												<input type="text" name="bememberName" id="bememberName" value="<%=memberName%>" readonly="readonly"
+													class="form-control form-control">
+										</div>
+										<div class="form-group has-label">
+												<label> 변경 할 이름 </label> 
+												<input type="text" name="memberName" id="memberName" class="form-control form-control" placeholder="변경할 이름을 입력해주세요">
+										</div>
+										<div class="form-group has-label">
+												<label> 비밀번호 </label> 
+												<input type="password" name="memberPw" id="memberPw" class="form-control form-control" placeholder="비밀번호를 입력해주세요">
+										</div>
+										
+		                                <button type="button" class="btn btn-info btn-fill pull-right" id="updateBt">Update Profile</button>
+		                                <div class="clearfix"></div>
+									</div>
+                                </form>
+                                <div class="card-footer">
+                                   <div class="row mt-6">
+										<div class="col">
+											<a href="<%=request.getContextPath()%>/updateMemberPWForm.jsp" class="text-muted"><small>비밀번호수정</small></a>
+										</div>
+										<div class="col">
+											<a href="<%=request.getContextPath()%>/deleteMemberForm.jsp" style="color: red;" ><small>회원탈퇴</small></a>
+										</div>
+									</div>
+								</div>
+                              </div>
+                           </div>
+                        <div class="col-md-6">
                             <div class="card card-user">
                                 <div class="card-image">
                                     <img src="https://ununsplash.imgix.net/photo-1431578500526-4d9613015464?fit=crop&fm=jpg&h=300&q=75&w=400" alt="...">
@@ -307,44 +275,28 @@ String memberName = loginMember.getMemberName();
                     </div>
                 </div>
             </div>			
-<%-- 		<section class="section bg-secondary">
-			<div class="container">
-				<div class="card card-profile shadow mt--300">
-					<!-- 야자수 배경 -->
-					<div class="px-6">
-						<!-- 흰배경 여백같은? -->
-						<div class="row justify-content-center">
-							<div
-								class="col-lg-4 order-lg-3 text-lg-right align-self-lg-center">
-								<div class="card-profile-actions py-4 mt-lg-0">
-									<a href="<%=request.getContextPath()%>/updateMemberForm.jsp"
-										class="btn btn-sm btn-info mr-4">개인정보 수정</a>
-									<!--숫자는 간격 -->
-									<a href="<%=request.getContextPath()%>/deleteMemberForm.jsp"
-										class="btn btn-sm btn-default float-right">회원 탈퇴</a>
-								</div>
-							</div>
-						</div>
-						<div class="text-center mt-5">
-							<h3>
-								<span class="font-weight-light"><%=memberName%></span>
-							</h3>
-							<div class="h4 font-weight-300">
-								<i class="ni location_pin mr-2"></i>ID
-								<%=memberId%></div>
-							<div class="h4 mt-4">
-								<i class="ni business_briefcase-24 mr-2"></i>구디아카데미 공공데이터 과정 자바 58기 김도희 개인프로젝트.
-								
-							</div>
-							<div>
-								<i class="ni education_hat mr-2"></i>
-									마리아 디비를 이용하고 mvc모델1으로 만들어 보았음.
-							</div>
-						</div>
-					</div>
-				</div>
-			</div> 
-		</section> --%>
+            <script>
+				let updateBt=document.querySelector('#updateBt');
+				updateBt.addEventListener('click', function(e) {
+					
+					let memberName=document.querySelector('#memberName');
+					if(memberName.value==''){
+						alert('변경 할 이름을 입력해 주세요!');
+						memberName.focus();
+						return;
+					}
+					let memberPw=document.querySelector('#memberPw');
+					if(memberPw.value==''){
+						alert('비밀번호를 입력하세요!');
+						memberPw.focus();
+						return;
+					}
+					
+					let updateForm=document.querySelector('#updateForm');
+					updateForm.submit();
+					
+				});
+			</script>
            <footer class="footer">
                 <div class="container-fluid">
                     <nav>

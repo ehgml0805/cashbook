@@ -43,7 +43,7 @@ ArrayList<Category> categoryList = categoryDao.selectCategoryListByAdmin();
 
 <body style="overflow: auto;">
 	<div class="wrapper">
-		<div class="sidebar" data-image="../resource2/assets/img/sidebar-4.jpg" data-color="orange">
+		<div class="sidebar" data-image="../resource2/assets/img/sidebar-3.jpg" data-color="orange">
 			<!--
 	        Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
 	
@@ -51,7 +51,7 @@ ArrayList<Category> categoryList = categoryDao.selectCategoryListByAdmin();
 	   		 -->
             <div class="sidebar-wrapper">
                 <div class="logo">
-                    <a href="<%=request.getContextPath()%>/memberOne.jsp" class="simple-text">
+                    <a href="<%=request.getContextPath()%>/cash/cashList.jsp" class="simple-text">
                         Cashbook
                     </a>
                 </div>
@@ -65,7 +65,7 @@ ArrayList<Category> categoryList = categoryDao.selectCategoryListByAdmin();
                     <li>
 						<a class="nav-link" href="<%=request.getContextPath()%>/index.jsp">
 							<i class="nc-icon nc-chart-pie-36"></i>
-							<p>Index</p>
+							<p>Chart</p>
 						</a>
 					</li>
                     <li>
@@ -229,6 +229,7 @@ ArrayList<Category> categoryList = categoryDao.selectCategoryListByAdmin();
 					</div>
 				</div>
 			</div>
+
 			<footer class="footer">
 				<div class="container-fluid">
 					<nav>
