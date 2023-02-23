@@ -1,8 +1,6 @@
 <%@page import="vo.Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
-
 <%
 //방어코드
 if (session.getAttribute("loginMember") == null) {
@@ -24,7 +22,7 @@ String loginMemberPw = loginMember.getMemberPw();
     <link rel="apple-touch-icon" sizes="76x76" href="resource2/assets/img/apple-icon.png">
     <link rel="icon" type="image/png" href="resource2/assets/img/favicon.ico">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <title>마이페이지</title>
+    <title>비밀번호 수정</title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
@@ -235,63 +233,49 @@ String loginMemberPw = loginMember.getMemberPw();
 					</div>
 				</div>
 			</div>
-		<script>
-		let updatePwBt=document.querySelector('#updatePwBt');
-		updatePwBt.addEventListener('click', function(e) {
-			console.log('updatePwBt click!')
-			
-		let bememberPw=document.querySelector('#bememberPw');
-		if(bememberPw.value==''){
-			alert('변경 전 비밀번호를 입력하세요');
-			bememberPw.focus();
-			return;
-		}
-		let memberPw=document.querySelector('#memberPw');
-		if(memberPw.value==''){
-			alert('변경 할 비밀번호를 확인하세요!');
-			memberPw.focus();
-			return;
-		}
-		let updatePwBForm=document.querySelector('#updatePw');
-		updatePwBForm.submit();
-		
-		});
-	</script>
-	           <footer class="footer">
-                <div class="container-fluid">
-                    <nav>
-                        <ul class="footer-menu">
-                            <li>
-                                <a href="#">
-                                    Home
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    Company
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    Portfolio
-                                </a>
-                            </li>
-                            <li>
-                                <a href="https://github.com/ehgml0805/cashbook" target='_blank'>
-                                   Git Hub
-                                </a>
-                            </li>
-                        </ul>
-                        <p class="copyright text-center">
-                            ©
-                            <script>
-                                document.write(new Date().getFullYear())
-                            </script>
-                            <a href="http://www.creative-tim.com">Creative Tim</a>, made with love for a better web
-                        </p>
-                    </nav>
-                </div>
-            </footer>
+				<script>
+				let updatePwBt=document.querySelector('#updatePwBt');
+				updatePwBt.addEventListener('click', function(e) {
+					console.log('updatePwBt click!')
+					
+				let bememberPw=document.querySelector('#bememberPw');
+				if(bememberPw.value==''){
+					alert('변경 전 비밀번호를 입력하세요');
+					bememberPw.focus();
+					return;
+				}
+				let memberPw=document.querySelector('#memberPw');
+				if(memberPw.value==''){
+					alert('변경 할 비밀번호를 확인하세요!');
+					memberPw.focus();
+					return;
+				}
+				let updatePwBForm=document.querySelector('#updatePw');
+				updatePwBForm.submit();
+				
+				});
+			</script>
+			<footer class="footer">
+				<div class="container-fluid">
+					<nav>
+						<ul class="footer-menu">
+							<li><a href="#"> Home </a></li>
+							<li><a href="#"> Company </a></li>
+							<li><a href="#"> Portfolio </a></li>
+							<li><a href="https://github.com/ehgml0805/cashbook"
+								target='_blank'> Git Hub </a></li>
+						</ul>
+						<p class="copyright text-center">
+							©
+							<script>
+								document.write(new Date().getFullYear())
+							</script>
+							<a href="http://www.creative-tim.com">Creative Tim</a>, made with
+							love for a better web
+						</p>
+					</nav>
+				</div>
+			</footer>
 		</div>
 	</div>
 <!--   Core JS Files   -->
