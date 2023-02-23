@@ -122,49 +122,48 @@ DecimalFormat decFormat = new DecimalFormat("###,###");
                     </li>
                     <li>
                         <a class="nav-link" href="<%=request.getContextPath()%>/help/helpList.jsp">
-                            <i class="nc-icon nc-notes"></i>
+                            <i class="nc-icon nc-zoom-split"></i>
                             <p>Customer Help</p>
                         </a>
                     </li>
                     <%
 						if(loginMember.getMemberLevel() > 0) {
 					%>
-						<li>
-	                        <a class="nav-link" href="<%=request.getContextPath()%>/admin/adminMain.jsp">
-	                            <i class="nc-icon nc-atom"></i>
-	                            <p>Admin Page</p>
-	                        </a>
-                    	</li>
-                    	 <li>
-	                        <a class="nav-link" href="./icons.html">
-	                            <i class="nc-icon nc-atom"></i>
-	                            <p>Icons</p>
-	                        </a>
-	                    </li>
-	                    <li>
-	                        <a class="nav-link" href="./maps.html">
-	                            <i class="nc-icon nc-pin-3"></i>
-	                            <p>Maps</p>
-	                        </a>
-	                    </li>
-	                    <li>
-	                        <a class="nav-link" href="./notifications.html">
-	                            <i class="nc-icon nc-bell-55"></i>
-	                            <p>Notifications</p>
-	                        </a>
-	                    </li>
-	                    <li class="nav-item active active-pro">
-	                        <a class="nav-link active" href="upgrade.html">
-	                            <i class="nc-icon nc-alien-33"></i>
-	                            <p>Upgrade to PRO</p>
-	                        </a>
-	                    </li>
-							
+					<hr>
+                   	 <li>
+                        <a class="nav-link" href="<%=request.getContextPath()%>/admin/noticeList.jsp">
+                            <i class="nc-icon nc-bell-55"></i>
+                            <p>Notice</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="<%=request.getContextPath()%>/admin/categoryList.jsp">
+                            <i class="nc-icon nc-preferences-circle-rotate"></i>
+                            <p>Category</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="<%=request.getContextPath()%>/admin/memberList.jsp">
+                            <i class="nc-icon nc-single-02"></i>
+                            <p>Member</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="<%=request.getContextPath()%>/admin/helpListAll.jsp">
+                            <i class="nc-icon nc-bullet-list-67"></i>
+                            <p>Help List</p>
+                        </a>
+                   	</li>
+                    <li class="nav-item active active-pro">
+                        <a class="nav-link active" href="<%=request.getContextPath()%>/admin/adminMain.jsp">
+                            <i class="nc-icon nc-alien-33"></i>
+                            <p>Admin Page</p>
+                        </a>
+                    </li>
 					<%	
 						}
 					%>
-                  
-                </ul>
+				</ul>
             </div>
         </div>
  		<div class="main-panel">
@@ -227,7 +226,7 @@ DecimalFormat decFormat = new DecimalFormat("###,###");
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="<%=request.getContextPath()%>/logOut.jsp">
-                                    <span class="no-icon">Log out</span>
+                                    <span class="no-icon">LOG OUT</span>
                                 </a>
                             </li>
                         </ul>
