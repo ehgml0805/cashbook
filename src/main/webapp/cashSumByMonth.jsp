@@ -1,11 +1,17 @@
+<%@page import="java.text.DecimalFormat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
 <%@ page import="vo.*" %>
 <%@ page import="dao.*" %>
 <%@page import="java.util.*"%>
 <%
 Member loginMember= (Member)session.getAttribute("loginMember");
+if (session.getAttribute("loginMember") == null) {
+	response.sendRedirect(request.getContextPath() + "/loginForm.jsp");
+	return;
+}
 String memberId= loginMember.getMemberId();
-
+String loginMemberId = loginMember.getMemberId();
+String loginMemberName = loginMember.getMemberName();
 int year=0;
 if(request.getParameter("year")==null){
 	Calendar c= Calendar.getInstance();
@@ -21,6 +27,10 @@ ArrayList<HashMap<String,Object>> list= cashDao.selectCashSumByMonth(memberId, y
 HashMap<String, Object> map=cashDao.selectMaxMinYear();
 int minYear=(Integer)(map.get("minYear"));
 int maxYear=(Integer)(map.get("maxYear"));
+
+//천 단위 콤마
+DecimalFormat decFormat = new DecimalFormat("###,###");
+
 %>
 <!DOCTYPE html>
 <html lang="en">

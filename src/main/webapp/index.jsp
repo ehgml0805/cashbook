@@ -51,13 +51,13 @@ int memberLevel = loginMember.getMemberLevel();
                     </a>
                 </div>
                 <ul class="nav">
-                    <li class="nav-item active">
+                    <li>
                         <a class="nav-link" href="<%=request.getContextPath()%>/cash/cashList.jsp">
                             <i class="nc-icon nc-money-coins"></i>
                             <p>Calender</p>
                         </a>
                     </li>
-                    <li>
+                    <li class="nav-item active">
 						<a class="nav-link" href="<%=request.getContextPath()%>/index.jsp">
 							<i class="nc-icon nc-chart-pie-36"></i>
 							<p>Chart</p>

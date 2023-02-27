@@ -1,3 +1,4 @@
+<%@page import="java.text.DecimalFormat"%>
 <%@page import="java.util.HashMap"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
@@ -5,12 +6,20 @@
 <%@ page import="dao.*" %>
 
 <%
+if (session.getAttribute("loginMember") == null) {
+	response.sendRedirect(request.getContextPath() + "/loginForm.jsp");
+	return;
+}
 Member loginMember= (Member)session.getAttribute("loginMember");
 String memberId= loginMember.getMemberId();
+String loginMemberName = loginMember.getMemberName();
 String category=request.getParameter("category");
 //System.out.println(category+"<=지출/수입");
 CashDao cashDao= new CashDao();
 ArrayList<HashMap<String,Object>> list=cashDao.selectCashListByCategory(memberId);
+//천 단위 콤마
+DecimalFormat decFormat = new DecimalFormat("###,###");
+
 %>
 
 <!DOCTYPE html>
@@ -201,12 +210,12 @@ ArrayList<HashMap<String,Object>> list=cashDao.selectCashListByCategory(memberId
 								if(category.equals("수입")){
 							%>		
 									<span style="color: blue;"> +
-									<%=m.get("importCashSum") %></span>
+									<%=decFormat.format((Long) (m.get("importCashSum")) %></span>
 							<%		
 								}else {
 							%>		
 									<span style="color: red;"> - 
-									<%=m.get("exportCashSum") %></span>
+									<%=decFormat.format((Long) (m.get("exportCashSum")) %></span>
 							<%	
 								}
 							%>
@@ -216,12 +225,12 @@ ArrayList<HashMap<String,Object>> list=cashDao.selectCashListByCategory(memberId
 								if(category.equals("수입")){
 							%>		
 									<span style="color: blue;"> +
-									<%=m.get("importCashAvg") %></span>
+									<%=decFormat.format((Long) (m.get("importCashAvg")) %></span>
 							<%		
 								}else{
 							%>		
 									<span style="color: red;"> -
-									<%=m.get("exportCashAvg") %></span>
+									<%=decFormat.format((Long) (m.get("exportCashAvg")) %></span>
 							<%	
 								}
 							%>
