@@ -14,12 +14,9 @@ Member loginMember= (Member)session.getAttribute("loginMember");
 String memberId= loginMember.getMemberId();
 String loginMemberName = loginMember.getMemberName();
 String category=request.getParameter("category");
-//System.out.println(category+"<=지출/수입");
+System.out.println(category+"<=지출/수입");
 CashDao cashDao= new CashDao();
 ArrayList<HashMap<String,Object>> list=cashDao.selectCashListByCategory(memberId);
-//천 단위 콤마
-DecimalFormat decFormat = new DecimalFormat("###,###");
-
 %>
 
 <!DOCTYPE html>
@@ -187,18 +184,15 @@ DecimalFormat decFormat = new DecimalFormat("###,###");
                 </div>
             </nav>
             <!-- End Navbar -->	
-	<section class="section section-shaped section-lg">
-		<div class="shape shape-style-1 bg-gradient-default"></div>
-		<!-- 배경 색 -->
 		<div class="container">
-			<h3 style="color: white;"><%=category %> 합계 목록</h3>
-			<div class="p-5 mb-7 bg-light">
-			<div class="row row-grid align-items-center mb-5 ">
+			<h3>연도별 합계 목록</h3>
 			<table class="table text-center">
 				<tr>
 					<td>년도</td>
-					<td>합계</td>
-					<td>1회 평균 사용 금액</td>
+					<td>수입합계</td>
+					<td>1회 수입 평균 사용 금액</td>
+					<td>지출합계</td>
+					<td>1회 지출 평균 사용 금액</td>
 				</tr>
 				<%
 					for(HashMap<String,Object> m:list){
@@ -206,35 +200,20 @@ DecimalFormat decFormat = new DecimalFormat("###,###");
 					<tr>
 						<td><%=m.get("year") %></td>
 						<td>
-							<%
-								if(category.equals("수입")){
-							%>		
-									<span style="color: blue;"> +
-									<%=decFormat.format((Long) (m.get("importCashSum")) %></span>
-							<%		
-								}else {
-							%>		
-									<span style="color: red;"> - 
-									<%=decFormat.format((Long) (m.get("exportCashSum")) %></span>
-							<%	
-								}
-							%>
+							<span style="color: blue;"> +
+							<%=(m.get("importCashSum")) %></span>
 						</td>
 						<td>
-							<%
-								if(category.equals("수입")){
-							%>		
-									<span style="color: blue;"> +
-									<%=decFormat.format((Long) (m.get("importCashAvg")) %></span>
-							<%		
-								}else{
-							%>		
-									<span style="color: red;"> -
-									<%=decFormat.format((Long) (m.get("exportCashAvg")) %></span>
-							<%	
-								}
-							%>
-							
+							<span style="color: blue;"> +
+							<%=(m.get("importCashAvg")) %></span>
+						</td>
+						<td>
+							<span style="color: red;"> - 
+							<%=(m.get("exportCashSum")) %></span>
+						</td>
+						<td>
+							<span style="color: red;"> -
+							<%=(m.get("exportCashAvg")) %></span>
 						</td>
 					</tr>	
 				<%		
@@ -243,9 +222,6 @@ DecimalFormat decFormat = new DecimalFormat("###,###");
 				
 			</table>
 			</div>
-			</div>
-		</div>
-	</section>
 			<footer class="footer">
 				<div class="container-fluid">
 					<nav>

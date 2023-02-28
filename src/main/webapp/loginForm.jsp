@@ -65,7 +65,7 @@ int lastPage = selectNoticeCount / rowPerPage;
 									}
 									%>
 							</table>
-							<a href="index.html">
+							<a href="#">
 								<button type="button" class="btn btn-outline-light">New
 									Registeration</button>
 							</a>

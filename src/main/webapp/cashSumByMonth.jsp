@@ -49,6 +49,7 @@ DecimalFormat decFormat = new DecimalFormat("###,###");
     <link href="resource2/assets/css/light-bootstrap-dashboard.css?v=2.0.0 " rel="stylesheet" />
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link href="resource2/assets/css/demo.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 </head>
 <body style="overflow: auto;">
    <div class="wrapper">
@@ -197,85 +198,103 @@ DecimalFormat decFormat = new DecimalFormat("###,###");
                 </div>
             </nav>
             <!-- End Navbar -->	
-	<section class="section section-shaped section-lg">
-		<div class="shape shape-style-1 bg-gradient-default"></div>
-		<div class="container">
-				<h3 style="color: white;"><%=year%>년 월별 <%=category %> 합계</h3>
-				<div class="p-5 mb-7 bg-light">
-				<div class="row row-grid align-items-center mb-5 ">
-				<table  class="table text-center">
-					<tr>
-						<td>월</td>
-						<td>카운트</td>
-						<td><%=category %> 합계
-						/<%=category %> 평균</td>
-					</tr>
-					<%
-						for(HashMap<String,Object> m:list){
-					%>		
-							<tr>
-								<td><%=m.get("month")%></td>
-								<td>
-									<%
-										if(category.equals("수입")){
-									%>	
-										<span style="color: blue;"> +
-										<%=m.get("importCashCount") %> </span>
-									<%	
-									} else{
-									%>	
-										<span style="color: red;"> - 
-										<%=m.get("exportCashCount") %> </span>
-									<%	
-									}
-									%>
-								</td>
-								<td>
-									<%
-										if(category.equals("수입")){
-									%>		
-											<span style="color: blue;"> +
-											<%=m.get("importCashSum") %>
-											/ <%=m.get("importCashAvg") %> </span>
+            <div class="content">
+                <div class="container-fluid">
+                <div class="row">
+                        <div class="col-md-6">
+                            <div class="card ">
+                                <div class="card-header ">
+                                    <h4 class="card-title"><%=year%>년 월별 <%=category %> 합계</h4>
+                                    <p class="card-category"></p>
+                                </div>
+                                <div class="card-body ">
+                                    <div id="chartActivity" class="ct-chart"></div>
+                                </div>
+                                <div class="card-footer ">
+                                    <div class="legend">
+                                        <i class="fa fa-circle text-info"></i> 수입
+                                        <i class="fa fa-circle text-danger"></i> 지출
+                                    </div>
+                                    <hr>
+                                    <div class="stats">
+                                        <i class="fa fa-check"></i> Data information certified
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card  card-tasks">
+                                <div class="card-header ">
+                                    <h4 class="card-title"><%=year%>년 월별 <%=category %> 합계</h4>
+                                    <p class="card-category">Backend development</p>
+                                </div>
+                                <div class="card-body ">
+                                	<div class="container"> 
+                                        <table class="table">
+                                              <tr>
+											<td>월</td>
+											<td>월별 수입 횟수</td>
+											<td>수입합계 /수입평균</td>
+											<td>월별 지출 횟수</td>
+											<td>지출합계 /지출평균</td>
+										</tr>
+										<%
+											for(HashMap<String,Object> m:list){
+										%>		
+											<tr>
+												<td><%=m.get("month")%></td>
+												<td>
+													<span style="color: blue;"> +
+													<%=m.get("importCashCount") %> </span>
+												</td>
+												<td>
+													<span style="color: blue;"> +
+													<%=m.get("importCashSum") %>
+													/<p> <%=m.get("importCashAvg") %></p> </span>
+												</td>
+												<td>
+													<span style="color: red;"> - 
+													<%=m.get("exportCashCount") %> </span>
+												</td>
+												<td>				
+													<span style="color: red;"> -
+													<%=m.get("exportCashSum") %>
+													/ <p><%=m.get("exportCashAvg") %></p> </span>
+												</td>
+											</tr>	
+										<%		
+											}
+										%>
+                                        </table>
+										<!-- 페이징 -->
+										<%
+											if(year>minYear){
+										%>
+											<a href="<%=request.getContextPath()%>/cashSumByMonth.jsp?category=<%=category%>&year=<%=year-1%>"> 이전</a>
+										<%	
+											}
 												
-									<%		
-										}else{
-									%>		
-											<span style="color: red;"> -
-											<%=m.get("exportCashSum") %>
-											/ <%=m.get("exportCashAvg") %> </span>
-									<%		
-										}
-									%>
-								</td>
-							</tr>	
-					<%		
-						}
-					%>
-				
-				</table>
-					<div class="container" style="text-align: center;">
-					<%
-						if(year>minYear){
-					%>
-						<a href="<%=request.getContextPath()%>/cashSumByMonth.jsp?category=<%=category%>&year=<%=year-1%>"> 이전</a>
-					<%	
-						}
-							
-					%>
-					<%
-						if(year<maxYear){
-					%>
-						<a href="<%=request.getContextPath()%>/cashSumByMonth.jsp?category=<%=category%>&year=<%=year+1%>"> 다음</a>
-					<%	
-						}
-							
-					%>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
+										%>
+										<%
+											if(year<maxYear){
+										%>
+											<a href="<%=request.getContextPath()%>/cashSumByMonth.jsp?category=<%=category%>&year=<%=year+1%>"> 다음</a>
+										<%	
+											}
+										%>
+                                    </div>
+                                </div>
+                                <div class="card-footer ">
+                                    <hr>
+                                    <div class="stats">
+                                        <i class="now-ui-icons loader_refresh spin"></i> Updated 3 minutes ago
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 			<footer class="footer">
 				<div class="container-fluid">
 					<nav>
@@ -315,5 +334,45 @@ DecimalFormat decFormat = new DecimalFormat("###,###");
 <script src="resource2/assets/js/light-bootstrap-dashboard.js?v=2.0.0 " type="text/javascript"></script>
 <!-- Light Bootstrap Dashboard DEMO methods, don't include it in your project! -->
 <script src="resource2/assets/js/demo.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        // Javascript method's body can be found in assets/js/demos.js
+        //demo.initDashboardPageCharts();
+       // demo.showNotification();
+       
+       var importCashSum = document.getElementById(importCashSum);
+       var exportCashSum = exportCashSum 
+    	var data = {
+    	            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+    	            series: [
+    	            		console.log(importCashSum+'<== 수입합계')
+								[importCashSum],
+								[exportCashSum]
+    	            ]
+    	        };
+
+    	 var options = {
+    	            seriesBarDistance: 10,
+    	            axisX: {
+    	                showGrid: false
+    	            },
+    	            height: "245px"
+    	        };
+
+    	        var responsiveOptions = [
+    	            ['screen and (max-width: 640px)', {
+    	                seriesBarDistance: 0,
+    	                axisX: {
+    	                    labelInterpolationFnc: function(value) {
+    	                        return value[0];
+    	                    }
+    	                }
+    	            }]
+    	        ];
+
+    	        var chartActivity = Chartist.Bar('#chartActivity', data, options, responsiveOptions);
+
+    });
+</script>
 </body>
 </html>

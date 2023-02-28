@@ -251,7 +251,7 @@ demo = {
         var chartHours = Chartist.Line('#chartHours', dataSales, optionsSales, responsiveSales);
 
         // lbd.startAnimationForLineChart(chartHours);
-
+/*
         var data = {
             labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
             series: [
@@ -279,7 +279,7 @@ demo = {
             }]
         ];
 
-        var chartActivity = Chartist.Bar('#chartActivity', data, options, responsiveOptions);
+        var chartActivity = Chartist.Bar('#chartActivity', data, options, responsiveOptions);*/
 
         // lbd.startAnimationForBarChart(chartActivity);
 
