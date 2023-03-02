@@ -183,23 +183,37 @@ int memberLevel = loginMember.getMemberLevel();
                 </div>
             </nav>
             <!-- End Navbar -->	
-	<section class="section section-shaped section-lg">
-		<div class="shape shape-style-1 bg-gradient-default"></div>
-		<div class="container">
-			<ol>
-					<li>
-						<a href="<%=request.getContextPath()%>/cashListByCategory.jsp?category=수입&category=지출">
-							년도별 평균
-						</a>
-					</li>
-					<li>
-						<a href="<%=request.getContextPath()%>/cashSumByMonth.jsp?category=수입&category=지출">
-							월별 평균
-						</a>
-					</li>
-				</ol>
+			<div class="content">
+                <div class="container-fluid">
+                	<div class="row">
+                        <div class="col-md-12">
+							 <div class="card  card-tasks">
+								<div class="card-header ">
+					                 <h4 class="card-title">사용금액 평균</h4>
+					                 <p class="card-category"></p>
+					             </div>
+					             <div class="card-body ">
+					             	<div class="container"> 
+										<ol>
+											<li>
+												<a href="<%=request.getContextPath()%>/cashListByCategory.jsp?category=수입&category=지출">
+													년도별 평균
+												</a>
+											</li>
+											<li>
+												<a href="<%=request.getContextPath()%>/cashSumByMonth.jsp?category=수입&category=지출">
+													월별 평균
+												</a>
+											</li>
+										</ol>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
-		</section>
+	</section>
         <footer class="footer">
               <div class="container-fluid">
                   <nav>

@@ -1,8 +1,8 @@
-<%@page import="java.text.DecimalFormat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
 <%@ page import="vo.*" %>
 <%@ page import="dao.*" %>
 <%@page import="java.util.*"%>
+<%@page import="java.text.DecimalFormat"%>
 <%
 Member loginMember= (Member)session.getAttribute("loginMember");
 if (session.getAttribute("loginMember") == null) {
@@ -29,7 +29,7 @@ int minYear=(Integer)(map.get("minYear"));
 int maxYear=(Integer)(map.get("maxYear"));
 
 //천 단위 콤마
-DecimalFormat decFormat = new DecimalFormat("###,###");
+DecimalFormat df = new DecimalFormat("###,###");
 
 %>
 <!DOCTYPE html>
@@ -200,43 +200,24 @@ DecimalFormat decFormat = new DecimalFormat("###,###");
             <!-- End Navbar -->	
             <div class="content">
                 <div class="container-fluid">
-                <div class="row">
-                        <div class="col-md-6">
-                            <div class="card ">
-                                <div class="card-header ">
-                                    <h4 class="card-title"><%=year%>년 월별 <%=category %> 합계</h4>
-                                    <p class="card-category"></p>
-                                </div>
-                                <div class="card-body ">
-                                    <div id="chartActivity" class="ct-chart"></div>
-                                </div>
-                                <div class="card-footer ">
-                                    <div class="legend">
-                                        <i class="fa fa-circle text-info"></i> 수입
-                                        <i class="fa fa-circle text-danger"></i> 지출
-                                    </div>
-                                    <hr>
-                                    <div class="stats">
-                                        <i class="fa fa-check"></i> Data information certified
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
+                	<div class="row">
+                        <div class="col-md-12">
                             <div class="card  card-tasks">
                                 <div class="card-header ">
                                     <h4 class="card-title"><%=year%>년 월별 <%=category %> 합계</h4>
-                                    <p class="card-category">Backend development</p>
+                                    <p class="card-category"></p>
                                 </div>
                                 <div class="card-body ">
                                 	<div class="container"> 
                                         <table class="table">
                                               <tr>
 											<td>월</td>
-											<td>월별 수입 횟수</td>
-											<td>수입합계 /수입평균</td>
-											<td>월별 지출 횟수</td>
-											<td>지출합계 /지출평균</td>
+											<td>수입 횟수</td>
+											<td>수입 합계 </td>
+											<td>수입 평균</td>
+											<td>지출 횟수</td>
+											<td>지출 합계</td>
+											<td>지출 평균</td>
 										</tr>
 										<%
 											for(HashMap<String,Object> m:list){
@@ -249,8 +230,11 @@ DecimalFormat decFormat = new DecimalFormat("###,###");
 												</td>
 												<td>
 													<span style="color: blue;"> +
-													<%=m.get("importCashSum") %>
-													/<p> <%=m.get("importCashAvg") %></p> </span>
+													<%=df.format(m.get("importCashSum")) %></span>
+												</td>
+												<td>
+													<span style="color: blue;"> +
+													<%=df.format(m.get("importCashAvg")) %></p> </span>
 												</td>
 												<td>
 													<span style="color: red;"> - 
@@ -258,8 +242,11 @@ DecimalFormat decFormat = new DecimalFormat("###,###");
 												</td>
 												<td>				
 													<span style="color: red;"> -
-													<%=m.get("exportCashSum") %>
-													/ <p><%=m.get("exportCashAvg") %></p> </span>
+													<%=df.format(m.get("exportCashSum")) %></span>
+												</td>
+												<td>
+													<span style="color: red;"> -
+													<%=df.format(m.get("exportCashAvg")) %></span>
 												</td>
 											</tr>	
 										<%		
@@ -334,45 +321,5 @@ DecimalFormat decFormat = new DecimalFormat("###,###");
 <script src="resource2/assets/js/light-bootstrap-dashboard.js?v=2.0.0 " type="text/javascript"></script>
 <!-- Light Bootstrap Dashboard DEMO methods, don't include it in your project! -->
 <script src="resource2/assets/js/demo.js"></script>
-<script type="text/javascript">
-    $(document).ready(function() {
-        // Javascript method's body can be found in assets/js/demos.js
-        //demo.initDashboardPageCharts();
-       // demo.showNotification();
-       
-       var importCashSum = document.getElementById(importCashSum);
-       var exportCashSum = exportCashSum 
-    	var data = {
-    	            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-    	            series: [
-    	            		console.log(importCashSum+'<== 수입합계')
-								[importCashSum],
-								[exportCashSum]
-    	            ]
-    	        };
-
-    	 var options = {
-    	            seriesBarDistance: 10,
-    	            axisX: {
-    	                showGrid: false
-    	            },
-    	            height: "245px"
-    	        };
-
-    	        var responsiveOptions = [
-    	            ['screen and (max-width: 640px)', {
-    	                seriesBarDistance: 0,
-    	                axisX: {
-    	                    labelInterpolationFnc: function(value) {
-    	                        return value[0];
-    	                    }
-    	                }
-    	            }]
-    	        ];
-
-    	        var chartActivity = Chartist.Bar('#chartActivity', data, options, responsiveOptions);
-
-    });
-</script>
 </body>
 </html>
