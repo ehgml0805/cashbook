@@ -235,7 +235,7 @@ Member member = memberDao.selectMemberOne(memberNo);
 											</div>
 											<div class="form-group has-label">
 												<label> 회원 변경 레벨 <star class="star">*</star> </label>
-												<div class="form-group>
+												<div class="form-group">
 													<input type="radio" name="memberLevel" class="memberLevel" value="0">0 일반
 													&nbsp;&nbsp;
 													<input type="radio" name="memberLevel" class="memberLevel" value="1">1 관리자

@@ -17,6 +17,9 @@ String category=request.getParameter("category");
 System.out.println(category+"<=지출/수입");
 CashDao cashDao= new CashDao();
 ArrayList<HashMap<String,Object>> list=cashDao.selectCashListByCategory(memberId);
+
+//천 단위 콤마
+DecimalFormat df = new DecimalFormat("###,###");
 %>
 
 <!DOCTYPE html>
@@ -201,19 +204,19 @@ ArrayList<HashMap<String,Object>> list=cashDao.selectCashListByCategory(memberId
 						<td><%=m.get("year") %></td>
 						<td>
 							<span style="color: blue;"> +
-							<%=(m.get("importCashSum")) %></span>
+							<%=df.format(m.get("importCashSum")) %></span>
 						</td>
 						<td>
 							<span style="color: blue;"> +
-							<%=(m.get("importCashAvg")) %></span>
+							<%=df.format(m.get("importCashAvg")) %></span>
 						</td>
 						<td>
 							<span style="color: red;"> - 
-							<%=(m.get("exportCashSum")) %></span>
+							<%=df.format(m.get("exportCashSum")) %></span>
 						</td>
 						<td>
 							<span style="color: red;"> -
-							<%=(m.get("exportCashAvg")) %></span>
+							<%=df.format(m.get("exportCashAvg")) %></span>
 						</td>
 					</tr>	
 				<%		
